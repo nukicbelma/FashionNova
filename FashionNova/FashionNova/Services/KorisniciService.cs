@@ -54,7 +54,7 @@ namespace FashionNova.Services
         }
         public void Insert(KorisniciInsertRequest request)
         {
-            //MobyShop.WebAPI.Database.Korisnici entity = _mapper.Map<MobyShop.WebAPI.Database.Korisnici>(request);
+            FashionNova.Database.Korisnici entity = _mapper.Map<FashionNova.Database.Korisnici>(request);
 
             if (request.Password != request.PasswordPotvrda)
             {
@@ -69,7 +69,7 @@ namespace FashionNova.Services
 
             foreach (var uloga in request.Uloge)
             {
-                //FashionNova.Database.KorisniciUloge korisniciUloge = new MobyShop.WebAPI.Database.KorisniciUloge();
+                //FashionNova.Database.KorisniciUloge korisniciUloge = new FashionNova.Database.KorisniciUloge();
                 //korisniciUloge.KorisnikId = entity.KorisnikId;
                 //korisniciUloge.UlogaId = uloga;
                 //korisniciUloge.DatumIzmjene = DateTime.Now;
