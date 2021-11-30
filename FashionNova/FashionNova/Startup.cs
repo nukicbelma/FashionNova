@@ -1,5 +1,6 @@
 using FashionNova.Database;
 using FashionNova.Services;
+using FashionNova.WebAPI.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -38,6 +39,10 @@ namespace FashionNova
 
 
             services.AddScoped<IKorisniciService, KorisniciService>();
+            services.AddScoped<IUlogeService, UlogeService>();
+            services.AddScoped<IArtikliService, ArtikliService>();
+            services.AddScoped<IBojaService, BojaService>();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
