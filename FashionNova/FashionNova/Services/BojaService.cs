@@ -40,7 +40,14 @@ namespace FashionNova.WebAPI.Services
 
             _context.Boja.Add(entity);
             _context.SaveChanges();
+        }
+        public FashionNova.Model.Models.Boja Update(int id, BojaUpdateRequest request)
+        {
+            var entity = _context.Boja.Find(id);
+            _mapper.Map(request, entity);
 
+            _context.SaveChanges();
+            return _mapper.Map<Model.Models.Boja>(entity);
         }
     }
 }

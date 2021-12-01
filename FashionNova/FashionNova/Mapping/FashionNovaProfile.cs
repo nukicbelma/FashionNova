@@ -16,6 +16,7 @@ namespace FashionNova.WebAPI.Mappers
             CreateMap<Database.Artikli, Model.Models.Artikli>();
             CreateMap<Database.Boja, Model.Models.Boja>().ReverseMap();
             CreateMap<BojaInsertRequest, Database.Boja>();
+            CreateMap<BojaUpdateRequest, Database.Boja>();
         }
     }
 }

@@ -12,5 +12,6 @@ namespace FashionNova.WebAPI.Services
 
         FashionNova.Model.Models.Boja GetById(int id);
         public void Insert(BojaInsertRequest request);
+        public FashionNova.Model.Models.Boja Update(int id,BojaUpdateRequest request);
     }
 }
