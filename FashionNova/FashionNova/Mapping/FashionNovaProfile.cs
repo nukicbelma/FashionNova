@@ -11,12 +11,21 @@ namespace FashionNova.WebAPI.Mappers
     {
         public FashionNovaProfile()
         {
+
             CreateMap<Database.Korisnici, Model.Korisnici>();
             CreateMap<Database.Uloge, Model.Models.Uloge>();
             CreateMap<Database.Artikli, Model.Models.Artikli>();
-            CreateMap<Database.Boja, Model.Models.Boja>().ReverseMap();
+            CreateMap<Database.Boja, Model.Models.Boja>();
+            CreateMap<Database.Velicina, Model.Models.Velicina>();
+            CreateMap<Database.Materijal, Model.Models.Materijal>();
             CreateMap<BojaInsertRequest, Database.Boja>();
             CreateMap<BojaUpdateRequest, Database.Boja>();
+            CreateMap<BojaSearchRequest, Database.Boja>();
+            CreateMap<VelicinaSearchRequest, Database.Velicina>();
+            CreateMap<VelicinaInsertRequest, Database.Velicina>();
+            CreateMap<MaterijalSearchRequest, Database.Materijal>();
+            CreateMap<MaterijalInsertRequest, Database.Materijal>();
+            CreateMap<MaterijalUpdateRequest, Database.Materijal>();
         }
     }
 }
