@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace FashionNova.Model
+namespace FashionNova.Model.Models
 {
     public partial class Korisnici
     {

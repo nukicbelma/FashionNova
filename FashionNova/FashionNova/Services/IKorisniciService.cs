@@ -1,4 +1,4 @@
-﻿using FashionNova.Database;
+﻿using FashionNova.Model.Models;
 using FashionNova.Model.Requests;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;

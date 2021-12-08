@@ -21,7 +21,12 @@ namespace FashionNova.WebAPI.Services
 
         public List<Artikli> Get(ArtikliSearchRequest search)
         {
-            var query = _context.Artikli.Include(y => y.VrstaArtiklaId).Include(z => z.VelicinaId).AsQueryable();
+            var query = _context.Artikli
+                                         //.Include(x=>x.Vrsta)
+                                         //.Include(x => x.VelicinaId) 
+                                         //.Include(x=>x.MaterijalId)
+                                         //.Include(x=>x.BojaId)
+                                         .AsQueryable();
 
             if (!string.IsNullOrWhiteSpace(search?.Naziv))
             {
@@ -34,6 +39,7 @@ namespace FashionNova.WebAPI.Services
 
             var list = query.ToList();
             List<Artikli> result = new List<Artikli>();
+            List<FashionNova.Database.Boja> boja = new List<Database.Boja>();
 
             foreach (var item in list)
             {
@@ -49,7 +55,6 @@ namespace FashionNova.WebAPI.Services
                 nova.Sifra = item.Sifra;
                 nova.Slika = item.Slika;
                 nova.VrstaArtiklaId = item.VrstaArtiklaId;
-
                 result.Add(nova);
             }
             return result;
@@ -63,8 +68,21 @@ namespace FashionNova.WebAPI.Services
         public FashionNova.Model.Models.Artikli GetBySifra(string sifra)
         {
             var entity = _context.Artikli.Where(x => x.Sifra.Equals(sifra)).FirstOrDefault();
-
             return _mapper.Map<FashionNova.Model.Models.Artikli>(entity);
+        }
+        public void Insert(ArtikliInsertRequest request)
+        {
+            Database.Artikli entity = _mapper.Map<Database.Artikli>(request);
+            _context.Artikli.Add(entity);
+            _context.SaveChanges();
+        }
+        public void Update(int id, ArtikliInsertRequest request)
+        {
+            var entity = _context.Artikli.Find(id);
+            _context.Artikli.Attach(entity);
+            _context.Artikli.Update(entity);
+            _mapper.Map(request, entity);
+            _context.SaveChanges();
         }
 
     }

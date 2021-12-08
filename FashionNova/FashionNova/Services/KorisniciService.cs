@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
-using FashionNova.Database;
+using FashionNova.Model;
+using FashionNova.Model.Models;
 using FashionNova.Model.Requests;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -15,9 +16,9 @@ namespace FashionNova.Services
 
     {
         private readonly IMapper _mapper;
-        private readonly FashionNova_IB170007Context _context;
+        private readonly FashionNova.Database.FashionNova_IB170007Context _context;
 
-        public KorisniciService(FashionNova_IB170007Context context, IMapper mapper)
+        public KorisniciService(FashionNova.Database.FashionNova_IB170007Context context, IMapper mapper)
         {
             _context = context;
             _mapper = mapper;

@@ -14,5 +14,7 @@ namespace FashionNova.WebAPI.Services
         FashionNova.Model.Models.Artikli GetById(int id);
 
         FashionNova.Model.Models.Artikli GetBySifra(string sifra);
+        public void Insert(ArtikliInsertRequest request);
+        public void Update(int id, ArtikliInsertRequest request);
     }
 }

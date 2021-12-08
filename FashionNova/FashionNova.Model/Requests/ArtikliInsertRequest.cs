@@ -4,12 +4,13 @@ using System.Text;
 
 namespace FashionNova.Model.Requests
 {
-    public class ArtikliSearchRequest
+    public class ArtikliInsertRequest
     {
         public string Naziv { get; set; }
         public int VrstaArtiklaId { get; set; }
-        public int MaterijalId { get; set; }
-        public int VelicinaId { get; set; }
         public int BojaId { get; set; }
+        public int VelicinaId { get; set; }
+        public int MaterijalId { get; set; }
+        public string Sifra { get; set; }
     }
 }
