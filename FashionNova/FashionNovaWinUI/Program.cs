@@ -1,4 +1,5 @@
 using FashionNova.WinUI.Korisnici;
+using FashionNova.WinUI.Pocetna;
 using FashionNovaWinUI.Artikli;
 using System;
 using System.Collections.Generic;
@@ -19,8 +20,8 @@ namespace FashionNovaWinUI
             Application.SetHighDpiMode(HighDpiMode.SystemAware);
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            //Application.Run(new Form1());
-            Application.Run(new frmKorisnici());
+            Application.Run(new HomepageAdmin());
+            //Application.Run(new frmKorisnici());
         }
     }
 }

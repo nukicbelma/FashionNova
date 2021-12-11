@@ -33,7 +33,7 @@ namespace FashionNova.Controllers
         }
 
         [HttpPut("{id}")]
-        public void Update(int id, [FromBody] KorisniciInsertRequest request)
+        public void Update(int id, [FromBody] KorisniciUpdateRequest request)
         {
             _service.Update(id, request);
         }

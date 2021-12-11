@@ -45,9 +45,14 @@ namespace FashionNova.WinUI.Korisnici
             this.txtPotvrdaLozinke = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.pbxSlika = new System.Windows.Forms.PictureBox();
-            this.label8 = new System.Windows.Forms.Label();
             this.btnSpasi = new System.Windows.Forms.Button();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
+            this.cmbUloge = new System.Windows.Forms.ComboBox();
+            this.label9 = new System.Windows.Forms.Label();
+            this.ofdSlika = new System.Windows.Forms.OpenFileDialog();
+            this.btnUcitajSliku = new System.Windows.Forms.Button();
+            this.label10 = new System.Windows.Forms.Label();
+            this.txtSlika = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.pbxSlika)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.SuspendLayout();
@@ -75,9 +80,9 @@ namespace FashionNova.WinUI.Korisnici
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(12, 145);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(60, 15);
+            this.label3.Size = new System.Drawing.Size(63, 15);
             this.label3.TabIndex = 2;
-            this.label3.Text = "Username";
+            this.label3.Text = "Username:";
             // 
             // label4
             // 
@@ -92,28 +97,28 @@ namespace FashionNova.WinUI.Korisnici
             // 
             this.txtIme.Location = new System.Drawing.Point(126, 27);
             this.txtIme.Name = "txtIme";
-            this.txtIme.Size = new System.Drawing.Size(100, 23);
+            this.txtIme.Size = new System.Drawing.Size(115, 23);
             this.txtIme.TabIndex = 4;
             // 
             // txtPrezime
             // 
             this.txtPrezime.Location = new System.Drawing.Point(126, 56);
             this.txtPrezime.Name = "txtPrezime";
-            this.txtPrezime.Size = new System.Drawing.Size(100, 23);
+            this.txtPrezime.Size = new System.Drawing.Size(115, 23);
             this.txtPrezime.TabIndex = 5;
             // 
             // txtEmail
             // 
             this.txtEmail.Location = new System.Drawing.Point(126, 85);
             this.txtEmail.Name = "txtEmail";
-            this.txtEmail.Size = new System.Drawing.Size(100, 23);
+            this.txtEmail.Size = new System.Drawing.Size(115, 23);
             this.txtEmail.TabIndex = 6;
             // 
             // txtTelefon
             // 
             this.txtTelefon.Location = new System.Drawing.Point(126, 114);
             this.txtTelefon.Name = "txtTelefon";
-            this.txtTelefon.Size = new System.Drawing.Size(100, 23);
+            this.txtTelefon.Size = new System.Drawing.Size(115, 23);
             this.txtTelefon.TabIndex = 7;
             // 
             // label5
@@ -129,20 +134,20 @@ namespace FashionNova.WinUI.Korisnici
             // 
             this.txtKorisnickoIme.Location = new System.Drawing.Point(126, 142);
             this.txtKorisnickoIme.Name = "txtKorisnickoIme";
-            this.txtKorisnickoIme.Size = new System.Drawing.Size(100, 23);
+            this.txtKorisnickoIme.Size = new System.Drawing.Size(115, 23);
             this.txtKorisnickoIme.TabIndex = 9;
             // 
             // txtLozinka
             // 
             this.txtLozinka.Location = new System.Drawing.Point(126, 171);
             this.txtLozinka.Name = "txtLozinka";
-            this.txtLozinka.Size = new System.Drawing.Size(100, 23);
+            this.txtLozinka.Size = new System.Drawing.Size(115, 23);
             this.txtLozinka.TabIndex = 10;
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(12, 179);
+            this.label6.Location = new System.Drawing.Point(12, 174);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(60, 15);
             this.label6.TabIndex = 11;
@@ -152,7 +157,7 @@ namespace FashionNova.WinUI.Korisnici
             // 
             this.txtPotvrdaLozinke.Location = new System.Drawing.Point(126, 200);
             this.txtPotvrdaLozinke.Name = "txtPotvrdaLozinke";
-            this.txtPotvrdaLozinke.Size = new System.Drawing.Size(100, 23);
+            this.txtPotvrdaLozinke.Size = new System.Drawing.Size(115, 23);
             this.txtPotvrdaLozinke.TabIndex = 12;
             // 
             // label7
@@ -168,25 +173,17 @@ namespace FashionNova.WinUI.Korisnici
             // 
             this.pbxSlika.Location = new System.Drawing.Point(289, 29);
             this.pbxSlika.Name = "pbxSlika";
-            this.pbxSlika.Size = new System.Drawing.Size(152, 178);
+            this.pbxSlika.Size = new System.Drawing.Size(195, 257);
             this.pbxSlika.TabIndex = 14;
             this.pbxSlika.TabStop = false;
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(307, 210);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(100, 15);
-            this.label8.TabIndex = 15;
-            this.label8.Text = "Dodaj fotografiju:";
+            this.pbxSlika.Click += new System.EventHandler(this.pbxSlika_Click);
             // 
             // btnSpasi
             // 
             this.btnSpasi.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.btnSpasi.Location = new System.Drawing.Point(164, 263);
+            this.btnSpasi.Location = new System.Drawing.Point(360, 330);
             this.btnSpasi.Name = "btnSpasi";
-            this.btnSpasi.Size = new System.Drawing.Size(157, 23);
+            this.btnSpasi.Size = new System.Drawing.Size(124, 28);
             this.btnSpasi.TabIndex = 16;
             this.btnSpasi.Text = "Spasi";
             this.btnSpasi.UseVisualStyleBackColor = false;
@@ -196,14 +193,65 @@ namespace FashionNova.WinUI.Korisnici
             // 
             this.errorProvider1.ContainerControl = this;
             // 
+            // cmbUloge
+            // 
+            this.cmbUloge.FormattingEnabled = true;
+            this.cmbUloge.Location = new System.Drawing.Point(126, 234);
+            this.cmbUloge.Name = "cmbUloge";
+            this.cmbUloge.Size = new System.Drawing.Size(115, 23);
+            this.cmbUloge.TabIndex = 17;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(10, 237);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(41, 15);
+            this.label9.TabIndex = 18;
+            this.label9.Text = "Uloga:";
+            // 
+            // ofdSlika
+            // 
+            this.ofdSlika.FileName = "openFileDialog1";
+            // 
+            // btnUcitajSliku
+            // 
+            this.btnUcitajSliku.Location = new System.Drawing.Point(214, 267);
+            this.btnUcitajSliku.Name = "btnUcitajSliku";
+            this.btnUcitajSliku.Size = new System.Drawing.Size(27, 23);
+            this.btnUcitajSliku.TabIndex = 21;
+            this.btnUcitajSliku.Text = "...";
+            this.btnUcitajSliku.UseVisualStyleBackColor = true;
+            this.btnUcitajSliku.Click += new System.EventHandler(this.btnUcitajSliku_Click);
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(12, 271);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(34, 15);
+            this.label10.TabIndex = 20;
+            this.label10.Text = "Slika:";
+            // 
+            // txtSlika
+            // 
+            this.txtSlika.Location = new System.Drawing.Point(126, 268);
+            this.txtSlika.Name = "txtSlika";
+            this.txtSlika.Size = new System.Drawing.Size(82, 23);
+            this.txtSlika.TabIndex = 19;
+            // 
             // frmDodajKorisnika
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-            this.ClientSize = new System.Drawing.Size(458, 298);
+            this.ClientSize = new System.Drawing.Size(496, 361);
+            this.Controls.Add(this.btnUcitajSliku);
+            this.Controls.Add(this.label10);
+            this.Controls.Add(this.txtSlika);
+            this.Controls.Add(this.label9);
+            this.Controls.Add(this.cmbUloge);
             this.Controls.Add(this.btnSpasi);
-            this.Controls.Add(this.label8);
             this.Controls.Add(this.pbxSlika);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.txtPotvrdaLozinke);
@@ -221,6 +269,7 @@ namespace FashionNova.WinUI.Korisnici
             this.Controls.Add(this.label1);
             this.Name = "frmDodajKorisnika";
             this.Text = "Novi korisnik";
+            this.Load += new System.EventHandler(this.frmDodajKorisnika_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pbxSlika)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             this.ResumeLayout(false);
@@ -245,8 +294,13 @@ namespace FashionNova.WinUI.Korisnici
         private System.Windows.Forms.TextBox txtPotvrdaLozinke;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.PictureBox pbxSlika;
-        private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Button btnSpasi;
         private System.Windows.Forms.ErrorProvider errorProvider1;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.ComboBox cmbUloge;
+        private System.Windows.Forms.OpenFileDialog ofdSlika;
+        private System.Windows.Forms.Button btnUcitajSliku;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.TextBox txtSlika;
     }
 }

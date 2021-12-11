@@ -5,7 +5,7 @@ using System.Text;
 
 namespace FashionNova.Model.Requests
 {
-    public class KorisniciInsertRequest
+    public class KorisniciUpdateRequest
     {
         [Required(AllowEmptyStrings = false)]
         public string Ime { get; set; }

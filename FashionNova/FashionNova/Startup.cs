@@ -45,6 +45,7 @@ namespace FashionNova
             services.AddScoped<IVelicinaService, VelicinaService>();
             services.AddScoped<IMaterijalService, MaterijalService>();
             services.AddScoped<IVrstaArtiklaService, VrstaArtiklaService>();
+            services.AddScoped<IKlijentiService, KlijentiService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
