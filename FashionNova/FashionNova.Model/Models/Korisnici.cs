@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+
 
 namespace FashionNova.Model.Models
 {
@@ -18,7 +20,7 @@ namespace FashionNova.Model.Models
         public string KorisnickoIme { get; set; }
         public byte[] Slika { get; set; }
 
-        //public virtual ICollection<KorisniciUloge> KorisniciUloge { get; set; }
+        public virtual ICollection<KorisniciUloge> KorisniciUloge { get; set; }
         //public virtual ICollection<Narudzba> Narudzba { get; set; }
     }
 }

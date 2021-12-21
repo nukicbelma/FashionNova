@@ -43,9 +43,7 @@ namespace FashionNova.Services
             //}
 
             var list = query.ToList();
-
             return _mapper.Map<List<Klijenti>>(list);
-
         }
 
         public Klijenti GetById(int id)
@@ -70,7 +68,6 @@ namespace FashionNova.Services
             _context.Klijenti.Add(entity);
             _context.SaveChanges();
         }
-
         //public void Update(int id, KlijentiUpdateRequest request)
         //{
         //    var entity = _context.Klijenti.Where(x => x.KlijentId == id).FirstOrDefault();

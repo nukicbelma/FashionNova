@@ -268,6 +268,7 @@ namespace FashionNova.WinUI.Korisnici
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Name = "frmDodajKorisnika";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Novi korisnik";
             this.Load += new System.EventHandler(this.frmDodajKorisnika_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pbxSlika)).EndInit();

@@ -2,6 +2,7 @@
 using FashionNova.Model;
 using FashionNova.Model.Models;
 using FashionNova.Model.Requests;
+using FashionNova.WebAPI.Filter;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -23,29 +24,25 @@ namespace FashionNova.Services
             _context = context;
             _mapper = mapper;
         }
-        public List<Korisnici> Get(KorisniciSearchRequest search)
+        public IList<Korisnici> Get(KorisniciSearchRequest search)
         {
             var query = _context.Korisnici.AsQueryable();
 
             if (!string.IsNullOrWhiteSpace(search?.Ime))
             {
-                query = query.Where(x => x.Ime.StartsWith(search.Ime));
+                query = query.Where(x => x.Ime == search.Ime);
             }
 
-            if (!string.IsNullOrWhiteSpace(search?.Prezime))
-            {
-                query = query.Where(x => x.Prezime.StartsWith(search.Prezime));
-            }
-
-            //if (search?.IsUlogeLoadingEnabled == true)
+            //if (!string.IsNullOrWhiteSpace(search?.PrezimeFilter))
             //{
-            //    query = query.Include(x => x.KorisniciUloge);
+            //    query = query.Where(x => x.Prezime == search.PrezimeFilter);
             //}
 
-            var list = query.ToList();
+            var entities = query.ToList();
+            var result = _mapper.Map<IList<FashionNova.Model.Models.Korisnici>>(entities);
 
-           return _mapper.Map<List<Korisnici>>(list);
 
+            return result;
         }
 
         public Korisnici GetById(int id)
@@ -136,6 +133,67 @@ namespace FashionNova.Services
             HashAlgorithm algorithm = HashAlgorithm.Create("SHA1");
             byte[] inArray = algorithm.ComputeHash(dst);
             return Convert.ToBase64String(inArray);
+        }
+        public async Task<FashionNova.Model.Models.Korisnici> Login(string username, string password)
+        {
+            var entity = await _context.Korisnici.Include("KorisniciUloge.Uloge").FirstOrDefaultAsync(x => x.KorisnickoIme == username);
+
+            if (entity == null)
+            {
+                throw new UserException("Pogresan username ili password");
+            }
+
+            var hash = GenerateHash(entity.LozinkaSalt, password);
+
+            if (hash != entity.LozinkaHash)
+            {
+                throw new UserException("Pogresan username ili password");
+            }
+            return _mapper.Map<FashionNova.Model.Models.Korisnici>(entity);
+        }
+        public Korisnici Authenticiraj(string username, string pass)
+        {
+            var user = _context.Korisnici.FirstOrDefault(x => x.KorisnickoIme == username);
+
+            if (user != null)
+            {
+                var hashedPass = GenerateHash(user.LozinkaSalt, pass);
+
+                if (hashedPass == user.LozinkaHash)
+                {
+                    var uloge = _context.KorisniciUloge.Include(x => x.Uloga).Where(x => x.KorisnikId == user.KorisnikId);
+                    Korisnici novikorisnik = new Korisnici();
+
+                    foreach (var item in uloge)
+                    {
+
+                        novikorisnik.KorisniciUloge = new List<KorisniciUloge>();
+                        novikorisnik.KorisniciUloge.Add(new KorisniciUloge
+                        {
+                            DatumIzmjene = item.DatumIzmjene,
+                            KorisnikId = item.KorisnikId,
+                            UlogaId = item.UlogaId,
+                            KorisnikUlogaId = item.KorisnikUlogaId,
+                            Uloga = new Uloge
+                            {
+                                Naziv = item.Uloga.Naziv,
+                                OpisUloge = item.Uloga.OpisUloge,
+                                UlogaId = item.Uloga.UlogaId
+                            }
+                        });
+                    }
+                    novikorisnik.Ime = user.Ime;
+                    novikorisnik.Prezime = user.Prezime;
+                    novikorisnik.KorisnickoIme = user.KorisnickoIme;
+                    novikorisnik.Email = user.Email;
+                    novikorisnik.KorisnikId = user.KorisnikId;
+                    novikorisnik.Telefon = user.Telefon;
+
+                    return novikorisnik;
+                }
+            }
+
+            return null;
         }
     }
 }

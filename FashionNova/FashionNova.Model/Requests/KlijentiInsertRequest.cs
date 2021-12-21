@@ -21,6 +21,6 @@ namespace FashionNova.Model.Requests
         public string KorisnickoIme { get; set; }
         public string Password { get; set; }
         public string PasswordPotvrda { get; set; }
-        //public byte[] Slika { get; set; }
+        public byte[] Slika { get; set; }
     }
 }

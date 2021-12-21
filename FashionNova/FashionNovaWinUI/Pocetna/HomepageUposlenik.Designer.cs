@@ -107,6 +107,7 @@ namespace FashionNova.WinUI.Pocetna
             this.Controls.Add(this.btnKlijenti);
             this.Controls.Add(this.btnNarudzbe);
             this.Name = "HomepageUposlenik";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Homepage::uposlenik";
             this.Load += new System.EventHandler(this.HomepageUposlenik_Load);
             this.ResumeLayout(false);

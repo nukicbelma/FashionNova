@@ -4,13 +4,15 @@ using System.Text;
 
 namespace FashionNova.Model.Requests
 {
-    public class ArtikliSearchRequest
+    public class ArtikliUpdateRequest
     {
         public string Naziv { get; set; }
+        public decimal Cijena { get; set; }
         public int VrstaArtiklaId { get; set; }
         public int MaterijalId { get; set; }
-        public int VelicinaId { get; set; }
         public int BojaId { get; set; }
-        public string[] IncludeList { get; set; }
+        public int VelicinaId { get; set; }
+        public string Sifra { get; set; }
+        public byte[] Slika { get; set; }
     }
 }

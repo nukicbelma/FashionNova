@@ -1,4 +1,5 @@
 ﻿using FashionNova.WinUI.Klijenti;
+using FashionNova.WinUI.Korisnici;
 using FashionNovaWinUI.Artikli;
 using System;
 using System.Collections.Generic;
@@ -114,6 +115,28 @@ namespace FashionNova.WinUI.Pocetna
         {
             var formaKlijenti = new frmKlijenti();
             formaKlijenti.ShowDialog();
+        }
+        private void pregledKorisnikaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var formaKorisnici = new frmKorisnici();
+            formaKorisnici.ShowDialog();
+        }
+
+        private void pregledKorisnikaToolStripMenuItem_Click_1(object sender, EventArgs e)
+        {
+            var formaKorisnici = new frmKorisnici();
+            formaKorisnici.ShowDialog();
+        }
+
+        private void klijentiToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dodajKorisnikaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var formaDodajKorisnika = new frmDodajKorisnika();
+            formaDodajKorisnika.ShowDialog();
         }
     }
 }

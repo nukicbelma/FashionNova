@@ -41,7 +41,7 @@ namespace FashionNova.Controllers
             _service.Insert(request);
         }
         [HttpPut("{id}")]
-        public void Update(int id, [FromBody] ArtikliInsertRequest request)
+        public void Update(int id, [FromBody] ArtikliUpdateRequest request)
         {
             _service.Update(id, request);
         }

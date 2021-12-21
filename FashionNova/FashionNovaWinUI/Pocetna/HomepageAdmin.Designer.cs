@@ -39,6 +39,7 @@ namespace FashionNova.WinUI.Pocetna
             this.pregledKorisnikaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.klijentiToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.pregledKlijenataToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.dodajKorisnikaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -80,16 +81,19 @@ namespace FashionNova.WinUI.Pocetna
             // klijentiToolStripMenuItem
             // 
             this.klijentiToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.pregledKorisnikaToolStripMenuItem});
+            this.pregledKorisnikaToolStripMenuItem,
+            this.dodajKorisnikaToolStripMenuItem});
             this.klijentiToolStripMenuItem.Name = "klijentiToolStripMenuItem";
             this.klijentiToolStripMenuItem.Size = new System.Drawing.Size(64, 20);
             this.klijentiToolStripMenuItem.Text = "Korisnici";
+            this.klijentiToolStripMenuItem.Click += new System.EventHandler(this.klijentiToolStripMenuItem_Click);
             // 
             // pregledKorisnikaToolStripMenuItem
             // 
             this.pregledKorisnikaToolStripMenuItem.Name = "pregledKorisnikaToolStripMenuItem";
             this.pregledKorisnikaToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.pregledKorisnikaToolStripMenuItem.Text = "Pregled korisnika";
+            this.pregledKorisnikaToolStripMenuItem.Click += new System.EventHandler(this.pregledKorisnikaToolStripMenuItem_Click_1);
             // 
             // klijentiToolStripMenuItem1
             // 
@@ -102,9 +106,16 @@ namespace FashionNova.WinUI.Pocetna
             // pregledKlijenataToolStripMenuItem
             // 
             this.pregledKlijenataToolStripMenuItem.Name = "pregledKlijenataToolStripMenuItem";
-            this.pregledKlijenataToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.pregledKlijenataToolStripMenuItem.Size = new System.Drawing.Size(161, 22);
             this.pregledKlijenataToolStripMenuItem.Text = "Pregled klijenata";
             this.pregledKlijenataToolStripMenuItem.Click += new System.EventHandler(this.pregledKlijenataToolStripMenuItem_Click);
+            // 
+            // dodajKorisnikaToolStripMenuItem
+            // 
+            this.dodajKorisnikaToolStripMenuItem.Name = "dodajKorisnikaToolStripMenuItem";
+            this.dodajKorisnikaToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.dodajKorisnikaToolStripMenuItem.Text = "Dodaj korisnika";
+            this.dodajKorisnikaToolStripMenuItem.Click += new System.EventHandler(this.dodajKorisnikaToolStripMenuItem_Click);
             // 
             // HomepageAdmin
             // 
@@ -116,6 +127,7 @@ namespace FashionNova.WinUI.Pocetna
             this.MainMenuStrip = this.menuStrip;
             this.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.Name = "HomepageAdmin";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Homepage::admin";
             this.menuStrip.ResumeLayout(false);
             this.menuStrip.PerformLayout();
@@ -133,6 +145,7 @@ namespace FashionNova.WinUI.Pocetna
         private System.Windows.Forms.ToolStripMenuItem dodajArtikalToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem pregledKorisnikaToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem pregledKlijenataToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem dodajKorisnikaToolStripMenuItem;
     }
 }
 

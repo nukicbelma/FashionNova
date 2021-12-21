@@ -10,11 +10,12 @@ namespace FashionNova.WebAPI.Services
     public interface IArtikliService
     {
         List<FashionNova.Model.Models.Artikli> Get(ArtikliSearchRequest search);
-
+        public  IEnumerable<FashionNova.Model.Models.Artikli> GetObject(ArtikliSearchRequest search);
         FashionNova.Model.Models.Artikli GetById(int id);
+
 
         FashionNova.Model.Models.Artikli GetBySifra(string sifra);
         public void Insert(ArtikliInsertRequest request);
-        public void Update(int id, ArtikliInsertRequest request);
+        public void Update(int id, ArtikliUpdateRequest request);
     }
 }

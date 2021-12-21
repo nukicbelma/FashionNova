@@ -134,6 +134,7 @@ namespace FashionNova.WinUI.Narudzbe
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.label1);
             this.Name = "frmNarudzbe";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "frmNarudzbe";
             this.groupBox1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();

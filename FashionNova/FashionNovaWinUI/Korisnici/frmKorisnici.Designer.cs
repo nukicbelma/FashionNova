@@ -143,6 +143,7 @@ namespace FashionNova.WinUI.Korisnici
             this.Controls.Add(this.txtPretraga);
             this.Controls.Add(this.groupBox1);
             this.Name = "frmKorisnici";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "frmKorisnici";
             this.Load += new System.EventHandler(this.frmKorisnici_Load);
             this.groupBox1.ResumeLayout(false);

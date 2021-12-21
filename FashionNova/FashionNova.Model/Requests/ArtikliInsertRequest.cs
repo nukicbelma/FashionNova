@@ -12,5 +12,7 @@ namespace FashionNova.Model.Requests
         public int VelicinaId { get; set; }
         public int MaterijalId { get; set; }
         public string Sifra { get; set; }
+        public decimal Cijena { get; set; }
+        public byte[] Slika { get; set; }
     }
 }

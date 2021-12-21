@@ -4,6 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using eProdaja.Model;
+using FashionNova.Model.Models;
+using FashionNova.Model.Requests;
 using Flurl.Http;
 using Newtonsoft.Json;
 
@@ -23,16 +26,27 @@ namespace FashionNovaWinUI
         }
         public async Task<T> Get<T>(object searchRequest = null)
         {
-            var query = "";
-            if (searchRequest != null)
+            try
             {
-                //query = await searchRequest?.ToQueryString();
+                var query = "";
+                if (searchRequest != null)
+                {
+                    query = await searchRequest?.ToQueryString();
+                }
+
+                var list = await $"{endpoint}{_resource}?{query}"
+                   .WithBasicAuth(Username, Password).GetJsonAsync<T>();
+
+                return list;
             }
-
-            var list = await $"{endpoint}{_resource}?{query}"
-               .WithBasicAuth(Username, Password).GetJsonAsync<T>();
-
-            return list;
+            catch (FlurlHttpException ex)
+            {
+                //if (ex.Call.HttpStatus == System.Net.HttpStatusCode.Unauthorized)
+                {
+                    MessageBox.Show("Niste authentificirani");
+                }
+                throw;
+            }
         }
 
         public async Task<T> GetById<T>(object id)
@@ -65,7 +79,12 @@ namespace FashionNovaWinUI
             }
 
         }
+        public async Task<T> Authenticiraj<T>(string username, string password)
+        {
+            var url = $"{FashionNova.WinUI.Properties.Resources.APIUrl}{_resource}/Authenticiraj/{username},{password}";
 
+            return await url.WithBasicAuth(Username, Password).GetJsonAsync<T>();
+        }
         public async Task<T> Update<T>(int id, object request)
         {
             try
