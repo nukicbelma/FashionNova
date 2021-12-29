@@ -51,6 +51,7 @@ namespace FashionNova.WinUI.Artikli
             this.btnSacuvaj = new System.Windows.Forms.Button();
             this.ofdSlika = new System.Windows.Forms.OpenFileDialog();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
+            this.btnIzbrisi = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pbxSlika)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.SuspendLayout();
@@ -224,12 +225,24 @@ namespace FashionNova.WinUI.Artikli
             // 
             this.errorProvider1.ContainerControl = this;
             // 
+            // btnIzbrisi
+            // 
+            this.btnIzbrisi.Location = new System.Drawing.Point(12, 240);
+            this.btnIzbrisi.Name = "btnIzbrisi";
+            this.btnIzbrisi.Size = new System.Drawing.Size(107, 23);
+            this.btnIzbrisi.TabIndex = 54;
+            this.btnIzbrisi.Text = "Ukloni artikal";
+            this.btnIzbrisi.UseVisualStyleBackColor = true;
+            this.btnIzbrisi.Visible = false;
+            this.btnIzbrisi.Click += new System.EventHandler(this.btnIzbrisi_Click);
+            // 
             // frmDodajUrediArtikal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
             this.ClientSize = new System.Drawing.Size(544, 275);
+            this.Controls.Add(this.btnIzbrisi);
             this.Controls.Add(this.btnSacuvaj);
             this.Controls.Add(this.cmbVrstaArtikla);
             this.Controls.Add(this.cmbMaterijal);
@@ -283,5 +296,6 @@ namespace FashionNova.WinUI.Artikli
         private System.Windows.Forms.Button btnSacuvaj;
         private System.Windows.Forms.OpenFileDialog ofdSlika;
         private System.Windows.Forms.ErrorProvider errorProvider1;
+        private System.Windows.Forms.Button btnIzbrisi;
     }
 }

@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using FashionNova.Model.Models;
 using FashionNova.Model.Requests;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -63,7 +64,10 @@ namespace FashionNova.WebAPI.Services
                 nova.Naziv = item.Naziv;
                 nova.VelicinaId = item.VelicinaId;
                 nova.Sifra = item.Sifra;
-                nova.Slika = item.Slika;
+                if (item.Slika != null)
+                {
+                    nova.Slika = item.Slika;
+                }
                 nova.VrstaArtiklaId = item.VrstaArtiklaId;
                 foreach (var b in bojeList)
                 {
@@ -143,6 +147,22 @@ namespace FashionNova.WebAPI.Services
 
             var list = entity.ToList();
             return _mapper.Map<List<FashionNova.Model.Models.Artikli>>(list);
+        }
+        public virtual async Task<bool> Delete(int id)
+        {
+            var entity = await _context.Set<FashionNova.Database.Artikli>().FindAsync(id);
+            var e = _context.Artikli.Find(id);
+            try
+            {
+                //_context.Set<FashionNova.Database.Artikli>().Remove(entity);
+                //await _context.SaveChangesAsync();
+
+                return true;
+            }
+            catch
+            {   
+                return false;
+            }
         }
 
     }

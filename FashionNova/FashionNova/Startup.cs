@@ -69,6 +69,7 @@ namespace FashionNova
             services.AddScoped<IMaterijalService, MaterijalService>();
             services.AddScoped<IVrstaArtiklaService, VrstaArtiklaService>();
             services.AddScoped<IKlijentiService, KlijentiService>();
+            services.AddScoped<INarudzbaService, NarudzbaService>();
 
             services.AddAuthentication("BasicAuthentication")
                 .AddScheme<AuthenticationSchemeOptions, BasicAuthenticationHandler>("BasicAuthentication", null);

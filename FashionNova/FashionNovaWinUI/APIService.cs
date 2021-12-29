@@ -95,6 +95,7 @@ namespace FashionNovaWinUI
             }
             catch (FlurlHttpException ex)
             {
+                
                 var errors = await ex.GetResponseJsonAsync<Dictionary<string, string[]>>();
 
                 var stringBuilder = new StringBuilder();
@@ -105,6 +106,27 @@ namespace FashionNovaWinUI
 
                 MessageBox.Show(stringBuilder.ToString(), "Greška", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return default(T);
+            }
+        }
+        public async Task<bool> Delete<T>(int id)
+        {
+            try
+            {
+                var url = $"{endpoint}/{_resource}/{id}";
+                return await url.WithBasicAuth(Username, Password).DeleteAsync().ReceiveJson<bool>();
+            }
+            catch (FlurlHttpException ex)
+            {
+                var errors = await ex.GetResponseStringAsync();
+                //var errors = await ex.GetResponseJsonAsync<Dictionary<string, string[]>>();
+
+                var stringBuilder = new StringBuilder();
+                foreach (var error in errors)
+                {
+                    stringBuilder.AppendLine($"{error.ToString()}, ${string.Join(",", error.ToString())}");
+                }
+                MessageBox.Show(stringBuilder.ToString(), "Greška", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
             }
         }
     }

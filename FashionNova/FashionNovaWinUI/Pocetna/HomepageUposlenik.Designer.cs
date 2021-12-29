@@ -74,6 +74,7 @@ namespace FashionNova.WinUI.Pocetna
             this.btnIzvjestaji.TabIndex = 2;
             this.btnIzvjestaji.Text = "Izvještaji";
             this.btnIzvjestaji.UseVisualStyleBackColor = false;
+            this.btnIzvjestaji.Click += new System.EventHandler(this.btnIzvjestaji_Click);
             // 
             // label1
             // 

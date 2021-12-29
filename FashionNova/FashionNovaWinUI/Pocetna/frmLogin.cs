@@ -59,7 +59,6 @@ namespace FashionNova.WinUI.Pocetna
                     uposlenik.ShowDialog();
                 }
             }
-
             else
             {
                 MessageBox.Show("Pogresan username ili password", "Autentifikacija", MessageBoxButtons.OK, MessageBoxIcon.Error);

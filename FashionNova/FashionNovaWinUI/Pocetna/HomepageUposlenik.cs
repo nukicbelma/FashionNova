@@ -1,5 +1,6 @@
 ﻿using FashionNova.WinUI.Klijenti;
 using FashionNova.WinUI.Narudzbe;
+using FashionNova.WinUI.Reports;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -34,8 +35,14 @@ namespace FashionNova.WinUI.Pocetna
 
         private void btnNarudzbe_Click(object sender, EventArgs e)
         {
-            var formaNarudzbe = new frmNarudzbe();
+            var formaNarudzbe = new Narudzbe.Narudzbe();
             formaNarudzbe.ShowDialog();
+        }
+
+        private void btnIzvjestaji_Click(object sender, EventArgs e)
+        {
+            var frm = new frmIndexReport();
+            frm.ShowDialog();
         }
     }
 }

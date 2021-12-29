@@ -35,6 +35,7 @@ namespace FashionNova.WinUI.Artikli
             await LoadData();
             if(SelectedArtikal!=null)
             {
+                btnIzbrisi.Visible = true;
                 cmbVrstaArtikla.SelectedIndex = SelectedArtikal.VrstaArtiklaId;
                 cmbBoja.SelectedIndex = SelectedArtikal.BojaId;
                 cmbMaterijal.SelectedIndex = SelectedArtikal.MaterijalId;
@@ -170,6 +171,18 @@ namespace FashionNova.WinUI.Artikli
                 txtSlika.Text = fileName;
                 pbxSlika.Image = Image.FromFile(fileName);
 
+            }
+        }
+
+        private async void btnIzbrisi_Click(object sender, EventArgs e)
+        {
+            if (SelectedArtikal != null)
+            {
+                //var izbrisi = new frmConfirmation(SelectedArtikal);
+                //izbrisi.ShowDialog();
+                //Close();
+                //int ID = Convert.ToInt32(dgvArtists.CurrentRow.Cells["ID"].Value);
+                await _artikli.Delete<dynamic>(SelectedArtikal.ArtikalId);
             }
         }
     }

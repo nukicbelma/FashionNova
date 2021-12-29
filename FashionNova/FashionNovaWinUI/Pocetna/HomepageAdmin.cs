@@ -1,4 +1,5 @@
-﻿using FashionNova.WinUI.Klijenti;
+﻿using FashionNova.WinUI.Artikli;
+using FashionNova.WinUI.Klijenti;
 using FashionNova.WinUI.Korisnici;
 using FashionNovaWinUI.Artikli;
 using System;
@@ -55,27 +56,6 @@ namespace FashionNova.WinUI.Pocetna
             this.Close();
         }
 
-        private void CutToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-        }
-
-        private void CopyToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-        }
-
-        private void PasteToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-        }
-
-        private void ToolBarToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            //toolStrip.Visible = toolBarToolStripMenuItem.Checked;
-        }
-
-        private void StatusBarToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            //statusStrip.Visible = statusBarToolStripMenuItem.Checked;
-        }
 
         private void CascadeToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -137,6 +117,12 @@ namespace FashionNova.WinUI.Pocetna
         {
             var formaDodajKorisnika = new frmDodajKorisnika();
             formaDodajKorisnika.ShowDialog();
+        }
+
+        private void dodajArtikalToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var formaDodajArtikal = new frmDodajUrediArtikal();
+            formaDodajArtikal.ShowDialog();
         }
     }
 }

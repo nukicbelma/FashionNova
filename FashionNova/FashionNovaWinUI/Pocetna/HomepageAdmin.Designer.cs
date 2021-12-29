@@ -77,6 +77,7 @@ namespace FashionNova.WinUI.Pocetna
             this.dodajArtikalToolStripMenuItem.Name = "dodajArtikalToolStripMenuItem";
             this.dodajArtikalToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.dodajArtikalToolStripMenuItem.Text = "Dodaj artikal";
+            this.dodajArtikalToolStripMenuItem.Click += new System.EventHandler(this.dodajArtikalToolStripMenuItem_Click);
             // 
             // klijentiToolStripMenuItem
             // 
