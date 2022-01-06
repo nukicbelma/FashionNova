@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace FashionNova.Database
+namespace FashionNova.WebAPI.Database
 {
     public partial class Korisnici
     {

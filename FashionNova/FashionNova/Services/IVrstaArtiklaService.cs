@@ -11,7 +11,8 @@ namespace FashionNova.WebAPI.Services
     {
         List<FashionNova.Model.Models.VrstaArtikla> GetAll(VrstaArtiklaSearchRequest search);
         FashionNova.Model.Models.VrstaArtikla GetById(int id);
-        public void Insert(VrstaArtiklaInsertRequest request);
+        Task<Model.Models.VrstaArtikla> Insert(VrstaArtiklaInsertRequest request);
         public FashionNova.Model.Models.VrstaArtikla Update(int id, VrstaArtiklaUpdateRequest request);
+        public Task<bool> PostojiLi(VrstaArtiklaInsertRequest search);
     }
 }

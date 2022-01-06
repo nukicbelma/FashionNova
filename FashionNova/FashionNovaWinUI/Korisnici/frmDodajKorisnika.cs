@@ -83,6 +83,7 @@ namespace FashionNova.WinUI.Korisnici
                 txtKorisnickoIme.Text = _korisnik.KorisnickoIme;
                 txtEmail.Text = _korisnik.Email;
                 txtTelefon.Text = _korisnik.Telefon;
+                txtSlika.Text = _korisnik.Slika.ToString();
                 pbxSlika.Image = FashionNova.WinUI.Helpers.ImageHelper.FromByteToImage(_korisnik.Slika);
             }
         }

@@ -10,7 +10,7 @@ namespace FashionNova.WebAPI.Services
     {
         List<FashionNova.Model.Models.Materijal> GetAll(MaterijalSearchRequest search);
         FashionNova.Model.Models.Materijal GetById(int id);
-        public void Insert(MaterijalInsertRequest request);
+        Task<Model.Models.Materijal> Insert(MaterijalInsertRequest request);
         public FashionNova.Model.Models.Materijal Update(int id, MaterijalUpdateRequest request);
     }
 }

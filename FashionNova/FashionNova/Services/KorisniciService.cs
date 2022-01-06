@@ -2,7 +2,7 @@
 using FashionNova.Model;
 using FashionNova.Model.Models;
 using FashionNova.Model.Requests;
-using FashionNova.WebAPI.Filter;
+using FashionNova.WebAPI.Exceptions;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -17,9 +17,9 @@ namespace FashionNova.Services
 
     {
         private readonly IMapper _mapper;
-        private readonly FashionNova.Database.FashionNova_IB170007Context _context;
+        private readonly FashionNova.WebAPI.Database.FashionNova_IB170007Context _context;
 
-        public KorisniciService(FashionNova.Database.FashionNova_IB170007Context context, IMapper mapper)
+        public KorisniciService(FashionNova.WebAPI.Database.FashionNova_IB170007Context context, IMapper mapper)
         {
             _context = context;
             _mapper = mapper;
@@ -54,7 +54,7 @@ namespace FashionNova.Services
         }
         public void Insert(KorisniciInsertRequest request)
         {
-            FashionNova.Database.Korisnici entity = _mapper.Map<FashionNova.Database.Korisnici>(request);
+            FashionNova.WebAPI.Database.Korisnici entity = _mapper.Map<FashionNova.WebAPI.Database.Korisnici>(request);
 
             if (request.Password != request.PasswordPotvrda)
             {
@@ -69,7 +69,7 @@ namespace FashionNova.Services
 
             foreach (var uloga in request.Uloge)
             {
-                FashionNova.Database.KorisniciUloge korisniciUloge = new FashionNova.Database.KorisniciUloge();
+                FashionNova.WebAPI.Database.KorisniciUloge korisniciUloge = new FashionNova.WebAPI.Database.KorisniciUloge();
                 korisniciUloge.KorisnikId = entity.KorisnikId;
                 korisniciUloge.UlogaId = uloga;
                 korisniciUloge.DatumIzmjene = DateTime.Now;
@@ -101,7 +101,7 @@ namespace FashionNova.Services
 
                 if (imaUlogu == null)
                 {
-                    var korisnikUloga = new FashionNova.Database.KorisniciUloge() { KorisnikId = entity.KorisnikId, UlogaId = uloga.UlogaId, DatumIzmjene = DateTime.Now };
+                    var korisnikUloga = new FashionNova.WebAPI.Database.KorisniciUloge() { KorisnikId = entity.KorisnikId, UlogaId = uloga.UlogaId, DatumIzmjene = DateTime.Now };
 
                     entity.KorisniciUloge.Add(korisnikUloga);
                 }
@@ -140,14 +140,14 @@ namespace FashionNova.Services
 
             if (entity == null)
             {
-                throw new UserException("Pogresan username ili password");
+                //throw new UserException("Pogresan username ili password");
             }
 
             var hash = GenerateHash(entity.LozinkaSalt, password);
 
             if (hash != entity.LozinkaHash)
             {
-                throw new UserException("Pogresan username ili password");
+                //throw new UserException("Pogresan username ili password");
             }
             return _mapper.Map<FashionNova.Model.Models.Korisnici>(entity);
         }

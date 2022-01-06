@@ -3,12 +3,12 @@ using System.Collections.Generic;
 
 namespace FashionNova.WebAPI.Services
 {
-    public interface INarudzbaService
+    public interface INarudzbeService
     {
         List<FashionNova.Model.Models.Narudzba> Get(NarudzbeSearchRequest search);
         //FashionNova.Model.Models.Velicina GetById(int id);
 
-        public void Insert(NarudzbaInsertRequest request);
+        public void Insert(NarudzbeInsertRequest request);
         //public FashionNova.Model.Models.Velicina Update(int id, BojaUpdateRequest request);
     }
 }

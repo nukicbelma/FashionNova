@@ -1,19 +1,22 @@
 ﻿using AutoMapper;
 using FashionNova.Model.Models;
 using FashionNova.Model.Requests;
+using FashionNova.WebAPI.Exceptions;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Threading.Tasks;
 
 namespace FashionNova.WebAPI.Services
 {
     public class VelicinaService : IVelicinaService
     {
-        private readonly FashionNova.Database.FashionNova_IB170007Context _context;
+        private readonly FashionNova.WebAPI.Database.FashionNova_IB170007Context _context;
         private readonly IMapper _mapper;
 
-        public VelicinaService(FashionNova.Database.FashionNova_IB170007Context context, IMapper mapper)
+        public VelicinaService(FashionNova.WebAPI.Database.FashionNova_IB170007Context context, IMapper mapper)
         {
             _context = context;
             _mapper = mapper;
@@ -33,12 +36,22 @@ namespace FashionNova.WebAPI.Services
             var entity = _context.Velicina.Find(id);
             return _mapper.Map<FashionNova.Model.Models.Velicina>(entity);
         }
-        public void Insert(VelicinaInsertRequest request)
+        public async Task<bool> PostojiLi(VelicinaInsertRequest search)
         {
-            Database.Velicina entity = _mapper.Map<Database.Velicina>(request);
+            return !await _context.Velicina.AnyAsync(i => i.Oznaka == search.Oznaka);
+        }
+        public async Task<Model.Models.Velicina> Insert(VelicinaInsertRequest request)
+        {
+            if (await PostojiLi(request))
+            {
+                    Database.Velicina entity = _mapper.Map<Database.Velicina>(request);
 
-            _context.Velicina.Add(entity);
-            _context.SaveChanges();
+                    await _context.Velicina.AddAsync(entity);
+                    await _context.SaveChangesAsync();
+                    return _mapper.Map<Model.Models.Velicina>(entity);
+            }
+            else
+                throw new UserException($"Velicina {request.Oznaka} vec postoji!", HttpStatusCode.BadRequest);
         }
         //public FashionNova.Model.Models.Velicina Update(int id, BojaUpdateRequest request)
         //{

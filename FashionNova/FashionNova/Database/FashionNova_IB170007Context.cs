@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 
-namespace FashionNova.Database
+namespace FashionNova.WebAPI.Database
 {
     public partial class FashionNova_IB170007Context : DbContext
     {
@@ -21,8 +21,8 @@ namespace FashionNova.Database
         public virtual DbSet<Korisnici> Korisnici { get; set; }
         public virtual DbSet<KorisniciUloge> KorisniciUloge { get; set; }
         public virtual DbSet<Materijal> Materijal { get; set; }
-        public virtual DbSet<NabavkaStavke> NabavkaStavke { get; set; }
         public virtual DbSet<Narudzba> Narudzba { get; set; }
+        public virtual DbSet<NarudzbaStavke> NarudzbaStavke { get; set; }
         public virtual DbSet<Ocjene> Ocjene { get; set; }
         public virtual DbSet<Uloge> Uloge { get; set; }
         public virtual DbSet<Velicina> Velicina { get; set; }
@@ -33,7 +33,7 @@ namespace FashionNova.Database
             if (!optionsBuilder.IsConfigured)
             {
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
-                optionsBuilder.UseSqlServer("Data Source=DESKTOP-5M800VH\\MSSQLSERVER_OLAP;Initial Catalog=FashionNova_IB170007; user=sa;password=belma51");
+                optionsBuilder.UseSqlServer("Server=DESKTOP-5M800VH\\MSSQLSERVER_OLAP;Database=FashionNova_IB170007;Trusted_Connection=True;");
             }
         }
 
@@ -193,34 +193,6 @@ namespace FashionNova.Database
                 entity.Property(e => e.Naziv).HasMaxLength(20);
             });
 
-            modelBuilder.Entity<NabavkaStavke>(entity =>
-            {
-                entity.HasKey(e => e.NabavkeStavkeId)
-                    .HasName("PK__NabavkaS__289BDCCD30764512");
-
-                entity.Property(e => e.NabavkeStavkeId).HasColumnName("NabavkeStavkeID");
-
-                entity.Property(e => e.ArtikalId).HasColumnName("ArtikalID");
-
-                entity.Property(e => e.Cijena).HasColumnType("decimal(18, 2)");
-
-                entity.Property(e => e.NarudzbaId).HasColumnName("NarudzbaID");
-
-                entity.Property(e => e.Popust).HasColumnType("decimal(18, 2)");
-
-                entity.HasOne(d => d.Artikal)
-                    .WithMany(p => p.NabavkaStavke)
-                    .HasForeignKey(d => d.ArtikalId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("fk_ArtikalID");
-
-                entity.HasOne(d => d.Narudzba)
-                    .WithMany(p => p.NabavkaStavke)
-                    .HasForeignKey(d => d.NarudzbaId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("fk_NarudzbaID");
-            });
-
             modelBuilder.Entity<Narudzba>(entity =>
             {
                 entity.Property(e => e.NarudzbaId).HasColumnName("NarudzbaID");
@@ -237,13 +209,46 @@ namespace FashionNova.Database
                     .HasColumnName("IznosSaPDV")
                     .HasColumnType("decimal(18, 2)");
 
+                entity.Property(e => e.KlijentId).HasColumnName("KlijentID");
+
                 entity.Property(e => e.KorisnikId).HasColumnName("KorisnikID");
+
+                entity.HasOne(d => d.Klijent)
+                    .WithMany(p => p.Narudzba)
+                    .HasForeignKey(d => d.KlijentId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("fk2_KlijentID");
 
                 entity.HasOne(d => d.Korisnik)
                     .WithMany(p => p.Narudzba)
                     .HasForeignKey(d => d.KorisnikId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("fk2_KorisnikID");
+            });
+
+            modelBuilder.Entity<NarudzbaStavke>(entity =>
+            {
+                entity.Property(e => e.NarudzbaStavkeId).HasColumnName("NarudzbaStavkeID");
+
+                entity.Property(e => e.ArtikalId).HasColumnName("ArtikalID");
+
+                entity.Property(e => e.Cijena).HasColumnType("decimal(18, 2)");
+
+                entity.Property(e => e.NarudzbaId).HasColumnName("NarudzbaID");
+
+                entity.Property(e => e.Popust).HasColumnType("decimal(18, 2)");
+
+                entity.HasOne(d => d.Artikal)
+                    .WithMany(p => p.NarudzbaStavke)
+                    .HasForeignKey(d => d.ArtikalId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("fk_ArtikalID");
+
+                entity.HasOne(d => d.Narudzba)
+                    .WithMany(p => p.NarudzbaStavke)
+                    .HasForeignKey(d => d.NarudzbaId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("fk_NarudzbaID");
             });
 
             modelBuilder.Entity<Ocjene>(entity =>

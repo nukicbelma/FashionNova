@@ -14,7 +14,7 @@ namespace FashionNova.WinUI.Reports
     public partial class frmKreirajReport : Form
     {
         private string str;
-        private readonly APIService _service = new APIService("Narudzba");
+        private readonly APIService _service = new APIService("Narudzbe");
         public frmKreirajReport(string str)
         {
             InitializeComponent();

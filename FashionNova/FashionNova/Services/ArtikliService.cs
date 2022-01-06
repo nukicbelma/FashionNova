@@ -13,8 +13,8 @@ namespace FashionNova.WebAPI.Services
     public class ArtikliService : IArtikliService
     {
         private readonly IMapper _mapper;
-        private readonly FashionNova.Database.FashionNova_IB170007Context _context;
-        public ArtikliService(FashionNova.Database.FashionNova_IB170007Context context, IMapper mapper)
+        private readonly FashionNova.WebAPI.Database.FashionNova_IB170007Context _context;
+        public ArtikliService(FashionNova.WebAPI.Database.FashionNova_IB170007Context context, IMapper mapper)
         {
             _context = context;
             _mapper = mapper;
@@ -120,7 +120,7 @@ namespace FashionNova.WebAPI.Services
         }
         public  IEnumerable<FashionNova.Model.Models.Artikli> GetObject(ArtikliSearchRequest search = null)
         {
-            var entity = _context.Set<FashionNova.Database.Artikli>().AsQueryable();
+            var entity = _context.Set<FashionNova.WebAPI.Database.Artikli>().AsQueryable();
 
 
             //if (search.BojaId.HasValue)
@@ -150,12 +150,11 @@ namespace FashionNova.WebAPI.Services
         }
         public virtual async Task<bool> Delete(int id)
         {
-            var entity = await _context.Set<FashionNova.Database.Artikli>().FindAsync(id);
-            var e = _context.Artikli.Find(id);
+            var entity = await _context.Set<FashionNova.WebAPI.Database.Artikli>().FindAsync(id);
             try
             {
-                //_context.Set<FashionNova.Database.Artikli>().Remove(entity);
-                //await _context.SaveChangesAsync();
+                _context.Set<FashionNova.WebAPI.Database.Artikli>().Remove(entity);
+                await _context.SaveChangesAsync();
 
                 return true;
             }

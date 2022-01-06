@@ -1,0 +1,33 @@
+version: '3'
+services:
+#mssql docker
+  fashionnova-sql:
+    image: mcr.microsoft.com/mssql/server:2019-latest
+    restart: unless-stopped
+    environment:
+      - ACCEPT_EULA=Y
+      - SA_PASSWORD=QWElkj132!
+      - MSSQL_PID=Developer
+    ports:
+      - 1401:1433
+    networks:
+      - fashionnovanet
+
+  fashionnova-api:
+    restart: unless-stopped
+    build:
+      context: .
+    environment:
+      - ConnectionStrings:DefaultConnection=Server=fashionnova-sql,1433;Database=170007;User=sa;Password=QWElkj132!;ConnectRetryCount=0
+    ports:
+      - 5003:80
+    networks:
+      - fashionnovanet
+    links:
+      - fashionnova-sql
+    depends_on:
+      - fashionnova-sql
+
+networks:
+  fashionnovanet:
+    driver: bridge

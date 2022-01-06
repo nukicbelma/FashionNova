@@ -31,9 +31,9 @@ namespace FashionNova.Controllers
             return _service.GetById(id);
         }
         [HttpPost]
-        public void Insert(VrstaArtiklaInsertRequest request)
+        public async Task<FashionNova.Model.Models.VrstaArtikla> Insert([FromBody]VrstaArtiklaInsertRequest request)
         {
-            _service.Insert(request);
+            return await _service.Insert(request);
         }
 
         [HttpPut("{id}")]

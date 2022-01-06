@@ -22,15 +22,21 @@ namespace FashionNova.WinUI.Artikli
 
         private void btnNe_Click(object sender, EventArgs e)
         {
-            Close();
+            DialogResult = DialogResult.No;
         }
 
         private async void btnDa_Click(object sender, EventArgs e)
         {
-            MessageBox.Show($"Uspjesno ste obrisali artikal s id-em:: {selectedArtikal.ArtikalId}!");
-            int id= selectedArtikal.ArtikalId;
-            await _artikli.Delete<dynamic>(selectedArtikal.ArtikalId);
-            Close();
+            if (await _artikli.Delete<bool>(selectedArtikal.ArtikalId))
+            {
+                MessageBox.Show($"Uspjesno ste obrisali artikal s id-em:: {selectedArtikal.ArtikalId}!");
+                DialogResult = DialogResult.Yes;
+            }
+        }
+
+        private void frmConfirmation_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -16,9 +16,9 @@ namespace FashionNova.Services
 
     {
         private readonly IMapper _mapper;
-        private readonly FashionNova.Database.FashionNova_IB170007Context _context;
+        private readonly FashionNova.WebAPI.Database.FashionNova_IB170007Context _context;
 
-        public KlijentiService(FashionNova.Database.FashionNova_IB170007Context context, IMapper mapper)
+        public KlijentiService(FashionNova.WebAPI.Database.FashionNova_IB170007Context context, IMapper mapper)
         {
             _context = context;
             _mapper = mapper;
@@ -55,7 +55,7 @@ namespace FashionNova.Services
         }
         public void Insert(KlijentiInsertRequest request)
         {
-            FashionNova.Database.Klijenti entity = _mapper.Map<FashionNova.Database.Klijenti>(request);
+            FashionNova.WebAPI.Database.Klijenti entity = _mapper.Map<FashionNova.WebAPI.Database.Klijenti>(request);
 
             if (request.Password != request.PasswordPotvrda)
             {

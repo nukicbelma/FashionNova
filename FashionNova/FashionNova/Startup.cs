@@ -1,6 +1,7 @@
-using FashionNova.Database;
+using FashionNova.WebAPI.Database;
 using FashionNova.Services;
 using FashionNova.WebAPI.Autentifikacija;
+using FashionNova.WebAPI.Filter;
 using FashionNova.WebAPI.Services;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Builder;
@@ -33,7 +34,10 @@ namespace FashionNova
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddAutoMapper(typeof(Startup));
-
+            //services.AddControllers(x => x.Filters.Add<ErrorFilter>());
+            services.AddControllers(x => {
+                x.Filters.Add<ExceptionFilterAttribute>();
+            });
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
@@ -69,7 +73,7 @@ namespace FashionNova
             services.AddScoped<IMaterijalService, MaterijalService>();
             services.AddScoped<IVrstaArtiklaService, VrstaArtiklaService>();
             services.AddScoped<IKlijentiService, KlijentiService>();
-            services.AddScoped<INarudzbaService, NarudzbaService>();
+            services.AddScoped<INarudzbeService, NarudzbeService>();
 
             services.AddAuthentication("BasicAuthentication")
                 .AddScheme<AuthenticationSchemeOptions, BasicAuthenticationHandler>("BasicAuthentication", null);

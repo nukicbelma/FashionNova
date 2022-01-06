@@ -1,19 +1,23 @@
 ﻿using AutoMapper;
 using FashionNova.Model.Models;
 using FashionNova.Model.Requests;
+using FashionNova.WebAPI.Exceptions;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Threading.Tasks;
+using Xceed.Wpf.Toolkit;
 
 namespace FashionNova.WebAPI.Services
 {
     public class VrstaArtiklaService : IVrstaArtiklaService
     {
-        private readonly FashionNova.Database.FashionNova_IB170007Context _context;
+        private readonly FashionNova.WebAPI.Database.FashionNova_IB170007Context _context;
         private readonly IMapper _mapper;
 
-        public VrstaArtiklaService(FashionNova.Database.FashionNova_IB170007Context context, IMapper mapper)
+        public VrstaArtiklaService(FashionNova.WebAPI.Database.FashionNova_IB170007Context context, IMapper mapper)
         {
             _context = context;
             _mapper = mapper;
@@ -28,17 +32,27 @@ namespace FashionNova.WebAPI.Services
             var list = query.ToList();
             return _mapper.Map<List<VrstaArtikla>>(list);
         }
+        public async Task<bool> PostojiLi(VrstaArtiklaInsertRequest search)
+        {
+            return !await _context.VrstaArtikla.AnyAsync(i => i.Naziv == search.Naziv);
+        }
         public FashionNova.Model.Models.VrstaArtikla GetById(int id)
         {
             var entity = _context.VrstaArtikla.Find(id);
             return _mapper.Map<FashionNova.Model.Models.VrstaArtikla>(entity);
         }
-        public void Insert(VrstaArtiklaInsertRequest request)
+        public  async Task<Model.Models.VrstaArtikla> Insert(VrstaArtiklaInsertRequest request)
         {
-            Database.VrstaArtikla entity = _mapper.Map<Database.VrstaArtikla>(request);
+            if (await PostojiLi(request))
+            {
+                Database.VrstaArtikla entity = _mapper.Map<Database.VrstaArtikla>(request);
 
-            _context.VrstaArtikla.Add(entity);
-            _context.SaveChanges();
+                await _context.VrstaArtikla.AddAsync(entity);
+                await _context.SaveChangesAsync();
+                return _mapper.Map<Model.Models.VrstaArtikla>(entity);
+            }
+            else
+                throw new UserException($"Korisničko ime {request.Naziv} je zauzeto!" , HttpStatusCode.BadRequest );           
         }
         public FashionNova.Model.Models.VrstaArtikla Update(int id, VrstaArtiklaUpdateRequest request)
         {
@@ -50,3 +64,8 @@ namespace FashionNova.WebAPI.Services
         }
     }
 }
+
+
+
+
+

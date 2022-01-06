@@ -11,6 +11,7 @@ namespace FashionNova.Controllers
 {
     [ApiController]
     [Route("[controller]")]
+
     public class BojaController : ControllerBase
     {
         private readonly IBojaService _service;
@@ -31,9 +32,9 @@ namespace FashionNova.Controllers
             return _service.GetById(id);
         }
         [HttpPost]
-        public void Insert(BojaInsertRequest request)
+        public async Task<FashionNova.Model.Models.Boja> Insert([FromBody] BojaInsertRequest request)
         {
-            _service.Insert(request);
+            return await _service.Insert(request);
         }
 
         [HttpPut("{id}")]

@@ -6,7 +6,7 @@ namespace FashionNova.Model.Models
 {
     public class Narudzba
     {
-        //public Narudzba()
+        //public Narudzbe()
         //{
         //    NabavkaStavke = new HashSet<NabavkaStavke>();
         //}

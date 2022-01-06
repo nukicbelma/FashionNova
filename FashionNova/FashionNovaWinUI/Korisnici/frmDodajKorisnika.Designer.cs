@@ -141,8 +141,10 @@ namespace FashionNova.WinUI.Korisnici
             // 
             this.txtLozinka.Location = new System.Drawing.Point(126, 171);
             this.txtLozinka.Name = "txtLozinka";
+            this.txtLozinka.PasswordChar = '*';
             this.txtLozinka.Size = new System.Drawing.Size(115, 23);
             this.txtLozinka.TabIndex = 10;
+            this.txtLozinka.UseSystemPasswordChar = true;
             // 
             // label6
             // 
@@ -157,8 +159,10 @@ namespace FashionNova.WinUI.Korisnici
             // 
             this.txtPotvrdaLozinke.Location = new System.Drawing.Point(126, 200);
             this.txtPotvrdaLozinke.Name = "txtPotvrdaLozinke";
+            this.txtPotvrdaLozinke.PasswordChar = '*';
             this.txtPotvrdaLozinke.Size = new System.Drawing.Size(115, 23);
             this.txtPotvrdaLozinke.TabIndex = 12;
+            this.txtPotvrdaLozinke.UseSystemPasswordChar = true;
             // 
             // label7
             // 

@@ -178,11 +178,9 @@ namespace FashionNova.WinUI.Artikli
         {
             if (SelectedArtikal != null)
             {
-                //var izbrisi = new frmConfirmation(SelectedArtikal);
-                //izbrisi.ShowDialog();
-                //Close();
-                //int ID = Convert.ToInt32(dgvArtists.CurrentRow.Cells["ID"].Value);
-                await _artikli.Delete<dynamic>(SelectedArtikal.ArtikalId);
+                var izbrisi = new frmConfirmation(SelectedArtikal);
+                if(izbrisi.ShowDialog() == DialogResult.Yes)
+                    Close();
             }
         }
     }

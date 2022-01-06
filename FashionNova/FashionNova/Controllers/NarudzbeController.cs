@@ -11,10 +11,10 @@ namespace FashionNova.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class NarudzbaController : ControllerBase
+    public class NarudzbeController : ControllerBase
     {
-        private readonly INarudzbaService _service;
-        public NarudzbaController(INarudzbaService service)
+        private readonly INarudzbeService _service;
+        public NarudzbeController(INarudzbeService service)
         {
             _service = service;
         }
@@ -31,7 +31,7 @@ namespace FashionNova.Controllers
         //    return _service.GetById(id);
         //}
         [HttpPost]
-        public void Insert(NarudzbaInsertRequest request)
+        public void Insert(NarudzbeInsertRequest request)
         {
             _service.Insert(request);
         }

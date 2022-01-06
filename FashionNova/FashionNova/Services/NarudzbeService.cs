@@ -8,12 +8,12 @@ using System.Threading.Tasks;
 
 namespace FashionNova.WebAPI.Services
 {
-    public class NarudzbaService : INarudzbaService
+    public class NarudzbeService : INarudzbeService
     {
-        private readonly FashionNova.Database.FashionNova_IB170007Context _context;
+        private readonly FashionNova.WebAPI.Database.FashionNova_IB170007Context _context;
         private readonly IMapper _mapper;
 
-        public NarudzbaService(FashionNova.Database.FashionNova_IB170007Context context, IMapper mapper)
+        public NarudzbeService(FashionNova.WebAPI.Database.FashionNova_IB170007Context context, IMapper mapper)
         {
             _context = context;
             _mapper = mapper;
@@ -39,7 +39,7 @@ namespace FashionNova.WebAPI.Services
         //    var entity = _context.Velicina.Find(id);
         //    return _mapper.Map<FashionNova.Model.Models.Velicina>(entity);
         //}
-        public void Insert(NarudzbaInsertRequest request)
+        public void Insert(NarudzbeInsertRequest request)
         {
             Database.Narudzba entity = _mapper.Map<Database.Narudzba>(request);
             entity.BrojNarudzbe = request.NarudzbaId.ToString();

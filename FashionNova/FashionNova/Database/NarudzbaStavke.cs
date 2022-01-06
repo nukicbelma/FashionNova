@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace FashionNova.Database
+namespace FashionNova.WebAPI.Database
 {
-    public partial class NabavkaStavke
+    public partial class NarudzbaStavke
     {
-        public int NabavkeStavkeId { get; set; }
+        public int NarudzbaStavkeId { get; set; }
         public int Kolicina { get; set; }
         public decimal Cijena { get; set; }
         public decimal Popust { get; set; }

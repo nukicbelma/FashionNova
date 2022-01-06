@@ -10,10 +10,10 @@ namespace FashionNova.WebAPI.Services
 {
     public class UlogeService : IUlogeService
     {
-        private readonly FashionNova.Database.FashionNova_IB170007Context _context;
+        private readonly FashionNova.WebAPI.Database.FashionNova_IB170007Context _context;
         private readonly IMapper _mapper;
 
-        public UlogeService(FashionNova.Database.FashionNova_IB170007Context context, IMapper mapper)
+        public UlogeService(FashionNova.WebAPI.Database.FashionNova_IB170007Context context, IMapper mapper)
         {
             _context = context;
             _mapper = mapper;

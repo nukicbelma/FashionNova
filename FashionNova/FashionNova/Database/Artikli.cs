@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace FashionNova.Database
+namespace FashionNova.WebAPI.Database
 {
     public partial class Artikli
     {
         public Artikli()
         {
-            NabavkaStavke = new HashSet<NabavkaStavke>();
+            NarudzbaStavke = new HashSet<NarudzbaStavke>();
             Ocjene = new HashSet<Ocjene>();
         }
 
@@ -25,7 +25,7 @@ namespace FashionNova.Database
         public virtual Materijal Materijal { get; set; }
         public virtual Velicina Velicina { get; set; }
         public virtual VrstaArtikla VrstaArtikla { get; set; }
-        public virtual ICollection<NabavkaStavke> NabavkaStavke { get; set; }
+        public virtual ICollection<NarudzbaStavke> NarudzbaStavke { get; set; }
         public virtual ICollection<Ocjene> Ocjene { get; set; }
     }
 }

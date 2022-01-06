@@ -1,6 +1,7 @@
 ﻿using FashionNova.WinUI.Artikli;
 using FashionNova.WinUI.Klijenti;
 using FashionNova.WinUI.Korisnici;
+using FashionNova.WinUI.MaterijalBojaVelicinaVrsta;
 using FashionNovaWinUI.Artikli;
 using System;
 using System.Collections.Generic;
@@ -123,6 +124,46 @@ namespace FashionNova.WinUI.Pocetna
         {
             var formaDodajArtikal = new frmDodajUrediArtikal();
             formaDodajArtikal.ShowDialog();
+        }
+
+        private void HomepageAdmin_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dodajVrstuArtiklaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var frm = new frmDodajVrstuArtikla();
+            frm.ShowDialog();
+        }
+
+        private void dodajVelicinuToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var frm = new frmDodajVelicinu();
+            frm.ShowDialog();
+        }
+
+        private void dodajMaterijalToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var frm = new frmDodajMaterijal();
+            frm.ShowDialog();
+        }
+
+        private void dodajBojuToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var frm = new frmDodajBoju();
+            frm.ShowDialog();
+        }
+
+        private void btnOdjava_Click(object sender, EventArgs e)
+        {
+            var frm = new frmConfirmationOdjava();
+            if (frm.ShowDialog() == DialogResult.Yes)
+            {
+                Close();
+                var loginPonovo = new frmLogin();
+                loginPonovo.ShowDialog();
+            }
         }
     }
 }

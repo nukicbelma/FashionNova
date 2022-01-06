@@ -44,5 +44,16 @@ namespace FashionNova.WinUI.Pocetna
             var frm = new frmIndexReport();
             frm.ShowDialog();
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            var frm = new frmConfirmationOdjava();
+            if (frm.ShowDialog() == DialogResult.Yes)
+            {
+                Close();
+                var loginPonovo = new frmLogin();
+                loginPonovo.ShowDialog();
+            }
+        }
     }
 }

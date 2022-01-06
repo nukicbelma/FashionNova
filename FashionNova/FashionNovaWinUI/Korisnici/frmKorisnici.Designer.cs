@@ -35,6 +35,7 @@ namespace FashionNova.WinUI.Korisnici
             this.txtPretraga = new System.Windows.Forms.TextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.dgvKorisnici = new System.Windows.Forms.DataGridView();
+            this.Uloga = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Ime = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Prezime = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.KorisnickoIme = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -94,6 +95,7 @@ namespace FashionNova.WinUI.Korisnici
             // 
             this.dgvKorisnici.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvKorisnici.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Uloga,
             this.Ime,
             this.Prezime,
             this.KorisnickoIme,
@@ -106,6 +108,13 @@ namespace FashionNova.WinUI.Korisnici
             this.dgvKorisnici.Size = new System.Drawing.Size(552, 236);
             this.dgvKorisnici.TabIndex = 0;
             this.dgvKorisnici.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvKorisnici_CellContentClick);
+            // 
+            // Uloga
+            // 
+            this.Uloga.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Uloga.DataPropertyName = "Uloga";
+            this.Uloga.HeaderText = "Uloga";
+            this.Uloga.Name = "Uloga";
             // 
             // Ime
             // 
@@ -161,6 +170,7 @@ namespace FashionNova.WinUI.Korisnici
         private System.Windows.Forms.TextBox txtPretraga;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.DataGridView dgvKorisnici;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Uloga;
         private System.Windows.Forms.DataGridViewTextBoxColumn Ime;
         private System.Windows.Forms.DataGridViewTextBoxColumn Prezime;
         private System.Windows.Forms.DataGridViewTextBoxColumn KorisnickoIme;

@@ -35,6 +35,7 @@ namespace FashionNova.WinUI.Pocetna
             this.btnIzvjestaji = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.lblDatumiVrijeme = new System.Windows.Forms.Label();
+            this.btnOdjava = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnNarudzbe
@@ -96,12 +97,26 @@ namespace FashionNova.WinUI.Pocetna
             this.lblDatumiVrijeme.TabIndex = 26;
             this.lblDatumiVrijeme.Text = "/datumivrijeme/";
             // 
+            // btnOdjava
+            // 
+            this.btnOdjava.BackColor = System.Drawing.SystemColors.Control;
+            this.btnOdjava.Font = new System.Drawing.Font("Segoe UI", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.btnOdjava.ForeColor = System.Drawing.Color.DimGray;
+            this.btnOdjava.Location = new System.Drawing.Point(572, 1);
+            this.btnOdjava.Name = "btnOdjava";
+            this.btnOdjava.Size = new System.Drawing.Size(108, 34);
+            this.btnOdjava.TabIndex = 27;
+            this.btnOdjava.Text = "Odjavi se";
+            this.btnOdjava.UseVisualStyleBackColor = false;
+            this.btnOdjava.Click += new System.EventHandler(this.button1_Click);
+            // 
             // HomepageUposlenik
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.ClientSize = new System.Drawing.Size(682, 346);
+            this.Controls.Add(this.btnOdjava);
             this.Controls.Add(this.lblDatumiVrijeme);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnIzvjestaji);
@@ -123,5 +138,6 @@ namespace FashionNova.WinUI.Pocetna
         private System.Windows.Forms.Button btnIzvjestaji;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label lblDatumiVrijeme;
+        private System.Windows.Forms.Button btnOdjava;
     }
 }

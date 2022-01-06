@@ -45,7 +45,7 @@ namespace FashionNova.WinUI.Artikli
             // 
             // btnDa
             // 
-            this.btnDa.Location = new System.Drawing.Point(205, 92);
+            this.btnDa.Location = new System.Drawing.Point(23, 95);
             this.btnDa.Name = "btnDa";
             this.btnDa.Size = new System.Drawing.Size(75, 23);
             this.btnDa.TabIndex = 1;
@@ -55,7 +55,7 @@ namespace FashionNova.WinUI.Artikli
             // 
             // btnNe
             // 
-            this.btnNe.Location = new System.Drawing.Point(23, 92);
+            this.btnNe.Location = new System.Drawing.Point(206, 95);
             this.btnNe.Name = "btnNe";
             this.btnNe.Size = new System.Drawing.Size(75, 23);
             this.btnNe.TabIndex = 2;
@@ -65,6 +65,7 @@ namespace FashionNova.WinUI.Artikli
             // 
             // frmConfirmation
             // 
+            this.AcceptButton = this.btnDa;
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
@@ -72,8 +73,13 @@ namespace FashionNova.WinUI.Artikli
             this.Controls.Add(this.btnNe);
             this.Controls.Add(this.btnDa);
             this.Controls.Add(this.label1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "frmConfirmation";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Alert!";
+            this.Load += new System.EventHandler(this.frmConfirmation_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

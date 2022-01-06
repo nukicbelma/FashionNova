@@ -79,6 +79,7 @@ namespace FashionNova.WinUI.Pocetna
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.Size = new System.Drawing.Size(137, 23);
             this.txtPassword.TabIndex = 6;
+            this.txtPassword.UseSystemPasswordChar = true;
             // 
             // btnPrijava
             // 

@@ -1,5 +1,6 @@
 ﻿using FashionNova.Model.Requests;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace FashionNova.WebAPI.Services
 {
@@ -8,7 +9,7 @@ namespace FashionNova.WebAPI.Services
         List<FashionNova.Model.Models.Velicina> Get(VelicinaSearchRequest search);
         FashionNova.Model.Models.Velicina GetById(int id);
 
-        public void Insert(VelicinaInsertRequest request);
+        Task<Model.Models.Velicina> Insert(VelicinaInsertRequest request);
         //public FashionNova.Model.Models.Velicina Update(int id, BojaUpdateRequest request);
     }
 }

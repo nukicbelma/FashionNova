@@ -9,7 +9,7 @@ namespace FashionNova.Model.Models
         public Korisnici()
         {
             //KorisniciUloge = new HashSet<KorisniciUloge>();
-            //Narudzba = new HashSet<Narudzba>();
+            //Narudzbe = new HashSet<Narudzbe>();
         }
 
         public int KorisnikId { get; set; }
@@ -21,6 +21,6 @@ namespace FashionNova.Model.Models
         public byte[] Slika { get; set; }
 
         public virtual ICollection<KorisniciUloge> KorisniciUloge { get; set; }
-        //public virtual ICollection<Narudzba> Narudzba { get; set; }
+        //public virtual ICollection<Narudzbe> Narudzbe { get; set; }
     }
 }

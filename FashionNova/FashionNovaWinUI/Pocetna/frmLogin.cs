@@ -14,10 +14,12 @@ namespace FashionNova.WinUI.Pocetna
     public partial class frmLogin : Form
     {
         private readonly APIService _korisniciService = new APIService("Korisnici");
-        private readonly FashionNova.Database.FashionNova_IB170007Context _context;
+        private readonly FashionNova.WebAPI.Database.FashionNova_IB170007Context _context;
         public frmLogin()
         {
             InitializeComponent();
+            txtPassword.Text = "";
+            txtUsername.Text = "";
         }
 
         private async void btnPrijava_Click(object sender, EventArgs e)
@@ -50,6 +52,8 @@ namespace FashionNova.WinUI.Pocetna
                     MessageBox.Show("Dobrodosli:: " + uloga + "->" + korisnik.Ime + " " + korisnik.Prezime);
                     var admin = new HomepageAdmin();
                     admin.ShowDialog();
+                    Close();
+
                 }
                 else if (korisnik.KorisniciUloge.FirstOrDefault().UlogaId == 2)
                 {
@@ -57,6 +61,7 @@ namespace FashionNova.WinUI.Pocetna
                     MessageBox.Show("Dobrodosli:: " + uloga + "->" + korisnik.Ime + " " + korisnik.Prezime);
                     var uposlenik = new HomepageUposlenik();
                     uposlenik.ShowDialog();
+                    Close();
                 }
             }
             else

@@ -4,7 +4,7 @@ using System.Text;
 
 namespace FashionNova.Model.Requests
 {
-    public class NarudzbaInsertRequest
+    public class NarudzbeInsertRequest
     {
         public int NarudzbaId { get; set; }
         public string BrojNarudzbe { get; set; }

@@ -31,9 +31,9 @@ namespace FashionNova.Controllers
             return _service.GetById(id);
         }
         [HttpPost]
-        public void Insert(VelicinaInsertRequest request)
+        public async Task<FashionNova.Model.Models.Velicina> Insert([FromBody] VelicinaInsertRequest request)
         {
-            _service.Insert(request);
+            return await _service.Insert(request);
         }
 
         //[HttpPut("{id}")]

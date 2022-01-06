@@ -55,7 +55,6 @@ namespace FashionNovaWinUI
 
             return await url.WithBasicAuth(Username, Password).GetJsonAsync<T>();
         }
-
         public async Task<T> Insert<T>(object request)
         {
             var url = $"{endpoint}{_resource}";
@@ -112,7 +111,7 @@ namespace FashionNovaWinUI
         {
             try
             {
-                var url = $"{endpoint}/{_resource}/{id}";
+                var url = $"{endpoint}{_resource}/{id}";
                 return await url.WithBasicAuth(Username, Password).DeleteAsync().ReceiveJson<bool>();
             }
             catch (FlurlHttpException ex)

@@ -12,7 +12,7 @@ namespace FashionNova.WinUI.Narudzbe
 {
     public partial class Narudzbe : Form
     {
-        private readonly APIService _service = new APIService("Narudzba");
+        private readonly APIService _service = new APIService("Narudzbe");
         public Narudzbe()
         {
             InitializeComponent();

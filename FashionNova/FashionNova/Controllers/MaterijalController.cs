@@ -30,9 +30,9 @@ namespace FashionNova.Controllers
             return _service.GetById(id);
         }
         [HttpPost]
-        public void Insert(MaterijalInsertRequest request)
+        public async Task<FashionNova.Model.Models.Materijal> Insert([FromBody] MaterijalInsertRequest request)
         {
-            _service.Insert(request);
+            return await _service.Insert(request);
         }
 
         [HttpPut("{id}")]
