@@ -16,8 +16,9 @@ namespace FashionNova.Model.Models
         public decimal IznosBezPdv { get; set; }
         public decimal IznosSaPdv { get; set; }
         public int KorisnikId { get; set; }
-
-        public virtual Korisnici Korisnik { get; set; }
+        public int KlijentId { get; set; }
+        public string Klijent { get; set; }
+        public string Korisnik { get; set; }
        // public virtual ICollection<NabavkaStavke> NabavkaStavke { get; set; }
     }
 }

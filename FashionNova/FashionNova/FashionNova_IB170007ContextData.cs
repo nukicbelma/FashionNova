@@ -5,7 +5,7 @@
 //using System.Linq;
 //using System.Threading.Tasks;
 //using FashionNova.Services;
-//using FashionNova.Database;
+//using FashionNova.WebAPI.Database;
 
 //namespace FashionNova.WebAPI
 //{
@@ -30,7 +30,7 @@
 //                {
 //                    UlogaId = 1,
 //                    Naziv = "Admin",
-//                    OpisUloge ="Upravljanje sistemom"
+//                    OpisUloge = "Upravljanje sistemom"
 //                },
 //                new Uloge()
 //                {
@@ -49,10 +49,10 @@
 //                    Sifra = "AA00",
 //                    Cijena = (decimal?)39.00,
 //                    Slika = null,
-//                    BojaId=2,
-//                    MaterijalId=1,
-//                    VelicinaId=4,
-//                    VrstaArtiklaId=7
+//                    BojaId = 2,
+//                    MaterijalId = 1,
+//                    VelicinaId = 4,
+//                    VrstaArtiklaId = 7
 //                },
 //               new Artikli()
 //               {
@@ -98,7 +98,7 @@
 //                        Slika = null,
 //                        BojaId = 1,
 //                        MaterijalId = 1,
-//                        VelicinaId =1,
+//                        VelicinaId = 1,
 //                        VrstaArtiklaId = 1
 //                    },
 //                      new Artikli()
@@ -251,7 +251,7 @@
 //                      Oznaka = "XL",
 //                  }, new Velicina()
 //                  {
-//                      VelicinaId  = 7,
+//                      VelicinaId = 7,
 //                      Oznaka = "XXL",
 //                  }, new Velicina()
 //                  {
@@ -327,10 +327,10 @@
 //                    Ime = "Belma",
 //                    Prezime = "Nukic",
 //                    DatumRegistracijeRacuna = DateTime.Now,
-//                    Email ="belma@live.com",
+//                    Email = "belma@live.com",
 //                    Telefon = "123123",
 //                    KorisnickoIme = "belma",
-//                    Slika=null,
+//                    Slika = null,
 //                    LozinkaSalt = Salt[0],
 //                    LozinkaHash = KlijentiService.GenerateHash(Salt[0], "belma")
 //                });
@@ -347,7 +347,7 @@
 //                    Telefon = "123",
 //                    KorisnickoIme = "hanna",
 //                    LozinkaSalt = Salt[0],
-//                    Slika=null,
+//                    Slika = null,
 //                    LozinkaHash = KlijentiService.GenerateHash(Salt[0], "hanna")
 //                },
 //                new Korisnici()
@@ -360,7 +360,7 @@
 //                    KorisnickoIme = "admin",
 //                    LozinkaSalt = Salt[1],
 //                    LozinkaHash = KlijentiService.GenerateHash(Salt[1], "admin"),
-//                    Slika=null
+//                    Slika = null
 //                },
 //                new Korisnici()
 //                {
@@ -372,7 +372,7 @@
 //                    KorisnickoIme = "uposlenik",
 //                    LozinkaSalt = Salt[2],
 //                    LozinkaHash = KlijentiService.GenerateHash(Salt[2], "uposlenik"),
-//                    Slika=null
+//                    Slika = null
 //                });
 //            #endregion
 
@@ -423,19 +423,19 @@
 
 
 //            #region Dodavanje stavki nabavke
-//            modelBuilder.Entity<NabavkaStavke>().HasData(
-//                new NabavkaStavke()
+//            modelBuilder.Entity<NarudzbaStavke>().HasData(
+//                new NarudzbaStavke()
 //                {
-//                    NabavkaStavkeId = 1,
-//                    NabavkaId =1,
+//                    NarudzbaStavkeId = 1,
+//                    NarudzbaId = 1,
 //                    ArtikalId = 1,
 //                    Kolicina = 1,
 //                    Cijena = 1200
 //                },
-//                new NabavkaStavke()
+//                new NarudzbaStavke()
 //                {
-//                    NabavkaStavkeId = 2,
-//                    NabavkaId = 2,
+//                    NarudzbaStavkeId = 2,
+//                    NarudzbaId = 2,
 //                    ArtikalId = 2,
 //                    Kolicina = 1,
 //                    Cijena = 1200
@@ -443,12 +443,12 @@
 //            #endregion
 
 //            #region Dodavanje narudzbi
-//            modelBuilder.Entity<Narudzbe>().HasData(
-//                new Narudzbe()
+//            modelBuilder.Entity<Narudzba>().HasData(
+//                new Narudzba()
 //                {
 //                    NarudzbaId = 2,
 //                    BrojNarudzbe = "1",
-//                   // KlijentId = 1,
+//                    KlijentId = 1,
 //                    DatumNarudzbe = DateTime.Now,
 //                    IznosBezPdv = 1000,
 //                    IznosSaPdv = 1170,
@@ -457,28 +457,28 @@
 //            #endregion
 
 //            #region Dodavanje stavki narudzbe
-//            modelBuilder.Entity<NarudzbeStavke>().HasData(
-//                new NarudzbeStavke()
+//            modelBuilder.Entity<NarudzbaStavke>().HasData(
+//                new NarudzbaStavke()
 //                {
-//                    NarudzbeStavkaId = 1,
+//                    NarudzbaStavkeId = 1,
 //                    NarudzbaId = 1,
 //                    Kolicina = 1,
 //                    Cijena = 1200,
 //                    Popust = 10,
 //                    ArtikalId = 2,
 //                },
-//                new NarudzbeStavke()
+//                new NarudzbaStavke()
 //                {
-//                    NarudzbeStavkaId = 2,
+//                    NarudzbaStavkeId = 2,
 //                    NarudzbaId = 2,
 //                    Kolicina = 1,
 //                    Cijena = 900,
 //                    Popust = 0,
 //                    ArtikalId = 1,
 //                },
-//                new NarudzbeStavke()
+//                new NarudzbaStavke()
 //                {
-//                    NarudzbeStavkaId = 3,
+//                    NarudzbaStavkeId = 3,
 //                    NarudzbaId = 2,
 //                    Kolicina = 1,
 //                    Cijena = 1800,

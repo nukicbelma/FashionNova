@@ -52,6 +52,8 @@ namespace FashionNovaWinUI.Artikli
             // 
             // dgvArtikli
             // 
+            this.dgvArtikli.AllowUserToAddRows = false;
+            this.dgvArtikli.AllowUserToDeleteRows = false;
             this.dgvArtikli.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvArtikli.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Naziv,
@@ -63,6 +65,7 @@ namespace FashionNovaWinUI.Artikli
             this.Cijena});
             this.dgvArtikli.Location = new System.Drawing.Point(12, 86);
             this.dgvArtikli.Name = "dgvArtikli";
+            this.dgvArtikli.ReadOnly = true;
             this.dgvArtikli.RowTemplate.Height = 25;
             this.dgvArtikli.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvArtikli.Size = new System.Drawing.Size(720, 223);
@@ -75,6 +78,7 @@ namespace FashionNovaWinUI.Artikli
             this.Naziv.DataPropertyName = "Naziv";
             this.Naziv.HeaderText = "Naziv";
             this.Naziv.Name = "Naziv";
+            this.Naziv.ReadOnly = true;
             // 
             // Sifra
             // 
@@ -82,36 +86,42 @@ namespace FashionNovaWinUI.Artikli
             this.Sifra.DataPropertyName = "Sifra";
             this.Sifra.HeaderText = "Sifra";
             this.Sifra.Name = "Sifra";
+            this.Sifra.ReadOnly = true;
             // 
             // VrstaArtiklaId
             // 
             this.VrstaArtiklaId.DataPropertyName = "VrstaArtiklaId";
             this.VrstaArtiklaId.HeaderText = "VrstaArtiklaId";
             this.VrstaArtiklaId.Name = "VrstaArtiklaId";
+            this.VrstaArtiklaId.ReadOnly = true;
             // 
             // VelicinaId
             // 
             this.VelicinaId.DataPropertyName = "VelicinaId";
             this.VelicinaId.HeaderText = "VelicinaId";
             this.VelicinaId.Name = "VelicinaId";
+            this.VelicinaId.ReadOnly = true;
             // 
             // MaterijalId
             // 
             this.MaterijalId.DataPropertyName = "MaterijalId";
             this.MaterijalId.HeaderText = "MaterijalId";
             this.MaterijalId.Name = "MaterijalId";
+            this.MaterijalId.ReadOnly = true;
             // 
             // BojaId
             // 
             this.BojaId.DataPropertyName = "BojaId";
             this.BojaId.HeaderText = "BojaId";
             this.BojaId.Name = "BojaId";
+            this.BojaId.ReadOnly = true;
             // 
             // Cijena
             // 
             this.Cijena.DataPropertyName = "Cijena";
             this.Cijena.HeaderText = "Cijena";
             this.Cijena.Name = "Cijena";
+            this.Cijena.ReadOnly = true;
             // 
             // txtNaziv
             // 

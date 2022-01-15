@@ -1,4 +1,5 @@
 ﻿using FashionNova.Model.Requests;
+using FashionNovaWinUI;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -15,15 +16,18 @@ namespace FashionNova.WinUI.Klijenti
     {
         private Model.Models.Klijenti klijent;
         private KlijentiInsertRequest update = new KlijentiInsertRequest();
+        APIService _narudzbeService = new APIService("Narudzbe");
         public frmKlijentiDetalji(Model.Models.Klijenti klijent)
         {
             InitializeComponent();
             this.klijent = klijent;
+            dataGridView1.AutoGenerateColumns = false;
         }
 
         private async void frmKlijentiDetalji_Load(object sender, EventArgs e)
         {
             await ucitajPodatke();
+            await LoadData();
         }
         private async Task ucitajPodatke()
         {
@@ -32,23 +36,54 @@ namespace FashionNova.WinUI.Klijenti
             txtEmail.Text = klijent.Email;
             txtTelefon.Text = klijent.Telefon;
             txtKorisnickoIme.Text = klijent.KorisnickoIme;
-            //pbxSlika.Image = FashionNova.WinUI.Helpers.ImageHelper.FromByteToImage(klijent.Slika);
+            if (klijent.Slika != null)
+            {
+                pbxSlika.Image = FashionNova.WinUI.Helpers.ImageHelper.FromByteToImage(klijent.Slika);
+            }
+        }
+        private async Task LoadData()
+        {
+            var request = new NarudzbeSearchRequest()
+            {
+                KlijentId = klijent.KlijentId
+            };
+            var result = await _narudzbeService.Get<List<FashionNova.Model.Models.Narudzba>>(request);
+            dataGridView1.DataSource = result;
+        }
+        private async Task pretraga()
+        {
+            var request = new NarudzbeSearchRequest()
+            {
+                KlijentId = klijent.KlijentId, 
+                BrojNarudzbe=txtPretraga.Text
+            };
+            var result = await _narudzbeService.Get<List<FashionNova.Model.Models.Narudzba>>(request);
+            dataGridView1.DataSource = result;
+        }
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            var item = dataGridView1.SelectedRows[0].DataBoundItem as FashionNova.Model.Models.Narudzba;
+            var detalji = new frmKlijentNarudzbaDetalji(item);
+            detalji.ShowDialog();
         }
 
-        private void pbxSlika_Click(object sender, EventArgs e)
+        private   async void txtPretraga_TextChanged(object sender, EventArgs e)
         {
-            var result = ofdSlika.ShowDialog();
+           await  pretraga();
+        }
 
-            if (result == DialogResult.OK)
-            {
-                var fileName = ofdSlika.FileName;
-                var file = File.ReadAllBytes(fileName);
+        private void tabPage1_Click(object sender, EventArgs e)
+        {
 
-                txtSlika.Text = fileName;
-                pbxSlika.Image = Image.FromFile(fileName);
+        }
 
-            }
-            update.Slika = FashionNova.WinUI.Helpers.ImageHelper.FromImageToByte(pbxSlika.Image);
+        private void groupBox1_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tabPage2_Click(object sender, EventArgs e)
+        {
 
         }
     }

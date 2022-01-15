@@ -21,6 +21,7 @@ namespace FashionNova.WebAPI.Mappers
             CreateMap<Database.VrstaArtikla, Model.Models.VrstaArtikla>();
             CreateMap<Database.Klijenti, Model.Models.Klijenti>();
             CreateMap<Database.Narudzba, Model.Models.Narudzba>();
+            CreateMap<Database.NarudzbaStavke, Model.Models.NarudzbaStavke>();
             CreateMap<BojaInsertRequest, Database.Boja>();
             CreateMap<BojaUpdateRequest, Database.Boja>();
             CreateMap<BojaSearchRequest, Database.Boja>();

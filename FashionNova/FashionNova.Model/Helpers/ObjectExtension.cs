@@ -6,10 +6,10 @@ using System.Globalization;
 using System.Linq;
 using System.Net.Http;
 using System.Text;
-using System.Text.Json;
+//using System.Text.Json;
 using System.Threading.Tasks;
 
-namespace eProdaja.Model
+namespace FashionNova.Model
 {
     public static class ObjectExtension
     {

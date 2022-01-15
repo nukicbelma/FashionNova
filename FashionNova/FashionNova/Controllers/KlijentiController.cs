@@ -33,11 +33,11 @@ namespace FashionNova.WebAPI.Controllers
             _service.Insert(request);
         }
 
-        //[HttpPut("{id}")]
-        //public void Update(int id, [FromBody] KlijentiUpdateRequest request)
-        //{
-        //    _service.Update(id, request);
-        //}
+        [HttpPut("{id}")]
+        public void Update(int id, [FromBody] KlijentiInsertRequest request)
+        {
+            _service.Update(id, request);
+        }
         [HttpGet("{id}")]
         public Klijenti GetById(int id)
         {

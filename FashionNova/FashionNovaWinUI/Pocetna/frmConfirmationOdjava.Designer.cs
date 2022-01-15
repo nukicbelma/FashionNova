@@ -75,6 +75,7 @@ namespace FashionNova.WinUI.Pocetna
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "frmConfirmationOdjava";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Odjava";
             this.ResumeLayout(false);
             this.PerformLayout();

@@ -33,12 +33,12 @@ namespace FashionNova.WinUI.Klijenti
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.dgvKlijenti = new System.Windows.Forms.DataGridView();
-            this.txtIme = new System.Windows.Forms.TextBox();
             this.Ime = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Prezime = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.KorisnickoIme = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Telefon = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Email = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.txtIme = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvKlijenti)).BeginInit();
             this.SuspendLayout();
@@ -74,6 +74,8 @@ namespace FashionNova.WinUI.Klijenti
             // 
             // dgvKlijenti
             // 
+            this.dgvKlijenti.AllowUserToAddRows = false;
+            this.dgvKlijenti.AllowUserToDeleteRows = false;
             this.dgvKlijenti.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvKlijenti.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Ime,
@@ -84,30 +86,26 @@ namespace FashionNova.WinUI.Klijenti
             this.dgvKlijenti.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvKlijenti.Location = new System.Drawing.Point(3, 19);
             this.dgvKlijenti.Name = "dgvKlijenti";
+            this.dgvKlijenti.ReadOnly = true;
             this.dgvKlijenti.RowTemplate.Height = 25;
             this.dgvKlijenti.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvKlijenti.Size = new System.Drawing.Size(537, 247);
             this.dgvKlijenti.TabIndex = 0;
             this.dgvKlijenti.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvKlijenti_CellContentClick);
             // 
-            // txtIme
-            // 
-            this.txtIme.Location = new System.Drawing.Point(41, 45);
-            this.txtIme.Name = "txtIme";
-            this.txtIme.Size = new System.Drawing.Size(472, 23);
-            this.txtIme.TabIndex = 14;
-            // 
             // Ime
             // 
             this.Ime.DataPropertyName = "Ime";
             this.Ime.HeaderText = "Ime";
             this.Ime.Name = "Ime";
+            this.Ime.ReadOnly = true;
             // 
             // Prezime
             // 
             this.Prezime.DataPropertyName = "Prezime";
             this.Prezime.HeaderText = "Prezime";
             this.Prezime.Name = "Prezime";
+            this.Prezime.ReadOnly = true;
             // 
             // KorisnickoIme
             // 
@@ -115,18 +113,28 @@ namespace FashionNova.WinUI.Klijenti
             this.KorisnickoIme.DataPropertyName = "KorisnickoIme";
             this.KorisnickoIme.HeaderText = "KorisnickoIme";
             this.KorisnickoIme.Name = "KorisnickoIme";
+            this.KorisnickoIme.ReadOnly = true;
             // 
             // Telefon
             // 
             this.Telefon.DataPropertyName = "Telefon";
             this.Telefon.HeaderText = "Broj telefona";
             this.Telefon.Name = "Telefon";
+            this.Telefon.ReadOnly = true;
             // 
             // Email
             // 
             this.Email.DataPropertyName = "Email";
             this.Email.HeaderText = "Email";
             this.Email.Name = "Email";
+            this.Email.ReadOnly = true;
+            // 
+            // txtIme
+            // 
+            this.txtIme.Location = new System.Drawing.Point(41, 45);
+            this.txtIme.Name = "txtIme";
+            this.txtIme.Size = new System.Drawing.Size(472, 23);
+            this.txtIme.TabIndex = 14;
             // 
             // frmKlijenti
             // 

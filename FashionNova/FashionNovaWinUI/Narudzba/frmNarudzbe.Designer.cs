@@ -31,7 +31,12 @@ namespace FashionNova.WinUI.Narudzbe
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.dgvNarudzbe = new System.Windows.Forms.DataGridView();
-            this.button1 = new System.Windows.Forms.Button();
+            this.BrojNarudzbe = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DatumNarudzbe = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.KlijentId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.IznosBezPDV = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.IznosSaPDV = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.KorisnikId = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.label3 = new System.Windows.Forms.Label();
@@ -45,32 +50,76 @@ namespace FashionNova.WinUI.Narudzbe
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.dgvNarudzbe);
-            this.groupBox1.Location = new System.Drawing.Point(33, 123);
+            this.groupBox1.Location = new System.Drawing.Point(33, 94);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(415, 184);
+            this.groupBox1.Size = new System.Drawing.Size(415, 218);
             this.groupBox1.TabIndex = 15;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Lista narudzbi";
             // 
             // dgvNarudzbe
             // 
+            this.dgvNarudzbe.AllowUserToAddRows = false;
+            this.dgvNarudzbe.AllowUserToDeleteRows = false;
             this.dgvNarudzbe.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvNarudzbe.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.BrojNarudzbe,
+            this.DatumNarudzbe,
+            this.KlijentId,
+            this.IznosBezPDV,
+            this.IznosSaPDV,
+            this.KorisnikId});
             this.dgvNarudzbe.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvNarudzbe.Location = new System.Drawing.Point(3, 19);
             this.dgvNarudzbe.Name = "dgvNarudzbe";
+            this.dgvNarudzbe.ReadOnly = true;
             this.dgvNarudzbe.RowTemplate.Height = 25;
-            this.dgvNarudzbe.Size = new System.Drawing.Size(409, 162);
+            this.dgvNarudzbe.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvNarudzbe.Size = new System.Drawing.Size(409, 196);
             this.dgvNarudzbe.TabIndex = 0;
             this.dgvNarudzbe.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
-            // button1
+            // BrojNarudzbe
             // 
-            this.button1.Location = new System.Drawing.Point(373, 94);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 14;
-            this.button1.Text = "Prikazi";
-            this.button1.UseVisualStyleBackColor = true;
+            this.BrojNarudzbe.DataPropertyName = "BrojNarudzbe";
+            this.BrojNarudzbe.HeaderText = "Broj narudzbe";
+            this.BrojNarudzbe.Name = "BrojNarudzbe";
+            this.BrojNarudzbe.ReadOnly = true;
+            // 
+            // DatumNarudzbe
+            // 
+            this.DatumNarudzbe.DataPropertyName = "DatumNarudzbe";
+            this.DatumNarudzbe.HeaderText = "DatumNarudzbe";
+            this.DatumNarudzbe.Name = "DatumNarudzbe";
+            this.DatumNarudzbe.ReadOnly = true;
+            // 
+            // KlijentId
+            // 
+            this.KlijentId.DataPropertyName = "KlijentId";
+            this.KlijentId.HeaderText = "KlijentId";
+            this.KlijentId.Name = "KlijentId";
+            this.KlijentId.ReadOnly = true;
+            // 
+            // IznosBezPDV
+            // 
+            this.IznosBezPDV.DataPropertyName = "IznosBezPDV";
+            this.IznosBezPDV.HeaderText = "IznosBezPDV";
+            this.IznosBezPDV.Name = "IznosBezPDV";
+            this.IznosBezPDV.ReadOnly = true;
+            // 
+            // IznosSaPDV
+            // 
+            this.IznosSaPDV.DataPropertyName = "IznosSaPDV";
+            this.IznosSaPDV.HeaderText = "IznosSaPDV";
+            this.IznosSaPDV.Name = "IznosSaPDV";
+            this.IznosSaPDV.ReadOnly = true;
+            // 
+            // KorisnikId
+            // 
+            this.KorisnikId.DataPropertyName = "KorisnikId";
+            this.KorisnikId.HeaderText = "KorisnikId";
+            this.KorisnikId.Name = "KorisnikId";
+            this.KorisnikId.ReadOnly = true;
             // 
             // dateTimePicker2
             // 
@@ -130,7 +179,6 @@ namespace FashionNova.WinUI.Narudzbe
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
             this.ClientSize = new System.Drawing.Size(487, 324);
             this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.button1);
             this.Controls.Add(this.dateTimePicker2);
             this.Controls.Add(this.dateTimePicker1);
             this.Controls.Add(this.label3);
@@ -152,12 +200,17 @@ namespace FashionNova.WinUI.Narudzbe
 
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.DataGridView dgvNarudzbe;
-        private System.Windows.Forms.Button button1;
         private System.Windows.Forms.DateTimePicker dateTimePicker2;
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox txtBrojNarudzbe;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn BrojNarudzbe;
+        private System.Windows.Forms.DataGridViewTextBoxColumn DatumNarudzbe;
+        private System.Windows.Forms.DataGridViewTextBoxColumn KlijentId;
+        private System.Windows.Forms.DataGridViewTextBoxColumn KorisnikId;
+        private System.Windows.Forms.DataGridViewTextBoxColumn IznosBezPDV;
+        private System.Windows.Forms.DataGridViewTextBoxColumn IznosSaPDV;
     }
 }

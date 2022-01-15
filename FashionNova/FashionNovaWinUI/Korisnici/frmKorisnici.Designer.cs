@@ -93,6 +93,8 @@ namespace FashionNova.WinUI.Korisnici
             // 
             // dgvKorisnici
             // 
+            this.dgvKorisnici.AllowUserToAddRows = false;
+            this.dgvKorisnici.AllowUserToDeleteRows = false;
             this.dgvKorisnici.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvKorisnici.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Uloga,
@@ -103,6 +105,7 @@ namespace FashionNova.WinUI.Korisnici
             this.dgvKorisnici.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvKorisnici.Location = new System.Drawing.Point(3, 19);
             this.dgvKorisnici.Name = "dgvKorisnici";
+            this.dgvKorisnici.ReadOnly = true;
             this.dgvKorisnici.RowTemplate.Height = 25;
             this.dgvKorisnici.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvKorisnici.Size = new System.Drawing.Size(552, 236);
@@ -115,30 +118,35 @@ namespace FashionNova.WinUI.Korisnici
             this.Uloga.DataPropertyName = "Uloga";
             this.Uloga.HeaderText = "Uloga";
             this.Uloga.Name = "Uloga";
+            this.Uloga.ReadOnly = true;
             // 
             // Ime
             // 
             this.Ime.DataPropertyName = "Ime";
             this.Ime.HeaderText = "Ime";
             this.Ime.Name = "Ime";
+            this.Ime.ReadOnly = true;
             // 
             // Prezime
             // 
             this.Prezime.DataPropertyName = "Prezime";
             this.Prezime.HeaderText = "Prezime";
             this.Prezime.Name = "Prezime";
+            this.Prezime.ReadOnly = true;
             // 
             // KorisnickoIme
             // 
             this.KorisnickoIme.DataPropertyName = "KorisnickoIme";
             this.KorisnickoIme.HeaderText = "KorisnickoIme";
             this.KorisnickoIme.Name = "KorisnickoIme";
+            this.KorisnickoIme.ReadOnly = true;
             // 
             // Email
             // 
             this.Email.DataPropertyName = "Email";
             this.Email.HeaderText = "Email";
             this.Email.Name = "Email";
+            this.Email.ReadOnly = true;
             // 
             // frmKorisnici
             // 

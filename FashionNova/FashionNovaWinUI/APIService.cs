@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using eProdaja.Model;
+using FashionNova.Model;
 using FashionNova.Model.Models;
 using FashionNova.Model.Requests;
 using Flurl.Http;

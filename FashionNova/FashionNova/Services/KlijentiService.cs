@@ -29,12 +29,12 @@ namespace FashionNova.Services
 
             if (!string.IsNullOrWhiteSpace(search?.Ime))
             {
-                query = query.Where(x => x.Ime.StartsWith(search.Ime));
+                query = query.Where(x => x.Ime.ToLower().StartsWith(search.Ime.ToLower()));
             }
 
             if (!string.IsNullOrWhiteSpace(search?.Prezime))
             {
-                query = query.Where(x => x.Prezime.StartsWith(search.Prezime));
+                query = query.Where(x => x.Prezime.ToLower().StartsWith(search.Prezime.ToLower()));
             }
 
             //if (search?.IsUlogeLoadingEnabled == true)
@@ -68,24 +68,24 @@ namespace FashionNova.Services
             _context.Klijenti.Add(entity);
             _context.SaveChanges();
         }
-        //public void Update(int id, KlijentiUpdateRequest request)
-        //{
-        //    var entity = _context.Klijenti.Where(x => x.KlijentId == id).FirstOrDefault();
-        //    if (!string.IsNullOrWhiteSpace(request.Password))
-        //    {
-        //        if (request.Password != request.PasswordPotvrda)
-        //        {
-        //            throw new Exception("Passwordi se ne slažu");
-        //        }
-        //        entity.LozinkaSalt = GenerateSalt();
-        //        entity.LozinkaHash = GenerateHash(entity.LozinkaSalt, request.Password);
-        //    }
-        //    _context.Klijenti.Attach(entity);
-        //    _context.Klijenti.Update(entity);
-        //    _mapper.Map(request, entity);
+        public void Update(int id, KlijentiInsertRequest request)
+        {
+            var entity = _context.Klijenti.Where(x => x.KlijentId == id).FirstOrDefault();
+            if (!string.IsNullOrWhiteSpace(request.Password))
+            {
+                if (request.Password != request.PasswordPotvrda)
+                {
+                    throw new Exception("Passwordi se ne slažu");
+                }
+                entity.LozinkaSalt = GenerateSalt();
+                entity.LozinkaHash = GenerateHash(entity.LozinkaSalt, request.Password);
+            }
+            _context.Klijenti.Attach(entity);
+            _context.Klijenti.Update(entity);
+            _mapper.Map(request, entity);
 
-        //    _context.SaveChanges();
-        //}
+            _context.SaveChanges();
+        }
         public static string GenerateSalt()
         {
             var buf = new byte[16];

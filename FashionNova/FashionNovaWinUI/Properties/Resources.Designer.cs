@@ -61,7 +61,7 @@ namespace FashionNova.WinUI.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to https://localhost:5003/.
+        ///   Looks up a localized string similar to http://localhost:5003/.
         /// </summary>
         internal static string APIUrl {
             get {
