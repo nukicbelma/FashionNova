@@ -4,12 +4,18 @@
              x:Class="FashionNova.Mobile.Views.ArtikliPage"
              xmlns:vm="clr-namespace:FashionNova.Mobile.ViewModels"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:converters="clr-namespace:FashionNova.Mobile.Helpers"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              mc:Ignorable="d">
 
     <ContentPage.BindingContext>
         <vm:ArtikliViewModel></vm:ArtikliViewModel>
     </ContentPage.BindingContext>
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converters:ImageConverter x:Key="imgConv"></converters:ImageConverter>
+        </ResourceDictionary>
+    </ContentPage.Resources>
     <ContentPage.Content>
         <StackLayout>
             <Label Text="Artikli"

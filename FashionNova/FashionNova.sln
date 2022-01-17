@@ -21,8 +21,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FashionNova.Mobile.iOS", "F
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FashionNova.Mobile", "FashionNova.Mobile\FashionNova.Mobile\FashionNova.Mobile.csproj", "{629E0536-A927-42E5-A6F9-8092F5F86E50}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "NewFolder1", "NewFolder1", "{43176FF0-0CF1-46B7-A400-9095CE79B693}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

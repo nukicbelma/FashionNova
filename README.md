@@ -3,4 +3,10 @@ Seminarski rad iz RS2
 
 
 user: admin
-password: test
+password: admin	
+
+user: uposlenik
+password: uposlenik
+
+user: korisnik	
+password: korisnik
