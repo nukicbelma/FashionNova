@@ -9,6 +9,10 @@
              x:Class="FashionNova.Mobile.Views.ArtikliDetaljiPage">
     <ContentPage.Resources>
         <ResourceDictionary>
+            <Style TargetType="NavigationPage">
+                <Setter Property="BarBackgroundColor" Value="LightPink"/>
+                <Setter Property="BarTextColor" Value="White"/>
+            </Style>
             <converters:ImageConverter x:Key="imgConv"></converters:ImageConverter>
         </ResourceDictionary>
     </ContentPage.Resources>

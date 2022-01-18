@@ -80,7 +80,7 @@ namespace FashionNovaWinUI
         }
         public async Task<T> Authenticiraj<T>(string username, string password)
         {
-            var url = $"{FashionNova.WinUI.Properties.Resources.APIUrl}{_resource}/Authenticiraj/{username},{password}";
+            var url = $"{FashionNova.WinUI.Properties.Resources.APIUrl}{_resource}Authenticiraj/{username},{password}";
 
             return await url.WithBasicAuth(Username, Password).GetJsonAsync<T>();
         }

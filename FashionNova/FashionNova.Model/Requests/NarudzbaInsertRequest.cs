@@ -14,6 +14,6 @@ namespace FashionNova.Model.Requests
         public decimal IznosSaPdv { get; set; }
         public int KorisnikId { get; set; }
 
-        //public List<StavkeNarudzbeInsertRequest> stavke { get; set; } = new List<StavkeNarudzbeInsertRequest>();
+        public List<NarudzbaStavkeInsertRequest> stavke { get; set; } = new List<NarudzbaStavkeInsertRequest>();
     }
 }

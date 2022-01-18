@@ -2,6 +2,7 @@
 using FashionNova.Model.Requests;
 using FashionNova.Services;
 using FashionNova.WebAPI.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -43,5 +44,13 @@ namespace FashionNova.WebAPI.Controllers
         {
             return _service.GetById(id);
         }
+        [HttpGet]
+        [AllowAnonymous]
+        [Route("Authenticiraj/{username},{password}")]
+        public FashionNova.Model.Models.Klijenti Authenticiraj(string username, string password)
+        {
+            return _service.Authenticiraj(username, password);
+        }
+
     }
 }

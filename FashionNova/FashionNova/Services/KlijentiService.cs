@@ -106,5 +106,20 @@ namespace FashionNova.Services
             byte[] inArray = algorithm.ComputeHash(dst);
             return Convert.ToBase64String(inArray);
         }
+        public FashionNova.Model.Models.Klijenti Authenticiraj(string username, string pass)
+        {
+            var user = _context.Klijenti.FirstOrDefault(x => x.KorisnickoIme == username);
+
+            if (user != null)
+            {
+                var hashedPass = GenerateHash(user.LozinkaSalt, pass);
+
+                if (hashedPass == user.LozinkaHash)
+                {
+                    return _mapper.Map<FashionNova.Model.Models.Klijenti>(user);
+                }
+            }
+            return null;
+        }
     }
 }

@@ -17,5 +17,9 @@ namespace FashionNova.Mobile.Views
             InitializeComponent();
             this.BindingContext = new LoginViewModel();
         }
+        private async void Button_Clicked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new RegistracijaPage());
+        }
     }
 }

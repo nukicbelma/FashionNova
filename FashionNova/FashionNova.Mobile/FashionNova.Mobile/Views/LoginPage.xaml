@@ -3,12 +3,24 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:viewModels1="clr-namespace:FashionNova.Mobile.ViewModels"
              mc:Ignorable="d"
              x:Class="FashionNova.Mobile.Views.LoginPage"
-             Shell.NavBarIsVisible="False">
+			 BackgroundImage="Assets/MobShop.jpg">
+    <ContentPage.BindingContext>
+        <viewModels1:LoginViewModel/>
+    </ContentPage.BindingContext>
     <ContentPage.Content>
-        <StackLayout Padding="10,0,10,0" VerticalOptions="Center">
-            <Button VerticalOptions="Center" Text="Login" Command="{Binding LoginCommand}"/>
+        <StackLayout VerticalOptions="End" Padding="10" Margin="0,0,0,60" BackgroundColor="LightPink">
+            <Label Margin="35,0,50,0" FontSize="Large" Text="Korisničko ime"></Label>
+            <Entry Margin="30,0,0,0" FontSize="Large" Placeholder="username" x:Name="KorisnickoIme" Text="{Binding Username}"></Entry>
+            <Label Margin="35,0,50,0" FontSize="Large" Text="Password"></Label>
+            <Entry Margin="30,0,0,0" FontSize="Large" Placeholder="*********" Text="{Binding Password}" IsPassword="True"></Entry>
+            <StackLayout Orientation="Horizontal" HorizontalOptions="End">
+                <Button Text="Registracija" Clicked="Button_Clicked"></Button>
+                <Button Command="{Binding LoginCommand}" Text="Login"></Button>
+            </StackLayout>
+            <Label IsVisible="{Binding IsBusy}" Text="Working..."></Label>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

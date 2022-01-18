@@ -80,7 +80,7 @@ namespace FashionNova.Mobile
         }
         public async Task<T> Authenticiraj<T>(string username, string password)
         {
-            var url = $"{_apiURL}/Authenticiraj/{username},{password}";
+            var url = $"{_apiURL}Authenticiraj/{username},{password}";
 
             return await url.WithBasicAuth(Username, Password).GetJsonAsync<T>();
         }

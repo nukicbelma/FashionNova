@@ -14,7 +14,7 @@ namespace FashionNova.Mobile
             InitializeComponent();
 
             DependencyService.Register<MockDataStore>();
-            MainPage = new NavigationPage(new ArtikliPage());
+            MainPage = new NavigationPage(new PocetnaPage());
         }
 
         protected override void OnStart()

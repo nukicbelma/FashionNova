@@ -38,7 +38,6 @@ namespace FashionNova.WebAPI.Services
             }
 
             return lista;
-
         }
         public NarudzbaStavke GetById(int id)
         {

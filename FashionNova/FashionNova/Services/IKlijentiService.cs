@@ -8,7 +8,7 @@ namespace FashionNova.Services
     public interface IKlijentiService
     {
         List<Klijenti> Get(KlijentiSearchRequest search);
-
+        FashionNova.Model.Models.Klijenti Authenticiraj(string username, string pass);
         Klijenti GetById(int id);
 
         void Insert(KlijentiInsertRequest request);
