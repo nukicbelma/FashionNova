@@ -50,7 +50,7 @@ namespace FashionNova.Mobile.ViewModels
             }
             catch (Exception)
             {
-                Debug.WriteLine("Failed to Load Item");
+                Debug.WriteLine("Greška u učitavanju odabrane stavke.");
             }
         }
     }

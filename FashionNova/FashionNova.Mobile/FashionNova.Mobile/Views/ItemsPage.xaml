@@ -5,40 +5,33 @@
              Title="{Binding Title}"
              xmlns:local="clr-namespace:FashionNova.Mobile.ViewModels"  
              xmlns:model="clr-namespace:FashionNova.Mobile.Models"  
-             x:Name="BrowseItemsPage">
+             
+             BackgroundImageSource="Assets/pozadina1.jpg"
+             >
 
-    <ContentPage.ToolbarItems>
+
+   <!-- <ContentPage.ToolbarItems>
         <ToolbarItem Text="Add" Command="{Binding AddItemCommand}" />
-    </ContentPage.ToolbarItems>
-    <!--
-      x:DataType enables compiled bindings for better performance and compile time validation of binding expressions.
-      https://docs.microsoft.com/xamarin/xamarin-forms/app-fundamentals/data-binding/compiled-bindings
-    -->
-    <RefreshView x:DataType="local:ItemsViewModel" Command="{Binding LoadItemsCommand}" IsRefreshing="{Binding IsBusy, Mode=TwoWay}">
-        <CollectionView x:Name="ItemsListView"
-                ItemsSource="{Binding Items}"
-                SelectionMode="None">
-            <CollectionView.ItemTemplate>
-                <DataTemplate>
-                    <StackLayout Padding="10" x:DataType="model:Item">
-                        <Label Text="{Binding Text}" 
-                            LineBreakMode="NoWrap" 
-                            Style="{DynamicResource ListItemTextStyle}" 
-                            FontSize="16" />
-                        <Label Text="{Binding Description}" 
-                            LineBreakMode="NoWrap"
-                            Style="{DynamicResource ListItemDetailTextStyle}"
-                            FontSize="13" />
-                        <StackLayout.GestureRecognizers>
-                            <TapGestureRecognizer 
-                                NumberOfTapsRequired="1"
-                                Command="{Binding Source={RelativeSource AncestorType={x:Type local:ItemsViewModel}}, Path=ItemTapped}"		
-                                CommandParameter="{Binding .}">
-                            </TapGestureRecognizer>
-                        </StackLayout.GestureRecognizers>
-                    </StackLayout>
-                </DataTemplate>
-            </CollectionView.ItemTemplate>
-        </CollectionView>
-    </RefreshView>
+    </ContentPage.ToolbarItems>-->
+    <StackLayout Padding="50" x:DataType="model:Item"  WidthRequest="400" HorizontalOptions="Center" BackgroundColor="Beige">
+        <StackLayout Padding="15">
+            <Label Text="FashionNova"  TextColor="HotPink" FontSize="30" FontAttributes="Bold" HorizontalTextAlignment="Center"></Label>
+        </StackLayout>
+        <Label Text="Dobrodošli na oficijalnu aplikaciju FashionNova – svijet modnih trendova! Naša aplikacija je prvi put plasirana 10. oktobra 2021. godine. Od tada imamo preko 1000 korisnika, te nam je drago da ste baš Vi dio toga! Uživajte u bogatoj ponudi različitih modernih komada odjeće. Poručite i vi i budite #trendy!"
+           FontSize="16" HorizontalTextAlignment="Center"></Label>
+        <StackLayout HorizontalOptions="End" Margin="0,180,0,0">
+            <StackLayout>
+                <Label Text="CEO Belma Nukić"></Label>
+            </StackLayout>
+            <StackLayout>
+                <Label Text="Kontakt: " FontAttributes="Bold" FontSize="17"></Label>
+            </StackLayout>
+            <StackLayout>
+                <Label Text="Email: belma@outlook.com" FontSize="13"></Label>
+            </StackLayout>
+            <StackLayout>
+                <Label Text="Telefon: (+387)60 111-1111 "></Label>
+            </StackLayout>
+        </StackLayout>
+    </StackLayout>
 </ContentPage>

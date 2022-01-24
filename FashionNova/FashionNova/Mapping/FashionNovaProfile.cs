@@ -42,6 +42,7 @@ namespace FashionNova.WebAPI.Mappers
             CreateMap<KorisniciSearchRequest, Database.Korisnici>();
             CreateMap<KlijentiSearchRequest, Database.Klijenti>();
             CreateMap<KlijentiInsertRequest, Database.Klijenti>();
+            CreateMap<KlijentiUpdateRequest, Database.Klijenti>();
             CreateMap<NarudzbeSearchRequest, Database.Narudzba>();
             CreateMap<NarudzbeInsertRequest, Database.Narudzba>();
         }

@@ -13,6 +13,6 @@ namespace FashionNova.Services
 
         void Insert(KlijentiInsertRequest request);
 
-        void Update(int id, KlijentiInsertRequest request);
+        void Update(int id, KlijentiUpdateRequest request);
     }
 }

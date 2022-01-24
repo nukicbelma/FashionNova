@@ -3,24 +3,28 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             
              xmlns:viewModels1="clr-namespace:FashionNova.Mobile.ViewModels"
              mc:Ignorable="d"
              x:Class="FashionNova.Mobile.Views.LoginPage"
-			 BackgroundImage="Assets/MobShop.jpg">
+             
+			 BackgroundImage="Assets/logo.jpg">
+
     <ContentPage.BindingContext>
         <viewModels1:LoginViewModel/>
     </ContentPage.BindingContext>
     <ContentPage.Content>
-        <StackLayout VerticalOptions="End" Padding="10" Margin="0,0,0,60" BackgroundColor="LightPink">
+       
+        <StackLayout VerticalOptions="End" Padding="5" Margin="0,0,25,60">
             <Label Margin="35,0,50,0" FontSize="Large" Text="Korisničko ime"></Label>
             <Entry Margin="30,0,0,0" FontSize="Large" Placeholder="username" x:Name="KorisnickoIme" Text="{Binding Username}"></Entry>
-            <Label Margin="35,0,50,0" FontSize="Large" Text="Password"></Label>
+            <Label Margin="35,0,50,0" FontSize="Large" Text="Lozinka"></Label>
             <Entry Margin="30,0,0,0" FontSize="Large" Placeholder="*********" Text="{Binding Password}" IsPassword="True"></Entry>
-            <StackLayout Orientation="Horizontal" HorizontalOptions="End">
-                <Button Text="Registracija" Clicked="Button_Clicked"></Button>
-                <Button Command="{Binding LoginCommand}" Text="Login"></Button>
+            <StackLayout Orientation="Horizontal" HorizontalOptions="End" Margin="0,30,0,20">
+                <Button Text="Registracija" Clicked="Button_Clicked" WidthRequest="200" FontAttributes="Bold" BackgroundColor="#B06DBE" BorderColor="Black"></Button>
+                <Button Command="{Binding LoginCommand}" Text="Login" WidthRequest="200" FontAttributes="Bold"  BackgroundColor="#B06DBE" BorderColor="Black"></Button>
             </StackLayout>
-            <Label IsVisible="{Binding IsBusy}" Text="Working..."></Label>
+            <Label IsVisible="{Binding IsBusy}" Text="Učitavanje...pričekajte." HorizontalOptions="Center" FontSize="20"></Label>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

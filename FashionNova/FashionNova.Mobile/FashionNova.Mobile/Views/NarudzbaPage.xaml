@@ -2,20 +2,16 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:viewModels="clr-namespace:FashionNova.Mobile.ViewModels"
-             x:Class="FashionNova.Mobile.Views.NarudzbaPage">
+             x:Class="FashionNova.Mobile.Views.NarudzbaPage"
+             BackgroundImage="Assets/pozadina1.jpg">
     <ContentPage.BindingContext>
         <viewModels:NarudzbaViewModel></viewModels:NarudzbaViewModel>
     </ContentPage.BindingContext>
     <ContentPage.Resources>
-        <ResourceDictionary>
-            <Style TargetType="NavigationPage">
-                <Setter Property="BarBackgroundColor" Value="LightPink"/>
-                <Setter Property="BarTextColor" Value="White"/>
-            </Style>
-        </ResourceDictionary>
+       
     </ContentPage.Resources>
     <ContentPage.Content>
-        <StackLayout BackgroundColor="LightPink">
+        <StackLayout BackgroundColor="Beige" WidthRequest="500" HorizontalOptions="Center">
             <Label Text="Trenutna narudzba"
                 VerticalOptions="CenterAndExpand" 
                 HorizontalOptions="CenterAndExpand" 
@@ -48,10 +44,10 @@
                 </ListView.ItemTemplate>
             </ListView>
             <StackLayout Orientation="Vertical" Padding="10" Margin="0">
-                <Label x:Name="lblBrojArtikala" Text="{Binding BrojArtikala,StringFormat='Broj artikala: {0}'}" FontSize="26" FontAttributes="Italic"></Label>
-                <Label x:Name="lblIznos" Text="{Binding Iznos,StringFormat='Iznos: {0} KM'}" FontSize="26" FontAttributes="Italic"></Label>
-                <Button x:Name="Zakljuci" Text="Zakljuci narudzbu" Clicked="Zakljuci_Clicked" BackgroundColor="White" TextColor="black"></Button>
-                <Button x:Name="Otkazi" Text="Otkazi narudzbu" Clicked="Otkazi_Clicked" BackgroundColor="White" TextColor="black"></Button>
+                <Label x:Name="lblBrojArtikala" Text="{Binding BrojArtikala,StringFormat='Broj artikala: {0}'}" FontSize="25"  HorizontalOptions="End"></Label>
+                <Label x:Name="lblIznos" Text="{Binding Iznos,StringFormat='Iznos: {0} KM'}" FontSize="25" FontAttributes="Bold" HorizontalOptions="End"></Label>
+                <Button x:Name="Zakljuci" Text="Naruči" Clicked="Zakljuci_Clicked" BackgroundColor="LightGreen" TextColor="black" FontAttributes="Bold"></Button>
+                <Button x:Name="Otkazi" Text="Otkazi" Clicked="Otkazi_Clicked" BackgroundColor="#F85050" TextColor="black" FontAttributes="Bold" ></Button>
             </StackLayout>
         </StackLayout>
     </ContentPage.Content>

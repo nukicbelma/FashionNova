@@ -68,7 +68,7 @@ namespace FashionNova.Services
             _context.Klijenti.Add(entity);
             _context.SaveChanges();
         }
-        public void Update(int id, KlijentiInsertRequest request)
+        public void Update(int id, KlijentiUpdateRequest request)
         {
             var entity = _context.Klijenti.Where(x => x.KlijentId == id).FirstOrDefault();
             if (!string.IsNullOrWhiteSpace(request.Password))

@@ -26,5 +26,10 @@ namespace FashionNova.Mobile.Views
                 DisplayAlert("Uspjeh", "Uspjesno ste dodali artikal u korpu!", "OK");
             }
         }
+        protected override bool OnBackButtonPressed()
+        {
+            //return true to prevent back, return false to just do something before going back. 
+            return true;
+        }
     }
 }

@@ -14,10 +14,10 @@ using Xamarin.Forms;
 
 namespace FashionNova.Mobile.ViewModels
 {
-    public class RegistracijaViewModel : BaseViewModel
+    public class MojProfilViewModel :BaseViewModel
     {
         private readonly APIService _service = new APIService("Klijenti");
-        public RegistracijaViewModel()
+        public MojProfilViewModel()
         {
         }
         public ICommand UploadProfileCommand { get; set; }
@@ -98,10 +98,11 @@ namespace FashionNova.Mobile.ViewModels
                 OnPropertyChanged("ProfilePhotoSource");
             }
         }
-        public async Task Registracija()
+        public async Task EditujKlijenta()
         {
             KlijentiUpdateRequest request = new KlijentiUpdateRequest();
 
+            request.KlijentId = int.Parse(KlijentId);
             request.Email = Email;
             request.Ime = Ime;
             request.Prezime = Prezime;
@@ -112,14 +113,13 @@ namespace FashionNova.Mobile.ViewModels
             request.Slika = ProfilePhoto;
 
 
-            await _service.Insert<Klijenti>(request);
-            await Application.Current.MainPage.Navigation.PopAsync();
-            await Application.Current.MainPage.DisplayAlert("Uspjeh", "Uspjesno ste se registrovali", "OK");
+            await _service.Update<Klijenti>(int.Parse(KlijentId),request);
+            await Application.Current.MainPage.DisplayAlert("Welcome", "Uspjesno ste editovali vas korisnicki racun. ", "OK");
         }
         private MediaFile _mediaFileProfilePhoto;
         public async Task UploadProfilePicture()
         {
-
+            
             await CrossMedia.Current.Initialize();
             if (!CrossMedia.Current.IsPickPhotoSupported)
             {

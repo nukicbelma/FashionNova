@@ -4,11 +4,11 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
-             x:Class="FashionNova.Mobile.Views.RegistracijaPage"
+             x:Class="FashionNova.Mobile.Views.MojProfilPage"
              BackgroundImage="Assets/pozadina1.jpg">
     <ContentPage.Content>
         <StackLayout VerticalOptions="CenterAndExpand" BackgroundColor="Beige" Padding="25" WidthRequest="600" HorizontalOptions="Center">
-
+           
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"></RowDefinition>
@@ -39,11 +39,16 @@
                 <Image x:Name="ProfilePhoto"  Grid.Row="1" Grid.Column="1" HorizontalOptions="End"
                                   HeightRequest="110" WidthRequest="130" Source="{Binding ProfilePhotoSource}" BackgroundColor="#D9B1B1">
                 </Image>
-                <Button Clicked="ButtonUploadSliku_Clicked" x:Name="Upload1" Grid.Row="2" Grid.Column="1" VerticalOptions="End" FontSize="14" Text="Dodaj sliku" BackgroundColor="LightGray" TextColor="Black" HorizontalOptions="End" WidthRequest="130"></Button>
+                <Button Clicked="ButtonUploadSliku_Clicked" x:Name="Upload1" Grid.Row="2" Grid.Column="1" VerticalOptions="End" FontSize="14" Text="Promijeni sliku" BackgroundColor="LightGray" TextColor="Black" HorizontalOptions="End" WidthRequest="130"></Button>
 
 
-                <Label Text="Kreiraj novi korisnički nalog /@FashionNova" HorizontalTextAlignment="Center" FontAttributes="Bold" FontSize="26"
+                <Label Text="Moj korisnički nalog" HorizontalTextAlignment="Center" FontAttributes="Bold" FontSize="26"
                    Grid.ColumnSpan="2" TextColor="DeepPink"></Label>
+
+                <Label Text="KlijentId: " Grid.Row="3" FontSize="18" VerticalTextAlignment="Center" ></Label>
+                <Entry Grid.Row="3" Grid.Column="1" x:Name="inputKlijentId" Text="{Binding KlijentId}" BackgroundColor="#D9B1B1" TextColor="#E62A88" FontAttributes="Bold" IsReadOnly="True"></Entry>
+                
+
 
                 <Label Text="Ime: " Grid.Row="4" FontSize="18" VerticalTextAlignment="Center" ></Label>
                 <Entry Grid.Row="4" Grid.Column="1" x:Name="inputIme" Text="{Binding Ime}" BackgroundColor="#D9B1B1"></Entry>
@@ -64,7 +69,7 @@
 
 
                 <Label Text="Korisnicko ime: " Grid.Row="8" FontSize="18" VerticalTextAlignment="Center"></Label>
-                <Entry Grid.Row="8" Grid.Column="1" x:Name="inputKorisnickoIme" Text="{Binding KorisnickoIme}" BackgroundColor="#D9B1B1"></Entry>
+                <Entry Grid.Row="8" Grid.Column="1" x:Name="inputKorisnickoIme" Text="{Binding KorisnickoIme}" BackgroundColor="#D9B1B1" IsReadOnly="True"></Entry>
                 <Label Grid.Row="8" Grid.Column="1" x:Name="korisnickoImeError" TextColor="Red" IsVisible="True" FontSize="12.5" HorizontalOptions="End" ></Label>
 
                 <Label Text="Lozinka: " Grid.Row="9" FontSize="18" VerticalTextAlignment="Center"></Label>
@@ -75,8 +80,8 @@
                 <Entry Grid.Row="10" Grid.Column="1" x:Name="inputPotvrda" IsPassword="True" Text="{Binding Potvrda}" BackgroundColor="#D9B1B1"></Entry>
                 <Label Grid.Row="10" Grid.Column="1" x:Name="potvrdalozinkaError" TextColor="Red" IsVisible="True"></Label>
 
-                <Button x:Name="ButtonRegistracija" Grid.Row="16" Grid.Column="1" Text="Kreiraj nalog" BackgroundColor="LightGray" CornerRadius="20"
-                       Clicked="ButtonRegistracija_Clicked" FontAttributes="bold"   BorderColor="Black" TextColor="Black"></Button>
+                <Button x:Name="ButtonEditKlijent" Grid.Row="16" Grid.Column="1" Text="Spasi izmjene" BackgroundColor="DeepPink"
+                       Clicked="ButtonEditKlijent_Clicked" FontAttributes="bold" HorizontalOptions="End" WidthRequest="150" BorderColor="Black" TextColor="Black"></Button>
             </Grid>
         </StackLayout>
     </ContentPage.Content>

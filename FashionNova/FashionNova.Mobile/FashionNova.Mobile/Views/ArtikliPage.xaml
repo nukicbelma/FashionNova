@@ -6,7 +6,9 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:converters="clr-namespace:FashionNova.Mobile.Helpers"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
-             mc:Ignorable="d">
+             
+             mc:Ignorable="d"
+             BackgroundImage="Assets/pozadina1.jpg">
 
     <ContentPage.BindingContext>
         <vm:ArtikliViewModel></vm:ArtikliViewModel>
@@ -18,26 +20,38 @@
     </ContentPage.Resources>
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="Artikli"
+            <StackLayout WidthRequest="650" HorizontalOptions="Center" BackgroundColor="Beige">
+            <Label Text="Pogledajte našu trenutnu ponudu raznovrsnih artikala" TextColor="Black" FontSize="25"
+                VerticalOptions="CenterAndExpand" 
+                HorizontalOptions="CenterAndExpand" />
+            <Label Text="Odaberite kategoriju: " TextColor="gray" FontSize="20"
                 VerticalOptions="CenterAndExpand" 
                 HorizontalOptions="CenterAndExpand" />
             <Picker ItemsSource="{Binding VrstaArtiklaList}" SelectedItem="{Binding SelectedVrstaArtikla}"
                     ItemDisplayBinding="{Binding Naziv}"></Picker>
-
+            </StackLayout>
             <ListView ItemsSource="{Binding ArtikliList}" ItemSelected="ListView_ItemSelected">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
-                            <StackLayout Padding="10" Orientation="Horizontal">
+                            <StackLayout Padding="0" Orientation="Horizontal" Margin="10,10,10,10" BackgroundColor="Beige">
                                 <StackLayout WidthRequest="100" HeightRequest="100">
                                     <Image Source="{Binding Slika, Converter={StaticResource imgConv}}"></Image>
                                 </StackLayout>
-                                <StackLayout Orientation="Vertical">
+                                <StackLayout Orientation="Vertical" WidthRequest="300" Padding="15">
                                     <Label Text="{Binding Naziv}" 
                                            LineBreakMode="NoWrap" 
                                            Style="{DynamicResource ListItemTextStyle}" 
                                            FontSize="16" />
-                                    <Label Text="{Binding Sifra}" 
+                                    <Label Text="{Binding Velicina, StringFormat='Velicina:   {0}'}" 
+                                           LineBreakMode="NoWrap"
+                                           Style="{DynamicResource ListItemDetailTextStyle}"
+                                           FontSize="13" />
+                                    <Label Text="{Binding Boja, StringFormat='Boja:   {0}'}" 
+                                           LineBreakMode="NoWrap"
+                                           Style="{DynamicResource ListItemDetailTextStyle}"
+                                           FontSize="13" />
+                                    <Label TextColor="Red" FontAttributes="Bold" HorizontalOptions="End" Text="{Binding Cijena, StringFormat=' {0} KM'}" 
                                            LineBreakMode="NoWrap"
                                            Style="{DynamicResource ListItemDetailTextStyle}"
                                            FontSize="13" />

@@ -1,4 +1,5 @@
-﻿using FashionNova.Mobile.Views;
+﻿using FashionNova.Mobile.Services;
+using FashionNova.Mobile.Views;
 using FashionNova.Model.Models;
 using System;
 using System.Collections.Generic;
@@ -42,9 +43,9 @@ namespace FashionNova.Mobile.ViewModels
                 {
                     APIService.Username = Username;
                     APIService.Password = Password;
-                   // Global.PrijavljeniKlijent = klijent;
-                    await Application.Current.MainPage.DisplayAlert("Uspjeh", "Dobrodosli " + klijent.Ime + " " + klijent.Prezime, "OK");
-                    Application.Current.MainPage = new ArtikliPage();
+                    PrijavljeniKlijentService.PrijavljeniKlijent = klijent;
+                    await Application.Current.MainPage.DisplayAlert("Welcome to FashionNova!", "Dobrodosli " + klijent.Ime + " " + klijent.Prezime, "OK");
+                    Application.Current.MainPage = new PocetnaPage();
                 }
                 else
                 {

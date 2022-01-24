@@ -1,0 +1,79 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:viewModels1="clr-namespace:FashionNova.Mobile.ViewModels"
+             mc:Ignorable="d"
+             x:Class="FashionNova.Mobile.Views.HistorijaNarudzbiPage"
+             BackgroundImage="Assets/pozadina1.jpg">
+    <ContentPage.BindingContext>
+        <viewModels1:HistorijaNarudzbiViewModel/>
+    </ContentPage.BindingContext>
+    <ContentPage.Content>
+        <StackLayout Margin="10" Padding="20" >
+            <Label Text="Pregled dosadašnjih narudzbi"
+                HorizontalTextAlignment="Center" FontAttributes="Bold"
+                       FontSize="28" BackgroundColor="Beige" WidthRequest="600" HorizontalOptions="Center" />
+
+            <ListView ItemsSource="{Binding ListaNarudzbi}" ItemSelected="ListView_ItemSelected">
+                <ListView.ItemTemplate>
+
+                    <DataTemplate>
+
+                        <ViewCell>
+                            <StackLayout WidthRequest="500" Padding="10">
+                                <Grid BackgroundColor="#E6B9D0" Padding="15">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"></RowDefinition>
+                                        <RowDefinition Height="Auto"></RowDefinition>
+                                        <RowDefinition Height="Auto"></RowDefinition>
+                                        <RowDefinition Height="*"></RowDefinition>
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"></ColumnDefinition>
+                                        <ColumnDefinition Width="*"></ColumnDefinition>
+                                    </Grid.ColumnDefinitions>
+                                    <StackLayout Grid.Row="0" Grid.Column="0">
+                                        <Label Text="Broj narudzbe:" FontSize="15" FontAttributes="Bold"></Label>
+                                    </StackLayout>
+                                    <StackLayout Grid.Row="0" Grid.Column="1">
+
+                                        <Label Text="{Binding BrojNarudzbe}" 
+                                d:Text="{Binding .}"
+                                FontSize="15" />
+                                    </StackLayout>
+                                    <StackLayout Grid.Row="1" Grid.Column="0" Margin="0,0,20,0">
+                                        <Label Text="Datum: " FontSize="15" FontAttributes="Bold"></Label>
+                                    </StackLayout>
+                                    <StackLayout Grid.Row="1" Grid.Column="1">
+                                        <Label Text="{Binding Datum}" d:Text="{Binding .}"
+                                FontSize="16" />
+                                    </StackLayout>
+                                    <StackLayout Grid.Row="2" Grid.Column="0">
+                                        <Label Text="Iznos bez PDV: " FontSize="15" FontAttributes="Bold"></Label>
+                                    </StackLayout>
+                                    <StackLayout Grid.Row="2" Grid.Column="1" >
+                                        <Label Text="{Binding IznosBezPdv, StringFormat='{0} KM'}}" 
+                                d:Text="Item descripton"
+                                Style="{DynamicResource ListItemDetailTextStyle}"
+                                FontSize="13" />
+                                    </StackLayout>
+                                    <StackLayout Grid.Row="3" Grid.Column="0" >
+                                        <Label Text="Iznos sa PDV: " FontSize="15" FontAttributes="Bold"></Label>
+                                    </StackLayout>
+                                    <StackLayout Grid.Row="3" Grid.Column="1" >
+                                        <Label Text="{Binding IznosSaPdv, StringFormat=' {0} KM'}" 
+                                d:Text="Item descripton"
+                                Style="{DynamicResource ListItemDetailTextStyle}"
+                                FontSize="13" />
+                                    </StackLayout>
+                                </Grid>
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

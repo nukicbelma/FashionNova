@@ -19,7 +19,7 @@ namespace FashionNova.Mobile.ViewModels
 
         public ItemsViewModel()
         {
-            Title = "Browse";
+            Title = "O Nama";
             Items = new ObservableCollection<Item>();
             LoadItemsCommand = new Command(async () => await ExecuteLoadItemsCommand());
 

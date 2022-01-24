@@ -35,7 +35,7 @@ namespace FashionNova.WebAPI.Controllers
         }
 
         [HttpPut("{id}")]
-        public void Update(int id, [FromBody] KlijentiInsertRequest request)
+        public void Update(int id, [FromBody] KlijentiUpdateRequest request)
         {
             _service.Update(id, request);
         }

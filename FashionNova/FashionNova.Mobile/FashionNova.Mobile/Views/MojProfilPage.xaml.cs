@@ -8,53 +8,54 @@ using System.Threading.Tasks;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
-using FashionNova.Models;
+using FashionNova.Model;
 using FashionNova.Model.Models;
+using FashionNova.Mobile.Services;
+using System.IO;
 
 namespace FashionNova.Mobile.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class RegistracijaPage : ContentPage
+    public partial class MojProfilPage : ContentPage
     {
-        RegistracijaViewModel model = null;
+        MojProfilViewModel model = null;
         APIService _serviceklijenti = new APIService("Klijenti");
-        public RegistracijaPage()
+        public MojProfilPage()
         {
             InitializeComponent();
-            BindingContext = model = new RegistracijaViewModel();
+            BindingContext = model = new MojProfilViewModel();
+            inputIme.Text = PrijavljeniKlijentService.PrijavljeniKlijent.Ime;
+            inputKlijentId.Text = PrijavljeniKlijentService.PrijavljeniKlijent.KlijentId.ToString();
+            inputPrezime.Text = PrijavljeniKlijentService.PrijavljeniKlijent.Prezime;
+            inputEmail.Text = PrijavljeniKlijentService.PrijavljeniKlijent.Email;
+            inputPassword.Text = "";
+            inputPotvrda.Text = "";
+            inputKorisnickoIme.Text = PrijavljeniKlijentService.PrijavljeniKlijent.KorisnickoIme;
+            inputTelefon.Text = PrijavljeniKlijentService.PrijavljeniKlijent.Telefon;
+            var stream1 = new MemoryStream(PrijavljeniKlijentService.PrijavljeniKlijent.Slika);
+            ProfilePhoto.Source = ImageSource.FromStream(() => stream1);
         }
         private async void ButtonUploadSliku_Clicked(object sender, EventArgs e)
         {
             await model.UploadProfilePicture();
             ProfilePhoto.Source = model.ProfilePhotoSource;
         }
-        private async void ButtonRegistracija_Clicked(object sender, EventArgs e)
+        private async void ButtonEditKlijent_Clicked(object sender, EventArgs e)
         {
-            bool duploime = false;
             bool dupliemail = false;
+
             List<Klijenti> lista = await _serviceklijenti.Get<List<Klijenti>>(null);
 
             foreach (var item in lista)
             {
-                if (item.KorisnickoIme.Equals(inputKorisnickoIme.Text) == true)
-                {
-                    duploime = true;
-                }
-                if (item.Email.Equals(inputEmail.Text) == true)
+                if (item.Email.Equals(inputEmail.Text) == true && item.KlijentId.ToString()!=inputKlijentId.Text)
                 {
                     dupliemail = true;
                 }
             }
-            if (validateRegistration() == true)
+            if (validateIzmjene() == true)
             {
-
-                if (duploime == true)
-                {
-                    await DisplayAlert("Greska", "Korisnik sa tim korisnickim imenom je vec registrovan", "OK");
-                    korisnickoImeError.Text = "Korisnicko ime vec postoji!";
-                    korisnickoImeError.IsVisible = true;
-                }
-                else if (dupliemail == true)
+                if (dupliemail == true)
                 {
                     await DisplayAlert("Greska", "Korisnik sa tim emailom je vec registrovan", "OK");
                     emailError.Text = "Email vec postoji!";
@@ -62,15 +63,15 @@ namespace FashionNova.Mobile.Views
                 }
                 else
                 {
-                    await model.Registracija();
+                    await model.EditujKlijenta();
                 }
             }
             else
             {
-                await DisplayAlert("Greska", "Niste pravilno unijeli sva polja.", "OK");
+                await DisplayAlert("Greska", "Niste unijeli sva polja.", "OK");
             }
         }
-        private bool validateRegistration()
+        private bool validateIzmjene()
         {
             bool valid = true;
             //radim odvojeno kako bi dobio odma error border za svaki pogresan unos
@@ -79,8 +80,6 @@ namespace FashionNova.Mobile.Views
             if (validatePrezime() == false)
                 valid = false;
             if (validateEmail() == false)
-                valid = false;
-            if (validateKorisnickoIme() == false)
                 valid = false;
             if (validateLozinka() == false)
                 valid = false;
@@ -179,29 +178,7 @@ namespace FashionNova.Mobile.Views
                 return true;
             }
         }
-        private bool validateKorisnickoIme()
-        {
-            if (inputKorisnickoIme.Text == "")
-            {
-                korisnickoImeError.Text = "Korisničko ime obavezno!";
-                korisnickoImeError.IsVisible = true;
-                return false;
-            }
-            if (inputKorisnickoIme.Text.Count() < 4)
-            {
-                korisnickoImeError.Text = "Korisničko ime ne smije biti manje od 4 karaktera!";
-                korisnickoImeError.IsVisible = true;
-                return false;
-            }
-            else
-            {
-
-                korisnickoImeError.IsVisible = false;
-                korisnickoImeError.Text = "";
-                return true;
-            }
-        }
-
+       
         private bool validateLozinka()
         {
             if (inputPassword.Text == "")
