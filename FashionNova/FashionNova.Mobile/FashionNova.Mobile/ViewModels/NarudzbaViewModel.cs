@@ -26,17 +26,19 @@ namespace FashionNova.Mobile.ViewModels
         }
         public void Init()
         {
-            foreach (var item in CartService.Cart.Values)
+            int kolicina = 0;
+            foreach (var item in CartService.Cart)
             {
-                NarudzbaList.Add(item);
+                NarudzbaList.Add(item.Value);
+                kolicina += item.Value.Kolicina;
             }
             Iznos = 0;
             foreach (var item in NarudzbaList)
             {
                 Iznos += decimal.Parse(item.Kolicina.ToString()) * decimal.Parse(item.Artikal.Cijena.ToString());
             }
-            BrojArtikala = NarudzbaList.Count();
-            CartService.Cart.Clear();
+            BrojArtikala = kolicina;
+            //CartService.Cart.Clear();
         }
     }
 }

@@ -47,11 +47,10 @@ namespace FashionNova.Mobile.ViewModels
                 }
                 CartService.Cart.Add(Artikal.ArtikalId, this);
                 App.Current.MainPage.DisplayAlert("Korpa", "Uspjesno ste dodali artikal u korpu.", "OK");
-
             }
             else
             {
-                App.Current.MainPage.DisplayAlert("Kolicina ne moze biti 0, povecaj kolicinu", "", "OK");
+                App.Current.MainPage.DisplayAlert("Greška","Kolicina ne moze biti 0, pokusajte ponovo.", "", "OK");
             }
 
         }     

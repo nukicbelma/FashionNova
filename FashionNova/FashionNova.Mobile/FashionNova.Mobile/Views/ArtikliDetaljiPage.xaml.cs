@@ -21,15 +21,11 @@ namespace FashionNova.Mobile.Views
         }
         private void TapGestureRecognizer_Tapped(object sender, EventArgs e)
         {
-            if (model.Kolicina > 0)
-            {
-                DisplayAlert("Uspjeh", "Uspjesno ste dodali artikal u korpu!", "OK");
-            }
+            
         }
-        protected override bool OnBackButtonPressed()
+        private async void ButtonBack_Clicked(object sender, EventArgs e)
         {
-            //return true to prevent back, return false to just do something before going back. 
-            return true;
+            Application.Current.MainPage = new PocetnaPage();
         }
     }
 }

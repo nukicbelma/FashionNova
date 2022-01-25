@@ -115,6 +115,7 @@ namespace FashionNova.Mobile.ViewModels
 
             await _service.Update<Klijenti>(int.Parse(KlijentId),request);
             await Application.Current.MainPage.DisplayAlert("Welcome", "Uspjesno ste editovali vas korisnicki racun. ", "OK");
+            
         }
         private MediaFile _mediaFileProfilePhoto;
         public async Task UploadProfilePicture()

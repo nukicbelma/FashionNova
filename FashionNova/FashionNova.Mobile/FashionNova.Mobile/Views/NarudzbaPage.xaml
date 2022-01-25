@@ -3,46 +3,55 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:viewModels="clr-namespace:FashionNova.Mobile.ViewModels"
              x:Class="FashionNova.Mobile.Views.NarudzbaPage"
-             BackgroundImage="Assets/pozadina1.jpg">
+             BackgroundImage="Assets/pozadina1.jpg"
+             xmlns:converters="clr-namespace:FashionNova.Mobile.Helpers">
     <ContentPage.BindingContext>
         <viewModels:NarudzbaViewModel></viewModels:NarudzbaViewModel>
     </ContentPage.BindingContext>
     <ContentPage.Resources>
-       
+        <ResourceDictionary>
+            <converters:ImageConverter x:Key="imgConv"></converters:ImageConverter>
+        </ResourceDictionary>
     </ContentPage.Resources>
     <ContentPage.Content>
-        <StackLayout BackgroundColor="Beige" WidthRequest="500" HorizontalOptions="Center">
+        <StackLayout BackgroundColor="Beige" WidthRequest="500" HorizontalOptions="Center" Padding="15">
             <Label Text="Trenutna narudzba"
                 VerticalOptions="CenterAndExpand" 
                 HorizontalOptions="CenterAndExpand" 
                    FontSize="24" FontAttributes="Bold"/>
-            <ListView ItemsSource="{Binding NarudzbaList}">
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <ViewCell>
-                            <StackLayout Padding="10" Orientation="Horizontal">
-                                <StackLayout Orientation="Vertical">
-                                    <Label Text="{Binding Artikal.Naziv}" 
+            <StackLayout  BackgroundColor="Pink" Padding="10">
+                <ListView ItemsSource="{Binding NarudzbaList}">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <StackLayout Orientation="Horizontal" BackgroundColor="Beige">
+                                    <StackLayout WidthRequest="100" HeightRequest="100">
+                                        <Image Source="{Binding Artikal.Slika, Converter={StaticResource imgConv}}" HeightRequest="100" WidthRequest="100"></Image>
+                                    </StackLayout>
+                                    <StackLayout Orientation="Vertical" WidthRequest="300" Padding="15">
+                                        <Label Text="{Binding Artikal.Naziv}" 
                                            LineBreakMode="NoWrap" 
                                            Style="{DynamicResource ListItemTextStyle}" 
-                                           FontSize="16"  />
-                                    <Label Text="{Binding Artikal.Cijena,StringFormat='Cijena: {0} KM'}" 
+                                           FontSize="13" />
+                                        <Label Text="{Binding Artikal.Sifra, StringFormat='Sifra: {0}'}" 
+                                           LineBreakMode="NoWrap" 
+                                          
+                                           FontSize="12"/>
+                                        <Label Text="{Binding Kolicina, StringFormat='Kolicina: {0} xKomada'}" 
+                                           LineBreakMode="NoWrap"  
+                                           FontSize="12" />
+                                        <Label TextColor="Red" FontAttributes="Bold" HorizontalOptions="End" Text="{Binding Artikal.Cijena, StringFormat=' {0} KM'}" 
                                            LineBreakMode="NoWrap"
                                            Style="{DynamicResource ListItemDetailTextStyle}"
                                            FontSize="13" />
-                                    <StackLayout Orientation="Horizontal">
-                                        <Label Text="{Binding Kolicina}" 
-                                           LineBreakMode="NoWrap"
-                                           Style="{DynamicResource ListItemDetailTextStyle}"
-                                           FontSize="13" />
-                                        <Button Text="+" Command="{Binding PovecajKolicinuCommand}"></Button>
+                                        <BoxView HeightRequest="2" Color="Pink" IsVisible="{Binding IsSeparatorVisible}"/>
                                     </StackLayout>
                                 </StackLayout>
-                            </StackLayout>
-                        </ViewCell>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </StackLayout>
             <StackLayout Orientation="Vertical" Padding="10" Margin="0">
                 <Label x:Name="lblBrojArtikala" Text="{Binding BrojArtikala,StringFormat='Broj artikala: {0}'}" FontSize="25"  HorizontalOptions="End"></Label>
                 <Label x:Name="lblIznos" Text="{Binding Iznos,StringFormat='Iznos: {0} KM'}" FontSize="25" FontAttributes="Bold" HorizontalOptions="End"></Label>

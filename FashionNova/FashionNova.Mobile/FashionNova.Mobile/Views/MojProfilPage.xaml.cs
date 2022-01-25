@@ -64,6 +64,7 @@ namespace FashionNova.Mobile.Views
                 else
                 {
                     await model.EditujKlijenta();
+                    Application.Current.MainPage = new PocetnaPage();
                 }
             }
             else

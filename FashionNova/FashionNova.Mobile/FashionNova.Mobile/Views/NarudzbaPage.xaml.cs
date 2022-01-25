@@ -22,8 +22,7 @@ namespace FashionNova.Mobile.Views
 
         private decimal PDV = 0.17M;
         private NarudzbaViewModel model = null;
-        private APIService _service = new APIService("Narudzba");
-        //private APIService _servicePracenje = new APIService("NarudzbePracenjeInfo");
+        private APIService _service = new APIService("Narudzbe");
         public NarudzbaPage()
         {
             InitializeComponent();
