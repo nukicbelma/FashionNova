@@ -15,7 +15,7 @@
     </ContentPage.Resources>
     <ContentPage.Content>
         <StackLayout BackgroundColor="Beige" WidthRequest="500" HorizontalOptions="Center" Padding="15">
-            <Label Text="Trenutna narudzba"
+            <Label Text="Trenutna narudžba #MojaKorpa"
                 VerticalOptions="CenterAndExpand" 
                 HorizontalOptions="CenterAndExpand" 
                    FontSize="24" FontAttributes="Bold"/>

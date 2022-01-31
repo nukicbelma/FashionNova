@@ -9,8 +9,6 @@ using FashionNova.Mobile.Services;
 using FashionNova.Mobile.ViewModels;
 using FashionNova.Model.Models;
 using FashionNova.Model.Requests;
-using FashionNova.Models;
-
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -59,9 +57,9 @@ namespace FashionNova.Mobile.Views
             NarudzbeInsertRequest request = new NarudzbeInsertRequest();
 
             request.BrojNarudzbe = neki;
-            request.Datum = DateTime.Now;
+            request.DatumNarudzbe = DateTime.Now;
             request.KlijentId = PrijavljeniKlijentService.PrijavljeniKlijent.KlijentId;
-            request.KorisnikId = 1;
+            request.KorisnikId = 3003;
 
             foreach (var item in model.NarudzbaList)
             {
@@ -71,12 +69,10 @@ namespace FashionNova.Mobile.Views
                 stavka.Cijena = Convert.ToDecimal(item.Artikal.Cijena);
                 stavka.Kolicina = item.Kolicina;
                 stavka.Popust = 0;
-
-
+                stavka.NarudzbaId = request.NarudzbaId;
+                
                 request.IznosBezPdv += stavka.Cijena * stavka.Kolicina;
                 request.IznosSaPdv = request.IznosBezPdv + request.IznosBezPdv * PDV;
-
-
                 request.stavke.Add(stavka);
             }
 
@@ -88,7 +84,11 @@ namespace FashionNova.Mobile.Views
             lblBrojArtikala.Text = "Broj artikala: 0";
             lblIznos.Text = "Iznos: 0 KM";
 
-            await Navigation.PushAsync(new PlacanjePage(model.Iznos, narudzba.NarudzbaId));
+            var listanarudzbi = await _service.Get<List<Narudzba>>(null);
+            var id = listanarudzbi.Last().NarudzbaId;
+            
+
+            await Navigation.PushAsync(new PlacanjePage(model.Iznos, id));
         }
 
         private async void Otkazi_Clicked(object sender, EventArgs e)
@@ -104,7 +104,7 @@ namespace FashionNova.Mobile.Views
             lblBrojArtikala.Text = "Broj artikala: 0";
             lblIznos.Text = "Iznos: 0 KM";
 
-            await DisplayAlert("Uspjeh", "Narudžba je uspješno otkazana.", "OK");
+            await DisplayAlert("Uspjeh", "Narudžba je otkazana.", "OK");
 
         }
     }

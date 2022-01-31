@@ -22,6 +22,7 @@ namespace FashionNova.WebAPI.Mappers
             CreateMap<Database.Klijenti, Model.Models.Klijenti>();
             CreateMap<Database.Narudzba, Model.Models.Narudzba>();
             CreateMap<Database.NarudzbaStavke, Model.Models.NarudzbaStavke>();
+            CreateMap<Database.Ocjene, Model.Models.Ocjene>();
             CreateMap<BojaInsertRequest, Database.Boja>();
             CreateMap<BojaUpdateRequest, Database.Boja>();
             CreateMap<BojaSearchRequest, Database.Boja>();
@@ -45,6 +46,9 @@ namespace FashionNova.WebAPI.Mappers
             CreateMap<KlijentiUpdateRequest, Database.Klijenti>();
             CreateMap<NarudzbeSearchRequest, Database.Narudzba>();
             CreateMap<NarudzbeInsertRequest, Database.Narudzba>();
+            CreateMap<NarudzbaUpdateRequest, Database.Narudzba>();
+            CreateMap<OcjeneSearchRequest, Database.Ocjene>();
+            CreateMap<OcjenaInsertRequest, Database.Ocjene>();
         }
     }
 }

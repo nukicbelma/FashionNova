@@ -15,5 +15,6 @@ namespace FashionNova.Model.Models
         public string Sifra { get; set; }
         public string NazivArtikla { get; set; }
         public string Narudzba { get; set; }
+        public byte[] SlikaArtikla { get; set; }
     }
 }

@@ -3,10 +3,11 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace FashionNova.Models
+namespace FashionNova.Model.Models
 {
-    public class KreditnaKartica
+    public class CreditCardModel
     {
+
         [JsonProperty("exp_month")]
         public long? ExpMonth { get; set; }
         [JsonProperty("exp_year")]

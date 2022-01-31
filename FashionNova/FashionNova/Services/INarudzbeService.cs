@@ -9,6 +9,6 @@ namespace FashionNova.WebAPI.Services
         //FashionNova.Model.Models.Velicina GetById(int id);
 
         public void Insert(NarudzbeInsertRequest request);
-        //public FashionNova.Model.Models.Velicina Update(int id, BojaUpdateRequest request);
+        public FashionNova.Model.Models.Narudzba Update(int id, NarudzbaUpdateRequest request);
     }
 }

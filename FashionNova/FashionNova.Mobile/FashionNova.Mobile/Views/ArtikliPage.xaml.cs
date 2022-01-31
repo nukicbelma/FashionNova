@@ -31,7 +31,7 @@ namespace FashionNova.Mobile.Views
         {
             var item = e.SelectedItem as Artikli;
             
-            await Navigation.PushModalAsync(new ArtikliDetaljiPage(item));
+            await Navigation.PushAsync(new ArtikliDetaljiPage(item));
         }
     }
 }

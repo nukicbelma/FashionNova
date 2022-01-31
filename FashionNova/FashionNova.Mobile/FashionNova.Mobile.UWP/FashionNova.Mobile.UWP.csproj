@@ -106,6 +106,8 @@
   <ItemGroup>
     <Content Include="Assets\back.jpg" />
     <Content Include="Assets\cart.png" />
+    <Content Include="Assets\cart1.jpg" />
+    <Content Include="Assets\CreditCard.png" />
     <Content Include="Assets\logo.jpg" />
     <Content Include="Assets\pozadina.jpg" />
     <Content Include="Assets\fashionnova.png" />

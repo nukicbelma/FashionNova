@@ -14,10 +14,13 @@ namespace FashionNova.Mobile.ViewModels
     public class HistorijaNarudzbiViewModel : BaseViewModel
     {
         private readonly APIService _service = new APIService("Narudzbe");
-
+        public string KlijentId { get; set; }
         public HistorijaNarudzbiViewModel()
         {
             InitCommand = new Command(async () => await Init());
+            KlijentId = PrijavljeniKlijentService.PrijavljeniKlijent.KlijentId.ToString();
+
+
         }
         public ObservableCollection<Narudzba> ListaNarudzbi { get; set; } = new ObservableCollection<Narudzba>();
         public ICommand InitCommand { get; set; }
@@ -30,6 +33,7 @@ namespace FashionNova.Mobile.ViewModels
                 if (item.KlijentId == PrijavljeniKlijentService.PrijavljeniKlijent.KlijentId)
                 {
                     ListaNarudzbi.Add(item);
+                    KlijentId = item.KlijentId.ToString();
                 }
             }
         }

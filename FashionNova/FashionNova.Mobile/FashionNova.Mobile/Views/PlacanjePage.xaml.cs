@@ -26,10 +26,8 @@ namespace FashionNova.Mobile.Views
                 Iznos = Iznos,
                 NarudzbaId = NarudzbaId
             };
-
             NavigationPage.SetHasBackButton(this, false);
             NavigationPage.SetHasNavigationBar(this, false);
-
         }
         protected override void OnAppearing()
         {
@@ -51,12 +49,10 @@ namespace FashionNova.Mobile.Views
             {
                 ErrorLabel_CardNumber.IsVisible = true;
                 ErrorLabel_CardNumber.Text = "Card number can not be empty !!";
-
             }
             else
             {
                 ErrorLabel_CardNumber.IsVisible = false;
-
             }
             EnableSubmitButton();
         }
@@ -175,7 +171,7 @@ namespace FashionNova.Mobile.Views
 
         private void Submit_Button_Clicked(object sender, EventArgs e)
         {
-            //Application.Current.MainPage = new MainPage();
+            // Application.Current.MainPage = new MainPage();
         }
     }
 }

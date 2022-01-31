@@ -20,5 +20,6 @@ namespace FashionNova.Model.Models
         public string Materijal { get; set; }
         public string Velicina { get; set; }
         public string VrstaArtikla { get; set; }
+        public decimal prosjecnaOcjena { get; set; }
     }
 }

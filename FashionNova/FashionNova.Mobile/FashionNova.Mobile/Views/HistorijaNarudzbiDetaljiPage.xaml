@@ -5,16 +5,26 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:viewModels1="clr-namespace:FashionNova.Mobile.ViewModels"
              mc:Ignorable="d"
-             x:Class="FashionNova.Mobile.Views.HistorijaNarudzbiDetaljiPage">
+             xmlns:converters="clr-namespace:FashionNova.Mobile.Helpers"
+             x:Class="FashionNova.Mobile.Views.HistorijaNarudzbiDetaljiPage"
+             BackgroundImageSource="Assets/pozadina1.jpg">
     <ContentPage.BindingContext>
         <viewModels1:HistorijaNarudzbiDetaljiViewModel></viewModels1:HistorijaNarudzbiDetaljiViewModel>
     </ContentPage.BindingContext>
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converters:ImageConverter x:Key="imgConv"></converters:ImageConverter>
+        </ResourceDictionary>
+    </ContentPage.Resources>
     <ContentPage.Content>
-        <StackLayout Margin="10">
-            <Label Text="Detalji Narudzbe"
+        <StackLayout BackgroundColor="beige" Padding="15"  WidthRequest="600" HorizontalOptions="Center" >
+            <Label Text="Info o narudžbi"
                 HorizontalTextAlignment="Center" FontAttributes="Bold"
-                       FontSize="28" />
-            <Grid>
+                       FontSize="24" />
+            <Button Text="Nazad" BorderRadius="10"  BackgroundColor="Black" TextColor="Pink" FontAttributes="Bold" WidthRequest="100"  HorizontalOptions="Start"
+                            Clicked="ButtonBack_Clicked"
+                            ></Button>
+            <Grid Margin="30,20,20,0">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"></RowDefinition>
                     <RowDefinition Height="Auto"></RowDefinition>
@@ -23,103 +33,79 @@
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto"></ColumnDefinition>
+                    <ColumnDefinition Width="Auto"></ColumnDefinition>
                     <ColumnDefinition Width="*"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
+                <StackLayout Grid.Row="0" Grid.Column="0">
+                    <Label Text="Broj narudzbe:" FontSize="13" FontAttributes="Bold"></Label>
+                </StackLayout>
+                <StackLayout Grid.Row="0" Grid.Column="1">
+
+                    <Label Text="{Binding Narudzba.BrojNarudzbe}" 
+                                d:Text="{Binding .}"
+                                FontSize="13" />
+
+                </StackLayout>
+                <StackLayout Grid.Row="1" Grid.Column="0">
+                    <Label Text="Datum: " FontSize="13" FontAttributes="Bold"></Label>
+                </StackLayout>
+                <StackLayout Grid.Row="1" Grid.Column="1">
+                    <Label Text="{Binding Narudzba.DatumNarudzbe}" d:Text="{Binding .}"
+                                FontSize="13" />
+                </StackLayout>
+                <StackLayout Grid.Row="2" Grid.Column="0">
+                    <Label Text="Iznos bez Pdv: " FontSize="13" FontAttributes="Bold"></Label>
+                </StackLayout>
+                <StackLayout Grid.Row="2" Grid.Column="1">
+                    <Label Text="{Binding Narudzba.IznosBezPdv, StringFormat='{0} KM'}" 
+                                d:Text="Item descripton"
+                                FontSize="13" />
+                </StackLayout>
+                <StackLayout Grid.Row="3" Grid.Column="0">
+                    <Label Text="Iznos sa Pdv: " FontSize="13" FontAttributes="Bold"></Label>
+                </StackLayout>
+                <StackLayout Grid.Row="3" Grid.Column="1">
+                    <Label Text="{Binding Narudzba.IznosSaPdv, StringFormat='{0} KM'}" 
+                                d:Text="Item descripton"
+                                Style="{DynamicResource ListItemDetailTextStyle}"
+                                FontSize="13" />
+                </StackLayout>
             </Grid>
-            <StackLayout Grid.Row="0" Grid.Column="0">
-                <Label Text="Broj narudzbe:" FontSize="18" FontAttributes="Bold"></Label>
-            </StackLayout>
-            <StackLayout Grid.Row="0" Grid.Column="1">
-
-                <Label Text="{Binding Narudzba.BrojNarudzbe}" 
-                                d:Text="{Binding .}"
-                                FontSize="16" />
-
-            </StackLayout>
-            <StackLayout Grid.Row="1" Grid.Column="0">
-                <Label Text="Datum: " FontSize="18" FontAttributes="Bold"></Label>
-            </StackLayout>
-            <StackLayout Grid.Row="1" Grid.Column="1">
-                <Label Text="{Binding Narudzba.Datum}" d:Text="{Binding .}"
-                                FontSize="16" />
-            </StackLayout>
-            <StackLayout Grid.Row="2" Grid.Column="0">
-                <Label Text="Iznos bez Pdv: " FontSize="18" FontAttributes="Bold"></Label>
-            </StackLayout>
-            <StackLayout Grid.Row="2" Grid.Column="1">
-                <Label Text="{Binding Narudzba.IznosBezPdv}" 
-                                d:Text="Item descripton"
-                                Style="{DynamicResource ListItemDetailTextStyle}"
-                                FontSize="13" />
-            </StackLayout>
-            <StackLayout Grid.Row="3" Grid.Column="0">
-                <Label Text="Iznos sa Pdv: " FontSize="18" FontAttributes="Bold"></Label>
-            </StackLayout>
-            <StackLayout Grid.Row="3" Grid.Column="1">
-                <Label Text="{Binding Narudzba.IznosSaPdv}" 
-                                d:Text="Item descripton"
-                                Style="{DynamicResource ListItemDetailTextStyle}"
-                                FontSize="13" />
-
-
-                <BoxView HorizontalOptions="FillAndExpand" HeightRequest="5" Color="Gray"></BoxView>
-            </StackLayout>
-            <Label Text="Stavke narudzbe: "
-                HorizontalTextAlignment="Start" FontAttributes="Bold"
-                       FontSize="22" />
-
-
-
-            <ListView ItemsSource="{Binding listastavki}">
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <ViewCell>
-                            <Grid>
-                                <Grid.RowDefinitions>
-
-                                    <RowDefinition Height="Auto"></RowDefinition>
-                                    <RowDefinition Height="Auto"></RowDefinition>
-
-
-                                    <RowDefinition Height="*"></RowDefinition>
-
-                                </Grid.RowDefinitions>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="Auto"></ColumnDefinition>
-                                    <ColumnDefinition Width="*"></ColumnDefinition>
-                                </Grid.ColumnDefinitions>
-                                <StackLayout Grid.Row="0" Grid.Column="0">
-                                    <Label Text="Artikal:" FontSize="18" FontAttributes="Bold"></Label>
+            <StackLayout  BackgroundColor="Pink" Padding="10" Margin="0,20,0,0">
+                <StackLayout>
+                    <Label Text="Stavke" HorizontalOptions="Center" FontAttributes="Italic" FontSize="18"></Label></StackLayout>
+                <ListView ItemsSource="{Binding listastavki}" ItemSelected="ListView_ItemSelected">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <StackLayout Orientation="Horizontal" BackgroundColor="Beige">
+                                    <StackLayout WidthRequest="100" HeightRequest="100">
+                                        <Image Source="{Binding SlikaArtikla, Converter={StaticResource imgConv}}" HeightRequest="100" WidthRequest="100"></Image>
+                                    </StackLayout>
+                                    <StackLayout Orientation="Vertical" WidthRequest="400" Padding="15">
+                                        <Label Text="{Binding NazivArtikla}" 
+                                           LineBreakMode="NoWrap" 
+                                           Style="{DynamicResource ListItemTextStyle}" 
+                                           FontSize="13" />
+                                        <Label Text="{Binding Sifra, StringFormat='Sifra: {0}'}" 
+                                           LineBreakMode="NoWrap" 
+                                          
+                                           FontSize="12"/>
+                                        <Label Text="{Binding Kolicina, StringFormat='Kolicina: {0} xKomada'}" 
+                                           LineBreakMode="NoWrap"  
+                                           FontSize="12" />
+                                        <Label TextColor="Red" FontAttributes="Bold" HorizontalOptions="End" Text="{Binding Cijena, StringFormat=' {0} KM'}" 
+                                           LineBreakMode="NoWrap"
+                                           Style="{DynamicResource ListItemDetailTextStyle}"
+                                           FontSize="13" />
+                                        <BoxView HeightRequest="2" Color="Pink" IsVisible="{Binding IsSeparatorVisible}"/>
+                                    </StackLayout>
                                 </StackLayout>
-                                <StackLayout Grid.Row="0" Grid.Column="1">
-
-                                    <Label Text="{Binding Naziv}" 
-                                d:Text="{Binding .}"
-                                FontSize="16" />
-
-                                </StackLayout>
-                                <StackLayout Grid.Row="1" Grid.Column="0">
-                                    <Label Text="Cijena: " FontSize="18" FontAttributes="Bold"></Label>
-                                </StackLayout>
-                                <StackLayout Grid.Row="1" Grid.Column="1">
-                                    <Label Text="{Binding Cijena}" d:Text="{Binding .}"
-                                FontSize="16" />
-                                </StackLayout>
-                                <StackLayout Grid.Row="2" Grid.Column="0">
-                                    <Label Text="Kolicina: " FontSize="18" FontAttributes="Bold"></Label>
-                                </StackLayout>
-                                <StackLayout Grid.Row="2" Grid.Column="1">
-                                    <Label Text="{Binding Kolicina}" 
-                                d:Text="Item descripton"
-                                Style="{DynamicResource ListItemDetailTextStyle}"
-                                FontSize="13" />
-                                    <BoxView HorizontalOptions="FillAndExpand" HeightRequest="5" Color="Gray"></BoxView>
-                                </StackLayout>
-                            </Grid>
-                        </ViewCell>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </StackLayout>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

@@ -69,7 +69,7 @@ namespace FashionNova.Mobile.Views
                         listaMeniPage.Add(id, new NavigationPage(new MojProfilPage()));
                         break;
                     case (int)MenuItemType.LogOut:
-                        listaMeniPage.Add(id, new NavigationPage(new MojProfilPage()));
+                        listaMeniPage.Add(id, new NavigationPage(new LogoutPage()));
                         break;
                 }
             }

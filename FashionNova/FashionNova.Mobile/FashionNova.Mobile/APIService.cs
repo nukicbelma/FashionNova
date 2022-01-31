@@ -48,7 +48,18 @@ namespace FashionNova.Mobile
                 throw;
             }
         }
+        public async Task<T> GetSlicneArtikle<T>(int id)
+        {
+            var url = $"{_apiURL}/{_resource}/GetSlicneArtikle/{id}";
 
+            return await url.WithBasicAuth(Username, Password).GetJsonAsync<T>();
+        }
+        public async Task<T> PreporuceniArtikli<T>(int id)
+        {
+            var url = $"{_apiURL}/{_resource}/PreporuceniArtikli/{id}";
+
+            return await url.WithBasicAuth(Username, Password).GetJsonAsync<T>();
+        }
         public async Task<T> GetById<T>(object id)
         {
             var url = $"{_apiURL}{_resource}/{id}";
@@ -73,7 +84,7 @@ namespace FashionNova.Mobile
                     stringBuilder.AppendLine($"{error.Key}, ${string.Join(",", error.Value)}");
                 }
 
-                await Application.Current.MainPage.DisplayAlert("Greška", "Niste authentificirani", "OK");
+                await Application.Current.MainPage.DisplayAlert("Greška", stringBuilder.ToString(), "OK");
                 return default(T);
             }
 

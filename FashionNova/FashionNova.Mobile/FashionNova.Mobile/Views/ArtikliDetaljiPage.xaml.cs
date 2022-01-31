@@ -18,6 +18,7 @@ namespace FashionNova.Mobile.Views
         {
             InitializeComponent();
             BindingContext = model = new ArtikliDetaljiViewModel() { Artikal = artikal };
+            
         }
         private void TapGestureRecognizer_Tapped(object sender, EventArgs e)
         {
@@ -25,7 +26,7 @@ namespace FashionNova.Mobile.Views
         }
         private async void ButtonBack_Clicked(object sender, EventArgs e)
         {
-            Application.Current.MainPage = new PocetnaPage();
+            await Navigation.PopAsync();
         }
     }
 }

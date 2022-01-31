@@ -22,9 +22,9 @@ namespace FashionNova.Mobile.Views
             {
                 new HomeMenuItem{Id=MenuItemType.ONama,Title="O Nama"},
                 new HomeMenuItem {Id = MenuItemType.Artikli, Title="Artikli" },
-                new HomeMenuItem{Id=MenuItemType.Narudzba,Title="Narudzba"},
+                new HomeMenuItem{Id=MenuItemType.Narudzba,Title="Moja korpa"},
+                new HomeMenuItem{Id=MenuItemType.HistorijaNarudzbi,Title="Historija narudžbi"},
                 new HomeMenuItem{Id=MenuItemType.MojProfil,Title="Moj profil"},
-                new HomeMenuItem{Id=MenuItemType.HistorijaNarudzbi,Title="Historija narudzbi"},
                 new HomeMenuItem{Id=MenuItemType.LogOut,Title="Odjavi se"}
             };
             ListViewMenu.ItemsSource = menuItems;

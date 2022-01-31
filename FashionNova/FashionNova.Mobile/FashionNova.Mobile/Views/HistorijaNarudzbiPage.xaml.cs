@@ -31,7 +31,7 @@ namespace FashionNova.Mobile.Views
         private async void ListView_ItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
             var item = e.SelectedItem as Narudzba;
-            //await Navigation.PushAsync(new HistorijaNarudzbiDetailPage(item));
+            await Navigation.PushAsync(new HistorijaNarudzbiDetaljiPage(item));
         }
     }
 }

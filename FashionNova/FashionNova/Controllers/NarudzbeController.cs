@@ -36,10 +36,10 @@ namespace FashionNova.Controllers
             _service.Insert(request);
         }
 
-        ////[HttpPut("{id}")]
-        ////public FashionNova.Model.Models.Boja Update(int id, [FromBody] BojaUpdateRequest request)
-        ////{
-        ////    return _service.Update(id, request);
-        ////}
+        [HttpPut("{id}")]
+        public FashionNova.Model.Models.Narudzba Update(int id, [FromBody] NarudzbaUpdateRequest request)
+        {
+            return _service.Update(id, request);
+        }
     }
 }

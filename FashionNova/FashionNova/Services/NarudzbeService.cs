@@ -68,28 +68,47 @@ namespace FashionNova.WebAPI.Services
         //}
         public void Insert(NarudzbeInsertRequest request)
         {
-            Database.Narudzba entity = _mapper.Map<Database.Narudzba>(request);
-            entity.BrojNarudzbe = request.NarudzbaId.ToString();
 
-            var korisnici = _context.Korisnici.AsQueryable().ToList();
-            foreach (var k in korisnici)
+            Database.Narudzba nova = new Database.Narudzba();
+            nova.BrojNarudzbe = request.BrojNarudzbe;
+            nova.DatumNarudzbe = request.DatumNarudzbe;
+
+            if (request.IznosBezPdv > 0)
             {
-                if(k.KorisnikId==entity.KorisnikId)
-                {
-                    
-                }
+                nova.IznosBezPdv = request.IznosBezPdv;
             }
+            if (request.IznosSaPdv > 0)
+            {
+                nova.IznosSaPdv = request.IznosSaPdv;
+            }
+            nova.KorisnikId = request.KorisnikId;
+            nova.KlijentId = request.KlijentId;
 
-            _context.Narudzba.Add(entity);
+            _context.Narudzba.Add(nova);
             _context.SaveChanges();
-        }
-        //public FashionNova.Model.Models.Velicina Update(int id, BojaUpdateRequest request)
-        //{
-        //    var entity = _context.Boja.Find(id);
-        //    _mapper.Map(request, entity);
 
-        //    _context.SaveChanges();
-        //    return _mapper.Map<Model.Models.Boja>(entity);
-        //}
+            foreach (var item in request.stavke)
+            {
+
+                Database.NarudzbaStavke stavka = new Database.NarudzbaStavke();
+                stavka.NarudzbaId = nova.NarudzbaId;
+                stavka.Popust = Convert.ToDecimal(item.Popust);
+                stavka.Kolicina = item.Kolicina;
+                stavka.Cijena = item.Cijena;
+                stavka.ArtikalId = item.ArtikalId;
+
+                _context.NarudzbaStavke.Add(stavka);
+                _context.SaveChanges();
+            }
+             _mapper.Map<Narudzba>(nova);
+        }
+        public FashionNova.Model.Models.Narudzba Update(int id, NarudzbaUpdateRequest request)
+        {
+            var entity = _context.Narudzba.Find(id);
+            _mapper.Map(request, entity);
+
+            _context.SaveChanges();
+            return _mapper.Map<Model.Models.Narudzba>(entity);
+        }
     }
 }
