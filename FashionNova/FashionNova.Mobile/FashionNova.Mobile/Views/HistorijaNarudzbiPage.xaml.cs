@@ -1,6 +1,5 @@
 ﻿using FashionNova.Mobile.ViewModels;
 using FashionNova.Model.Models;
-using FashionNova.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;

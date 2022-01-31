@@ -8,7 +8,6 @@ using System.Threading.Tasks;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
-using FashionNova.Models;
 using FashionNova.Model.Models;
 
 namespace FashionNova.Mobile.Views
