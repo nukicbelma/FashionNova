@@ -113,6 +113,7 @@ namespace FashionNova.Mobile.ViewModels
 
 
             await _service.Insert<Klijenti>(request);
+
             await Application.Current.MainPage.Navigation.PopAsync();
             await Application.Current.MainPage.DisplayAlert("Uspjeh", "Uspjesno ste se registrovali", "OK");
         }

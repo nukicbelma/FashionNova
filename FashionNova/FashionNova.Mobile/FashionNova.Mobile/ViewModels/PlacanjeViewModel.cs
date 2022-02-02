@@ -30,8 +30,8 @@ namespace FashionNova.Mobile.ViewModels
         #endregion Variable
 
         #region Public Property
-        private string StripeTestApiKey = "pk_test_RyD6IdafiByMH7dKuEJeB9AT00tAv0qRC6";
-        private string StripeSecretApiKey = "sk_test_wjmlOOtSQjkZOBXhU8MhIECT00HgaPEGWe";
+        private string StripeTestApiKey = "pk_test_51KOeiNKLWdFIbIHhP9X7BsEkKLbhvPx70Dz8ipE5xAxHD45uRFROYLfSuPp9wDKczSjF3fN3ThmSZvidtqgWJ5MC00rLpeVGPO";
+        private string StripeSecretApiKey = "sk_test_51KOeiNKLWdFIbIHhNr6DjSWhdHCbW6pMrI4csfEblTc53M45AJ7dcH46o41kihzfaC9K3sD4zSdy0TPYfN7QmIG000CyFuLTMS";
         public string ExpMonth
         {
             get { return _expMonth; }
@@ -150,21 +150,21 @@ namespace FashionNova.Mobile.ViewModels
                 var service = new ChargeService();
                 var Tokenoptions = new TokenCreateOptions
                 {
-                    //Card = new CreditCardOptions
-                    //{
-                    //    Number = CreditCardModel.Number,
-                    //    ExpYear = CreditCardModel.ExpYear,
-                    //    ExpMonth = CreditCardModel.ExpMonth,
-                    //    Cvc = CreditCardModel.Cvc,
-                    //    Name = PrijavljeniKlijentService.PrijavljeniKlijent.KorisnickoIme,
-                    //    AddressLine1 = "Adresa 1",
-                    //    AddressLine2 = "Adresa 2",
-                    //    AddressCity = "Capljina",
-                    //    AddressZip = "88305",
-                    //    AddressState = "HNK",
-                    //    AddressCountry = "Bosnia and Herzegovina",
-                    //    Currency = "bam",
-                    //}
+                    Card = new TokenCardOptions
+                    {
+                        Number = CreditCardModel.Number,
+                        ExpYear = CreditCardModel.ExpYear,
+                        ExpMonth = CreditCardModel.ExpMonth,
+                        Cvc = CreditCardModel.Cvc,
+                        Name = PrijavljeniKlijentService.PrijavljeniKlijent.KorisnickoIme,
+                        AddressLine1 = "Adresa 1",
+                        AddressLine2 = "Adresa 2",
+                        AddressCity = "Mostar",
+                        AddressZip = "88000",
+                        AddressState = "HNK",
+                        AddressCountry = "Bosnia and Herzegovina",
+                        Currency = "bam",
+                    }
                 };
 
                 Tokenservice = new TokenService();

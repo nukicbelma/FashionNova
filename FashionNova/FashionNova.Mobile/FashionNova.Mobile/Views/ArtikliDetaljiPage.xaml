@@ -18,7 +18,7 @@
     </ContentPage.Resources>
     <ContentPage.Content>
         <ScrollView BackgroundColor="#E6E6A1" Padding="0,10,0,0" HorizontalOptions="Center" WidthRequest="550">
-            <Grid  HorizontalOptions="Center" Margin="5,0,0,0">
+            <Grid  HorizontalOptions="Center" Margin="10,0,0,0">
                 <Grid.RowDefinitions >
                     <RowDefinition Height="Auto" ></RowDefinition>
                     <RowDefinition Height="300"></RowDefinition>
@@ -97,12 +97,12 @@
                     <BoxView HorizontalOptions="FillAndExpand" HeightRequest="5" Color="Gray"></BoxView>
                 </StackLayout>
 
-                <RelativeLayout Grid.Row="6" Grid.ColumnSpan="3" Grid.Column="0" VerticalOptions="Center" HeightRequest="170" Margin="10,25,5,0" BackgroundColor="White" >
+                <RelativeLayout Grid.Row="6" Grid.ColumnSpan="3" Grid.Column="0" HeightRequest="200" Margin="10,13,5,0" BackgroundColor="White">
                     <StackLayout HorizontalOptions="Center" VerticalOptions="Center" WidthRequest="400" Margin="20,0,0,0">
                     <Label FontAttributes="Bold" FontSize="15" HorizontalTextAlignment="Center">Preporučeni artikli:</Label>
                     </StackLayout>
-                        <ListView
-                            ItemsSource="{Binding SistemPreporukeList}"
+                        <ListView HeightRequest="180"
+                            ItemsSource="{Binding SistemPreporukeList}" ItemSelected="ListView_ItemSelected"
                     VerticalScrollBarVisibility="Default"
                 HasUnevenRows="True"
                 SeparatorVisibility="None"
@@ -131,12 +131,10 @@
                                                     <Label  HorizontalOptions="Center" Text="{Binding Naziv}" ></Label>
                                                 </Grid>
                                                 <Grid>
-                                                    <Label  HorizontalOptions="Center" Text="{Binding Cijena, StringFormat='{0} KM'}" Style="{DynamicResource ListItemTextStyle}" ></Label>
-                                                    <Label>Cijena</Label>
+                                                    <Label  HorizontalOptions="Center" Text="{Binding Cijena, StringFormat='Cijena: {0} KM'}"></Label>
                                                 </Grid>
                                                 <Grid>
-                                                    <Label  HorizontalOptions="Center" Text="{Binding prosjecnaOcjena, StringFormat=' {0} '}" ></Label>
-                                                    <Label>Rating:</Label>
+                                                    <Label  HorizontalOptions="Center" Text="{Binding prosjecnaOcjena, StringFormat='Rating {0} '}" ></Label>
                                                 </Grid>
                                             </StackLayout>
                                         </Grid>

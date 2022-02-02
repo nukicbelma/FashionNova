@@ -14,7 +14,7 @@
         </ResourceDictionary>
     </ContentPage.Resources>
     <ContentPage.Content>
-        <StackLayout HorizontalOptions="Center" VerticalOptions="Center"  BackgroundColor="Wheat">
+        <StackLayout HorizontalOptions="Center" VerticalOptions="Center"  BackgroundColor="Wheat" Padding="10">
             <Button Text="Nazad" BorderRadius="10" Margin="5" Padding="2" BackgroundColor="Beige" TextColor="black" FontAttributes="Bold" WidthRequest="100"  HorizontalOptions="Start"
                             Clicked="ButtonBack_Clicked"
             ></Button>

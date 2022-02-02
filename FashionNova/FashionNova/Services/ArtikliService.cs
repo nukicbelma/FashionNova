@@ -50,6 +50,7 @@ namespace FashionNova.WebAPI.Services
             var velicineList = _context.Velicina.AsQueryable().ToList();
             var materijaliList = _context.Materijal.AsQueryable().ToList();
             var vrstaArtiklaList = _context.VrstaArtikla.AsQueryable().ToList();
+            var ocjeneArtiklaList = _context.Ocjene.AsQueryable().ToList();
             List<Artikli> result = new List<Artikli>();
 
             foreach (var item in list)
@@ -89,6 +90,21 @@ namespace FashionNova.WebAPI.Services
                     if (nova.VelicinaId == v.VelicinaId)
                         nova.Velicina = v.Oznaka;
                 }
+
+                //dodatno prosjecnu ocjenu 
+                var ocjene = _context.Ocjene.AsQueryable().ToList();
+                decimal suma = 0; int brojac = 0;
+                foreach (var ocj in ocjene)
+                {
+                    if (item.ArtikalId == ocj.ArtikalId)
+                    {
+                        brojac++;
+                        suma += ocj.Ocjena;
+                    }
+                }
+                suma /= brojac;
+                nova.prosjecnaOcjena = Math.Round(suma, 2);
+
                 result.Add(nova);
             }
             return result;

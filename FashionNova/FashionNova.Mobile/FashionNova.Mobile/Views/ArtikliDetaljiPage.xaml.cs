@@ -20,9 +20,19 @@ namespace FashionNova.Mobile.Views
             BindingContext = model = new ArtikliDetaljiViewModel() { Artikal = artikal };
             
         }
+        protected async override void OnAppearing()
+        {
+            base.OnAppearing();
+            await model.Init();
+        }
         private void TapGestureRecognizer_Tapped(object sender, EventArgs e)
         {
             
+        }
+        private async void ListView_ItemSelected(object sender, SelectedItemChangedEventArgs e)
+        {
+            var item = e.SelectedItem as Artikli;
+            await Navigation.PushAsync(new ArtikliDetaljiPage(item));
         }
         private async void ButtonBack_Clicked(object sender, EventArgs e)
         {

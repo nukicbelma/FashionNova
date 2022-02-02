@@ -22,6 +22,10 @@ namespace FashionNova.Mobile.Views
             InitializeComponent();
             BindingContext = model = new RegistracijaViewModel();
         }
+        private async void ButtonBack_Clicked(object sender, EventArgs e)
+        {
+            Application.Current.MainPage = new LoginPage();
+        }
         private async void ButtonUploadSliku_Clicked(object sender, EventArgs e)
         {
             await model.UploadProfilePicture();

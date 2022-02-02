@@ -25,7 +25,15 @@ namespace FashionNova.Mobile.Views
         {
             await DisplayAlert("Pozdrav", "Ugodan ostatak dana!", "OK");
             PrijavljeniKlijentService.PrijavljeniKlijent = null;
-            Application.Current.MainPage = new LoginPage();
+
+            // Application.Current.MainPage = new LoginPage();
+
+
+            
+
+            Application.Current.Properties["Token"] = "";
+            Navigation.InsertPageBefore(new LoginPage(), this);
+            await Navigation.PopAsync();
         }
     }
 }

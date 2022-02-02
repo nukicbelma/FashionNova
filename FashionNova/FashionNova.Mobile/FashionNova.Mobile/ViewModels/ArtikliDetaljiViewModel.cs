@@ -22,7 +22,7 @@ namespace FashionNova.Mobile.ViewModels
 
         private readonly APIService _artikliService = new APIService("Artikli");
         private readonly APIService _ocjeneService = new APIService("Ocjene");
-        private readonly APIService _sistemPreporuke = new APIService("SistemPreporuke");
+        private readonly APIService _sistemPreporuke = new APIService("Recommender");
         public ArtikliDetaljiViewModel()
         {
             PovecajKolicinuCommand = new Command(() => Kolicina += 1);
@@ -35,36 +35,20 @@ namespace FashionNova.Mobile.ViewModels
                 }
                 else
                 {
-                    // UcitajKaratkeristiku();
-                    // await ((App.Current.MainPage as MasterDetailPage).Detail as NavigationPage)
-                    //.Navigation.PushAsync(new UporediDvaArtiklaPage(Artikal, Karakteristika, SelectedArtikal, SelectedKarakteristika));
                      await ((App.Current.MainPage as MasterDetailPage).Detail as NavigationPage)
                     .Navigation.PushAsync(new UporediArtiklePage(Artikal,SelectedArtikal));
-
                 }
             });
-            GetArtikle();
+            //GetArtikle();
 
             NijeOcijenjeno = true;
             NaruciCommand = new Command(Naruci);
             InitCommand = new Command(async () => await Init());
-            SistemPreporukeCommand = new Command(async () => await Preporuka());
             OcijeniSa1Command = new Command(async () => await Ocijeni(1));
             OcijeniSa2Command = new Command(async () => await Ocijeni(2));
             OcijeniSa3Command = new Command(async () => await Ocijeni(3));
             OcijeniSa4Command = new Command(async () => await Ocijeni(4));
             OcijeniSa5Command = new Command(async () => await Ocijeni(5));
-            //GetPreporuku();
-        }
-        private async Task GetPreporuku()
-        {
-            SistemPreporukeList.Clear();
-            var listaartikala = await _artikliService.Get<List<Artikli>>(null);
-            foreach (var item in listaartikala)
-            {
-                if (item.VelicinaId == Artikal.VelicinaId)
-                    SistemPreporukeList.Add(item);
-            }
         }
         private async Task GetArtikle()
         {
@@ -79,34 +63,30 @@ namespace FashionNova.Mobile.ViewModels
         }
         public async Task Preporuka()
         {
-           SistemPreporukeList.Clear();
-            //List<Artikli> lista = new List<Artikli>();
-            //lista = await _sistemPreporuke.PreporuceniArtikli<List<Artikli>>(Artikal.ArtikalId);
-            //List<Ocjene> listaocjena = new List<Ocjene>();
-            //listaocjena = await _ocjeneService.Get<List<Ocjene>>(null);
+            //preporuceni artikli SAMO FRONTEND
+            ////var listaartikala = await _artikliService.Get<List<Artikli>>(null);
+            ////foreach (var item in listaartikala)
+            ////{
+            ////    if (item.VelicinaId == Artikal.VelicinaId)
+            ////        SistemPreporukeList.Add(item);
+            ////}
 
-            // foreach (var item in lista)
-            // {
-            //     int ukupno = 0;
-            //     decimal iznos = 0;
-            //     foreach (var item2 in listaocjena)
-            //     {
-            //         if (item2.ArtikalId == item.ArtikalId)
-            //         {
-            //             iznos += item2.Ocjena;
-            //             ukupno++;
-            //         }
-            //     }
-            //     item.prosjecnaOcjena = iznos / ukupno;
-            //     SistemPreporukeList.Add(item);
-            // }
-            var listaartikala = await _artikliService.Get<List<Artikli>>(null);
-            foreach (var item in listaartikala)
+            //preporuceni artikli BACKEND
+            //var listaPreporuka = await _sistemPreporuke.GetSlicneArtikle<List<Artikli>>(Artikal.ArtikalId);
+            //foreach (var item in listaPreporuka)
+            //{
+            //    SistemPreporukeList.Add(item);
+            //}
+
+            SistemPreporukeList.Clear();
+            var lista = await _sistemPreporuke.GetSlicneArtikle<List<Artikli>>(Artikal.ArtikalId);
+            var listaocjena2 = await _ocjeneService.Get<List<Ocjene>>(null);
+            foreach (var item in lista)
             {
-                if (item.VelicinaId == Artikal.VelicinaId)
-                    SistemPreporukeList.Add(item);
+                SistemPreporukeList.Add(item);
             }
         }
+
         public async Task Ocijeni(int ocjena)
         {
             OcjenaInsertRequest x = new OcjenaInsertRequest
@@ -149,8 +129,6 @@ namespace FashionNova.Mobile.ViewModels
         }
 
         public Artikli Artikal { get; set; }
-       // public Karakteristike Karakteristika { get; set; } = new Karakteristike();
-       // public Karakteristike SelectedKarakteristika { get; set; } = new Karakteristike();
         public ObservableCollection<Artikli> ArtikliList { get; set; } = new ObservableCollection<Artikli>();
         public ObservableCollection<Ocjene> OcjeneArtiklaList { get; set; } = new ObservableCollection<Ocjene>();
         public ObservableCollection<Artikli> SistemPreporukeList { get; set; } = new ObservableCollection<Artikli>();
@@ -158,52 +136,8 @@ namespace FashionNova.Mobile.ViewModels
 
         public async Task Init()
         {
-            var listaocjena = await _ocjeneService.Get<List<Ocjene>>(null);
-            Ocijenjeno = false;
-
-            foreach (var item in listaocjena)
-            {
-                if (item.ArtikalId == Artikal.ArtikalId)
-                {
-                    OcjeneArtiklaList.Add(item);
-                    if (item.KlijentId == PrijavljeniKlijentService.PrijavljeniKlijent.KlijentId)
-                    {
-                        Ocijenjeno = true;
-                    }
-                    
-                }
-            }
-            NijeOcijenjeno = !Ocijenjeno;
-            if (OcjeneArtiklaList.Count() != 0)
-            {
-                ProsjecnaOcjena = Math.Round(OcjeneArtiklaList.Select(s => s.Ocjena).Average(), 2);
-            }
-            else
-            {
-                ProsjecnaOcjena = 0;
-            }
-            var listaartikala = await _artikliService.Get<List<Artikli>>(null);
-            if (ArtikliList.Count == 0)
-            {
-                foreach (var item in listaartikala)
-                {
-                    
-                    ArtikliList.Add(item);
-                }
-            }
-            if (SelectedArtikal != null)
-            {
-                //SelectedKarakteristika = await _karakteristikeService.GetById<Karakteristike>(_SelectedArtikal.KarakteristikeId);
-            }
-
-
-            SistemPreporukeList.Clear();
-            var listaartikalaa = await _artikliService.Get<List<Artikli>>(null);
-            foreach (var item in listaartikalaa)
-            {
-                if (item.VelicinaId == Artikal.VelicinaId)
-                    SistemPreporukeList.Add(item);
-            }
+            await GetArtikle();
+            await Preporuka();
         }
 
         int _kolicina = 0;
@@ -228,12 +162,6 @@ namespace FashionNova.Mobile.ViewModels
         public ICommand NaruciCommand { get; set; }
         public ICommand InitCommand { get; set; }
 
-        public ICommand SistemPreporukeCommand { get; set; }
-        private async void UcitajKaratkeristiku()
-        {
-            //var karakteristike = await _karakteristikeService.GetById<Karakteristike>(_SelectedArtikal.KarakteristikeId);
-            //SelectedKarakteristika = karakteristike;
-        }
         private void Naruci()
         {
             if (Kolicina > 0)

@@ -1,144 +1,224 @@
-﻿using AutoMapper;
+﻿//using AutoMapper;
+//using Microsoft.EntityFrameworkCore;
+//using FashionNova.WebAPI.Database;
+//using FashionNova.WebAPI.Services;
+//using System;
+//using System.Collections.Generic;
+//using System.Linq;
+
+//namespace FashionNova.WebAPI.Service
+//{
+//    public class RecommenderService : IRecommender
+//    {
+//        protected readonly FashionNova.WebAPI.Database.FashionNova_IB170007Context _context;
+//        protected readonly IMapper _mapper;
+
+//        public RecommenderService(FashionNova.WebAPI.Database.FashionNova_IB170007Context context, IMapper mapper)
+//        {
+//            _context = context;
+//            _mapper = mapper;
+//        }
+
+//        Dictionary<int, List<Database.Ocjene>> artikliOcjene = new Dictionary<int, List<Database.Ocjene>>();
+
+//        public List<FashionNova.Model.Models.Artikli> GetSlicneArtikle(int artikalID)
+//        {
+//            var tmp = LoadSimilar(artikalID);
+//            return _mapper.Map<List<FashionNova.Model.Models.Artikli>>(tmp);
+//        }
+
+//        private List<Database.Artikli> LoadSimilar(int artikalID)
+//        {
+//            LoadDifVehicles(artikalID);
+//            List<Database.Ocjene> ratingsOfThis = _context.Ocjene.Where(e => e.ArtikalId == artikalID).OrderBy(e => e.KlijentId).ToList();
+
+//            List<Database.Ocjene> ratings1 = new List<Database.Ocjene>();
+//            List<Database.Ocjene> ratings2 = new List<Database.Ocjene>();
+//            List<Database.Artikli> recommendedVehicles = new List<Database.Artikli>();
+            
+
+//            foreach (var item in artikliOcjene)
+//            {
+//                foreach (Database.Ocjene rating in ratingsOfThis)
+//                {
+//                    if (item.Value.Where(x => x.KlijentId == rating.KlijentId).Count() > 0)
+//                    {
+//                        ratings1.Add(rating);
+//                        ratings2.Add(item.Value.Where(x => x.KlijentId == rating.KlijentId).First());
+//                    }
+//                }
+//                double similarity = GetSimilarity(ratings1, ratings2);
+//                if (similarity > 0.5)
+//                {
+//                    recommendedVehicles.Add(_context.Artikli.Where(x => x.ArtikalId == item.Key)
+//                        //.Include(x => x.VrstaArtikla)
+//                        //.Include(x => x.VehicleModel.Manufacturer)
+//                        .FirstOrDefault());
+//                }
+//                ratings1.Clear();
+//                ratings2.Clear();
+//            }
+//            return recommendedVehicles;
+//        }
+
+//        private double GetSimilarity(List<Database.Ocjene> ratings1, List<Database.Ocjene> ratings2)
+//        {
+//            if (ratings1.Count != ratings2.Count)
+//            {
+//                return 0;
+//            }
+
+//            double x = 0, y1 = 0, y2 = 0;
+//            for (int i = 0; i < ratings1.Count; i++)
+//            {
+//                x += ratings1[i].Ocjena * ratings2[i].Ocjena;
+//                y1 += ratings1[i].Ocjena * ratings1[i].Ocjena;
+//                y2 += ratings2[i].Ocjena * ratings2[i].Ocjena;
+//            }
+//            y1 = Math.Sqrt(y1);
+//            y2 = Math.Sqrt(y2);
+
+//            double y = y1 * y2;
+//            if (y == 0)
+//                return 0;
+//            return x / y;
+//        }
+
+//        private void LoadDifVehicles(int vehicleId)
+//        {
+//            var artikalVelicina = _context.Artikli.Find(vehicleId);
+//            List<Database.Artikli> allVehicles = _context.Artikli.Where(e => e.ArtikalId != vehicleId && e.VelicinaId==artikalVelicina.VelicinaId).ToList();
+//            List<Database.Ocjene> ratings = new List<Database.Ocjene>();
+//            foreach (var item in allVehicles)
+//            {
+//                ratings = _context.Ocjene.Where(e => e.ArtikalId == item.ArtikalId).OrderBy(e => e.KlijentId).ToList();
+//                if (ratings.Count > 0)
+//                    artikliOcjene.Add(item.ArtikalId, ratings);
+//            }
+//        }
+//    }
+//}
+
+using AutoMapper;
 using Microsoft.EntityFrameworkCore;
+using FashionNova.WebAPI.Database;
+using FashionNova.WebAPI.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
-using FashionNova.Model.Models;
 
-namespace FashionNova.WebAPI.Services
+namespace FashionNova.WebAPI.Service
 {
     public class RecommenderService : IRecommender
     {
+        protected readonly FashionNova.WebAPI.Database.FashionNova_IB170007Context _context;
+        protected readonly IMapper _mapper;
 
-        Dictionary<int, List<Ocjene>> proizvodi = new Dictionary<int, List<Ocjene>>();
-        private readonly FashionNova.WebAPI.Database.FashionNova_IB170007Context _context;
-        private readonly IMapper _mapper;
         public RecommenderService(FashionNova.WebAPI.Database.FashionNova_IB170007Context context, IMapper mapper)
         {
             _context = context;
             _mapper = mapper;
         }
 
-        public List<Artikli> GetSlicneArtikle(int artikalID)
+        Dictionary<int, List<Database.Ocjene>> artikliOcjene = new Dictionary<int, List<Database.Ocjene>>();
+
+        public List<FashionNova.Model.Models.Artikli> GetSlicneArtikle(int artikalID)
         {
-            UcitajProizvode(artikalID);
+            var ocjene = _context.Ocjene.AsQueryable().ToList();
+            var tmp = LoadSimilar(artikalID);
 
+            var konacna= _mapper.Map<List<FashionNova.Model.Models.Artikli>>(tmp);
+            //return _mapper.Map<List<FashionNova.Model.Models.Artikli>>(tmp);
 
-            List<Ocjene> ocjenePosmatranogProizvoda = new List<Ocjene>();
-            List<Database.Ocjene> ocjeneizbaze = _context.Ocjene.Where(x => x.ArtikalId == artikalID).OrderBy(y => y.KlijentId).ToList();
-            _mapper.Map(ocjeneizbaze, ocjenePosmatranogProizvoda);
-
-
-
-            List<Ocjene> zajednickeOcjene1 = new List<Ocjene>();
-            List<Ocjene> zajednickeOcjene2 = new List<Ocjene>();
-            List<Artikli> preporuceniProizvodi = new List<Artikli>();
-
-            foreach (var item in proizvodi)
+            
+            foreach(var item in konacna)
             {
-                foreach (Ocjene o in ocjenePosmatranogProizvoda)
+                decimal suma = 0; int brojac = 0;
+                foreach (var ocj in ocjene)
                 {
-                    if (item.Value.Where(x => x.KlijentId == o.KlijentId).Count() > 0)
+                    if(item.ArtikalId==ocj.ArtikalId)
                     {
-                        zajednickeOcjene1.Add(o);
-                        zajednickeOcjene2.Add(item.Value.Where(x => x.KlijentId == o.KlijentId).First());
+                        brojac++;
+                        suma += ocj.Ocjena;
                     }
                 }
-
-                double slicnosti = 0;
-                slicnosti = GetSlicnost(zajednickeOcjene1, zajednickeOcjene2);
-
-
-                if (slicnosti > 0.99)
-                {
-                    Database.Artikli element1 = _context.Artikli
-                        .Where(x => x.ArtikalId == item.Key).FirstOrDefault();
-                    Artikli element2 = new Artikli();
-
-                    element2.VrstaArtikla = element1.VrstaArtikla.Naziv;
-                    element2.Materijal = element1.Materijal.Naziv;
-                    element2.Velicina = element1.Velicina.Oznaka;
-                    element2.Boja = element1.Boja.Naziv;
-                    element2.Cijena = element1.Cijena;
-                    element2.ArtikalId = element1.ArtikalId;
-                    element2.Naziv = element1.Naziv;
-                    element2.Sifra = element1.Sifra;
-                    element2.Slika = element1.Slika;
-
-
-                    preporuceniProizvodi.Add(element2);
-                }
-
-                zajednickeOcjene1.Clear();
-                zajednickeOcjene2.Clear();
+                suma /= brojac;
+                item.prosjecnaOcjena = Math.Round(suma, 2);
             }
-
-            return preporuceniProizvodi;
+            return konacna;
         }
 
-        private double GetSlicnost(List<Ocjene> zajednickeOcjene1, List<Ocjene> zajednickeOcjene2)
+        private List<Database.Artikli> LoadSimilar(int artikalID)
         {
-            if (zajednickeOcjene1.Count != zajednickeOcjene2.Count)
-                return 0;
+            LoadDifVehicles(artikalID);
+            List<Database.Ocjene> ratingsOfThis = _context.Ocjene.Where(e => e.ArtikalId == artikalID).OrderBy(e => e.KlijentId).ToList();
 
-            double brojnik = 0, nazivnik1 = 0, nazivnik2 = 0;
+            List<Database.Ocjene> ratings1 = new List<Database.Ocjene>();
+            List<Database.Ocjene> ratings2 = new List<Database.Ocjene>();
+            List<Database.Artikli> recommendedVehicles = new List<Database.Artikli>();
+            
 
-            for (int i = 0; i < zajednickeOcjene1.Count; i++)
+            foreach (var item in artikliOcjene)
             {
-                brojnik += zajednickeOcjene1[i].Ocjena * zajednickeOcjene2[i].Ocjena;
-                nazivnik1 += zajednickeOcjene1[i].Ocjena * zajednickeOcjene1[i].Ocjena;
-                nazivnik2 += zajednickeOcjene2[i].Ocjena * zajednickeOcjene2[i].Ocjena;
-
+                foreach (Database.Ocjene rating in ratingsOfThis)
+                {
+                    if (item.Value.Where(x => x.KlijentId == rating.KlijentId).Count() > 0)
+                    {
+                        ratings1.Add(rating);
+                        ratings2.Add(item.Value.Where(x => x.KlijentId == rating.KlijentId).First());
+                    }
+                }
+                double similarity = GetSimilarity(ratings1, ratings2);
+                if (similarity > 0.5)
+                {
+                    recommendedVehicles.Add(_context.Artikli.Where(x => x.ArtikalId == item.Key)
+                        //.Include(x => x.VrstaArtikla)
+                        //.Include(x => x.VehicleModel.Manufacturer)
+                        .FirstOrDefault());
+                }
+                ratings1.Clear();
+                ratings2.Clear();
             }
-            nazivnik1 = Math.Sqrt(nazivnik1);
-            nazivnik2 = Math.Sqrt(nazivnik2);
-            double nazivnik = nazivnik1 * nazivnik2;
-            if (nazivnik == 0)
-                return 0;
-            return brojnik / nazivnik;
+            return recommendedVehicles;
         }
 
-        private void UcitajProizvode(int artikalId)
+        private double GetSimilarity(List<Database.Ocjene> ratings1, List<Database.Ocjene> ratings2)
         {
-            List<Database.Artikli> aktivniProizvodi = _context.Artikli
-                .Where(x => x.ArtikalId != artikalId).ToList();
-
-            Database.Artikli posmatraniartikal = _context.Artikli.Where(x => x.ArtikalId == artikalId).SingleOrDefault();
-
-            List<Artikli> novalista = new List<Artikli>();
-            _mapper.Map(aktivniProizvodi, novalista);
-
-
-
-            List<Artikli> listakonacna = new List<Artikli>();
-            foreach (var item in novalista)
+            if (ratings1.Count != ratings2.Count)
             {
-                if (item.VelicinaId == posmatraniartikal.VelicinaId)
-                {
-                    listakonacna.Add(item);
-                }
+                return 0;
             }
 
-            foreach (Artikli a in listakonacna)
+            double x = 0, y1 = 0, y2 = 0;
+            for (int i = 0; i < ratings1.Count; i++)
             {
-                List<Database.Ocjene> novalistaocjena = _context.Ocjene.Where(x => x.ArtikalId == a.ArtikalId).ToList();
-                List<Ocjene> ocjene = new List<Ocjene>();
-                foreach (var item2 in novalistaocjena)
-                {
+                x += ratings1[i].Ocjena * ratings2[i].Ocjena;
+                y1 += ratings1[i].Ocjena * ratings1[i].Ocjena;
+                y2 += ratings2[i].Ocjena * ratings2[i].Ocjena;
+            }
+            y1 = Math.Sqrt(y1);
+            y2 = Math.Sqrt(y2);
 
-                    Ocjene novaocjena = new Ocjene();
-                    novaocjena.Ocjena = item2.Ocjena;
-                    novaocjena.OcjenaId = item2.OcjenaId;
-                    novaocjena.ArtikalId = item2.ArtikalId;
-                    novaocjena.KlijentId = item2.KlijentId;
+            double y = y1 * y2;
+            if (y == 0)
+                return 0;
+            return x / y;
+        }
 
-                    ocjene.Add(novaocjena);
-                }
-
-                if (ocjene.Count > 0)
-                    proizvodi.Add(a.ArtikalId, ocjene);
+        private void LoadDifVehicles(int vehicleId)
+        {
+            var artikalVelicina = _context.Artikli.Find(vehicleId);
+            List<Database.Artikli> allVehicles = _context.Artikli.Where(e => e.ArtikalId != vehicleId && e.VelicinaId==artikalVelicina.VelicinaId).ToList();
+            List<Database.Ocjene> ratings = new List<Database.Ocjene>();
+            foreach (var item in allVehicles)
+            {
+                ratings = _context.Ocjene.Where(e => e.ArtikalId == item.ArtikalId).OrderBy(e => e.KlijentId).ToList();
+                if (ratings.Count > 0)
+                    artikliOcjene.Add(item.ArtikalId, ratings);
             }
         }
     }
 }
+
+
+

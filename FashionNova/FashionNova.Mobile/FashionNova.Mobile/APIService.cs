@@ -50,7 +50,7 @@ namespace FashionNova.Mobile
         }
         public async Task<T> GetSlicneArtikle<T>(int id)
         {
-            var url = $"{_apiURL}/{_resource}/GetSlicneArtikle/{id}";
+            var url = $"{_apiURL}{_resource}/GetSlicneArtikle/{id}";
 
             return await url.WithBasicAuth(Username, Password).GetJsonAsync<T>();
         }

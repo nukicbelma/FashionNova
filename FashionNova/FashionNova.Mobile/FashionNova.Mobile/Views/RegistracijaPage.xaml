@@ -7,8 +7,8 @@
              x:Class="FashionNova.Mobile.Views.RegistracijaPage"
              BackgroundImage="Assets/pozadina1.jpg">
     <ContentPage.Content>
-        <StackLayout VerticalOptions="CenterAndExpand" BackgroundColor="Beige" Padding="25" WidthRequest="600" HorizontalOptions="Center">
 
+        <StackLayout VerticalOptions="CenterAndExpand" BackgroundColor="Beige" Padding="25" WidthRequest="600" HorizontalOptions="Center">
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"></RowDefinition>
@@ -35,6 +35,14 @@
                     <ColumnDefinition Width="Auto"></ColumnDefinition>
                     <ColumnDefinition Width="*"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
+
+               <!-- <StackLayout Padding="5" Grid.Row="16" WidthRequest="100" >
+
+                    <Button Text="Nazad" BorderRadius="11"  BackgroundColor="LightGray" BorderColor="black" TextColor="black" FontAttributes="Bold" WidthRequest="100"  HorizontalOptions="Start"
+                            Clicked="ButtonBack_Clicked"
+                    ></Button>
+
+                </StackLayout> -->
 
                 <Image x:Name="ProfilePhoto"  Grid.Row="1" Grid.Column="1" HorizontalOptions="End"
                                   HeightRequest="110" WidthRequest="130" Source="{Binding ProfilePhotoSource}" BackgroundColor="#D9B1B1">
