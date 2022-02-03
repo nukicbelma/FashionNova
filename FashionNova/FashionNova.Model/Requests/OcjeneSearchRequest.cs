@@ -11,5 +11,6 @@ namespace FashionNova.Model.Requests
         public string Komentar { get; set; }
         public int ArtikalId { get; set; }
         public int KlijentId { get; set; }
+        public string[] IncludeList { get; set; }
     }
 }

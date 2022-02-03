@@ -7,8 +7,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Acr.UserDialogs" Version="7.2.0.562" />
+    <PackageReference Include="Acr.UserDialogs" Version="5.0.0" />
     <PackageReference Include="Flurl.Http" Version="3.2.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" Version="2.2.0" />
     <PackageReference Include="Prism.Core" Version="8.1.97" />
     <PackageReference Include="Stripe.net" Version="39.86.0" />
     <PackageReference Include="Xam.Plugin.Media" Version="5.0.1" />
@@ -45,7 +46,7 @@
     <EmbeddedResource Update="Views\NarudzbaPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\PlacanjePage.xaml">
+    <EmbeddedResource Update="Views\PaymentPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\PocetnaPage.xaml">

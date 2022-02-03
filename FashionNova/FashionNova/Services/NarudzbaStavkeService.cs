@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using FashionNova.WebAPI.Services;
+using FashionNova.Model.Requests;
 
 namespace FashionNova.WebAPI.Services
 {
@@ -17,10 +18,10 @@ namespace FashionNova.WebAPI.Services
         }
         public List<NarudzbaStavke> Get()
         {
+
             var result = _context.NarudzbaStavke.Include(y => y.Artikal).ToList();
-
             List<NarudzbaStavke> lista = new List<NarudzbaStavke>();
-
+            var artikliList = _context.Artikli.AsQueryable().ToList();
 
             foreach (var item in result)
             {
@@ -34,6 +35,13 @@ namespace FashionNova.WebAPI.Services
                 nova.Popust = item.Popust;
                 nova.Sifra = item.Artikal.Sifra;
 
+                foreach (var a in artikliList)
+                {
+                    if(a.ArtikalId==item.ArtikalId)
+                    {
+                        nova.VrstaArtiklaId = a.VrstaArtiklaId;
+                    }
+                }
                 lista.Add(nova);
             }
 

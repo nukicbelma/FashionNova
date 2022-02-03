@@ -6,16 +6,15 @@
              xmlns:viewModels1="clr-namespace:FashionNova.Mobile.ViewModels"
              xmlns:local="clr-namespace:FashionNova.Mobile"
              mc:Ignorable="d"
-             x:Class="FashionNova.Mobile.Views.PlacanjePage"
-             BackgroundColor="White">
+             x:Class="FashionNova.Mobile.Views.PaymentPage">
     <ContentPage.BindingContext>
-        <viewModels1:PlacanjeViewModel/>
+        <viewModels1:PaymentViewModel/>
     </ContentPage.BindingContext>
-    <NavigationPage.TitleView>
+    <!-- <NavigationPage.TitleView>
         <Grid HorizontalOptions="FillAndExpand">
-            <!--<Image Source="{local:ImageResourceExtenstion MobileShop.Mobile.Resources.CreditCard.png}" Aspect="AspectFit" HorizontalOptions="Center" VerticalOptions="Center"  Margin="-60,0,0,0"/> -->
+            <Image Source="{local:ImageResourceExtenstion MobileShop.Mobile.Resources.CreditCard.png}" Aspect="AspectFit" HorizontalOptions="Center" VerticalOptions="Center"  Margin="-60,0,0,0"/>
         </Grid>
-    </NavigationPage.TitleView>
+    </NavigationPage.TitleView>-->
 
     <ContentView>
         <StackLayout VerticalOptions="FillAndExpand">

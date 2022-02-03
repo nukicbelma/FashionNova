@@ -24,9 +24,9 @@ namespace FashionNova.WebAPI.Services
         public List<Ocjene> Get(OcjeneSearchRequest search)
         {
             var query = _context.Ocjene.AsQueryable();
-            if (!string.IsNullOrWhiteSpace(search?.Komentar))
+            if ((!string.IsNullOrWhiteSpace((search?.ArtikalId).ToString())) && search?.ArtikalId != 0)
             {
-                query = query.Where(x => x.Komentar.StartsWith(search.Komentar));
+                query = query.Where(x => x.ArtikalId == search.ArtikalId);
             }
             var list = query.ToList();
             return _mapper.Map<List<Ocjene>>(list);

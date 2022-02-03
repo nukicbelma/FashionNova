@@ -15,6 +15,9 @@ namespace FashionNova.WinUI.Narudzbe
     public partial class Narudzbe : Form
     {
         private readonly APIService _service = new APIService("Narudzbe");
+        string datumod = "01-01-2020";
+        string datumdo = "1-1-2024";
+        string brnarudzbe = "";
         public Narudzbe()
         {
             InitializeComponent();
@@ -32,11 +35,13 @@ namespace FashionNova.WinUI.Narudzbe
         {
             var request = new NarudzbeSearchRequest()
             {
+
                 BrojNarudzbe = txtBrojNarudzbe.Text,
-                DatumOD = dateTimePicker1.Value.ToString(),
-                DatumDO = dateTimePicker2.Value.ToString(),
-               // KlijentId = int.Parse("")
+                DatumOD = datumod,
+                DatumDO = datumdo
+
             };
+            brnarudzbe = txtBrojNarudzbe.Text;
             var result = await _service.Get<List<FashionNova.Model.Models.Narudzba>>(request);
             dgvNarudzbe.DataSource = result;
         }
@@ -50,11 +55,11 @@ namespace FashionNova.WinUI.Narudzbe
         {
             var request = new NarudzbeSearchRequest()
             {
-                BrojNarudzbe = txtBrojNarudzbe.Text, 
-                DatumOD=dateTimePicker1.Value.ToString(),
-                DatumDO=dateTimePicker2.Value.ToString(),
-                //KlijentId = int.Parse("")
+                BrojNarudzbe = brnarudzbe,
+                DatumOD = datumod,
+                DatumDO = dateTimePicker2.Value.ToString()
             };
+            datumdo = dateTimePicker2.Value.ToString();
             var result = await _service.Get<List<FashionNova.Model.Models.Narudzba>>(request);
             dgvNarudzbe.DataSource = result;
         }

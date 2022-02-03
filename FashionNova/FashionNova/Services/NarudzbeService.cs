@@ -22,7 +22,7 @@ namespace FashionNova.WebAPI.Services
         public List<Narudzba> Get(NarudzbeSearchRequest search)
         {
             var query = _context.Narudzba.AsQueryable();
-            if (!string.IsNullOrWhiteSpace(search?.BrojNarudzbe))
+            if (!string.IsNullOrWhiteSpace(search?.BrojNarudzbe) && search.BrojNarudzbe!=null)
             {
                 query = query.Where(x => x.BrojNarudzbe.StartsWith(search.BrojNarudzbe));
             }
@@ -30,11 +30,11 @@ namespace FashionNova.WebAPI.Services
             {
                 query = query.Where(x => x.KlijentId == search.KlijentId);
             }
-            if (!string.IsNullOrWhiteSpace(search?.DatumOD) && !string.IsNullOrWhiteSpace(search?.DatumDO))
+            if (!string.IsNullOrWhiteSpace(search?.DatumOD) && !string.IsNullOrWhiteSpace(search?.DatumDO) && search.DatumOD!=null && search.DatumDO!=null)
             {
                 var datumOD = Convert.ToDateTime(search.DatumOD);
                 var datumDO = Convert.ToDateTime(search.DatumDO);
-                query = query.Where(x => x.DatumNarudzbe>datumOD && x.DatumNarudzbe<datumDO);
+                query = query.Where(x => x.DatumNarudzbe>=datumOD && x.DatumNarudzbe<=datumDO);
             }
 
             //var list = query.ToList();
@@ -42,9 +42,11 @@ namespace FashionNova.WebAPI.Services
 
 
             var result = _context.Narudzba.Include(y => y.Korisnik).Include(y=>y.Klijent).ToList();
+            var korisnici = _context.Korisnici.AsQueryable().ToList();
+            var klijenti = _context.Klijenti.AsQueryable().ToList();
             List<Narudzba> lista = new List<Narudzba>();
 
-            foreach (var item in result)
+            foreach (var item in query)
             {
                 Narudzba nova = new Narudzba();
                 nova.NarudzbaId = item.NarudzbaId;
@@ -52,9 +54,17 @@ namespace FashionNova.WebAPI.Services
                 nova.IznosBezPdv = item.IznosBezPdv;
                 nova.IznosSaPdv = item.IznosSaPdv;
                 nova.KorisnikId = item.KorisnikId;
-                nova.Korisnik = item.Korisnik.Ime+" "+item.Korisnik.Prezime;
+                foreach (var k in korisnici)
+                {
+                    if(k.KorisnikId==item.KorisnikId)
+                        nova.Korisnik = k.Ime + " " + k.Prezime;
+                }
                 nova.KlijentId = item.KlijentId;
-                nova.Klijent = item.Klijent.Ime+" "+item.Klijent.Prezime;
+                foreach (var k in klijenti)
+                {
+                    if (k.KlijentId == item.KlijentId)
+                        nova.Klijent = k.Ime + " " + k.Prezime;
+                }
                 nova.DatumNarudzbe = item.DatumNarudzbe;
 
                 lista.Add(nova);

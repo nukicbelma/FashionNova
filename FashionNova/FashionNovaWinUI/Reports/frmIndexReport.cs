@@ -17,15 +17,13 @@ namespace FashionNova.WinUI.Reports
 
         private void btnNarudzbe_Click(object sender, EventArgs e)
         {
-            string str = "narudzbi";
-            var frm = new frmKreirajReport(str);
+            var frm = new frmNarudzbeReport();
             frm.ShowDialog();
         }
 
         private void btnArtikli_Click(object sender, EventArgs e)
         {
-            string str = "prodanih artikala";
-            var frm = new frmKreirajReport(str);
+            var frm = new frmArtikalOcjenaReport();
             frm.ShowDialog();
         }
     }

@@ -4,10 +4,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Acr.UserDialogs;
-using Prism.Commands;
-using Prism.Mvvm;
-using Stripe;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -15,19 +11,21 @@ using Xamarin.Forms.Xaml;
 namespace FashionNova.Mobile.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class PlacanjePage : ContentPage
+    public partial class PaymentPage : ContentPage
     {
-        PlacanjeViewModel model = null;
-        public PlacanjePage(decimal Iznos, int NarudzbaId)
+        PaymentViewModel model = null;
+        public PaymentPage(decimal Iznos, int NarudzbaId)
         {
             InitializeComponent();
-            BindingContext = model = new PlacanjeViewModel()
+            BindingContext = model = new PaymentViewModel()
             {
                 Iznos = Iznos,
                 NarudzbaId = NarudzbaId
             };
+
             NavigationPage.SetHasBackButton(this, false);
             NavigationPage.SetHasNavigationBar(this, false);
+
         }
         protected override void OnAppearing()
         {
@@ -49,10 +47,12 @@ namespace FashionNova.Mobile.Views
             {
                 ErrorLabel_CardNumber.IsVisible = true;
                 ErrorLabel_CardNumber.Text = "Card number can not be empty !!";
+
             }
             else
             {
                 ErrorLabel_CardNumber.IsVisible = false;
+
             }
             EnableSubmitButton();
         }
@@ -169,9 +169,9 @@ namespace FashionNova.Mobile.Views
             return text;
         }
 
-        private  void Submit_Button_Clicked(object sender, EventArgs e)
+        private void Submit_Button_Clicked(object sender, EventArgs e)
         {
-            Xamarin.Forms.Application.Current.MainPage = new PocetnaPage();
+            Application.Current.MainPage = new PocetnaPage();
         }
     }
 }

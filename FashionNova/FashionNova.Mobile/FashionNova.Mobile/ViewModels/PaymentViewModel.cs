@@ -9,11 +9,10 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
-using Newtonsoft.Json;
 
 namespace FashionNova.Mobile.ViewModels
 {
-    public class PlacanjeViewModel : BindableBase
+    public class PaymentViewModel : BindableBase
     {
         #region Variable
 
@@ -27,7 +26,7 @@ namespace FashionNova.Mobile.ViewModels
         private string _title;
 
 
-        #endregion Variable
+   #endregion Variable
 
         #region Public Property
         private string StripeTestApiKey = "pk_test_51KOeiNKLWdFIbIHhP9X7BsEkKLbhvPx70Dz8ipE5xAxHD45uRFROYLfSuPp9wDKczSjF3fN3ThmSZvidtqgWJ5MC00rLpeVGPO";
@@ -78,7 +77,7 @@ namespace FashionNova.Mobile.ViewModels
 
         #region Constructor
 
-        public PlacanjeViewModel()
+        public PaymentViewModel()
         {
             CreditCardModel = new CreditCardModel();
             Title = "Card Details";
@@ -125,6 +124,7 @@ namespace FashionNova.Mobile.ViewModels
                 Console.Write("Payment Gateway" + "Payment Successful ");
                 UserDialogs.Instance.Alert("Your payment was successfull", "Payment success", "OK");
                 UserDialogs.Instance.HideLoading();
+
             }
             else
             {
@@ -132,8 +132,6 @@ namespace FashionNova.Mobile.ViewModels
                 UserDialogs.Instance.Alert("Oops, something went wrong", "Payment failed", "OK");
                 Console.Write("Payment Gateway" + "Payment Failure ");
             }
-
-
         });
 
         public int NarudzbaId { get; set; }
@@ -159,8 +157,8 @@ namespace FashionNova.Mobile.ViewModels
                         Name = PrijavljeniKlijentService.PrijavljeniKlijent.KorisnickoIme,
                         AddressLine1 = "Adresa 1",
                         AddressLine2 = "Adresa 2",
-                        AddressCity = "Mostar",
-                        AddressZip = "88000",
+                        AddressCity = "Capljina",
+                        AddressZip = "88305",
                         AddressState = "HNK",
                         AddressCountry = "Bosnia and Herzegovina",
                         Currency = "bam",

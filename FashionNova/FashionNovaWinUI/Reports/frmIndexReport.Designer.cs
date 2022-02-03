@@ -60,7 +60,7 @@ namespace FashionNova.WinUI.Reports
             this.btnArtikli.Name = "btnArtikli";
             this.btnArtikli.Size = new System.Drawing.Size(233, 55);
             this.btnArtikli.TabIndex = 2;
-            this.btnArtikli.Text = "Artikala";
+            this.btnArtikli.Text = "Ocjena";
             this.btnArtikli.UseVisualStyleBackColor = true;
             this.btnArtikli.Click += new System.EventHandler(this.btnArtikli_Click);
             // 

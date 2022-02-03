@@ -88,7 +88,7 @@ namespace FashionNova.Mobile.Views
             var id = listanarudzbi.Last().NarudzbaId;
             
 
-            await Navigation.PushAsync(new PlacanjePage(model.Iznos, id));
+            await Navigation.PushAsync(new PaymentPage(model.Iznos, id));
         }
 
         private async void Otkazi_Clicked(object sender, EventArgs e)

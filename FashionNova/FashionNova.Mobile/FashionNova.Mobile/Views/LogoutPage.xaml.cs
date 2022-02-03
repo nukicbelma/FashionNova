@@ -1,4 +1,5 @@
 ﻿using FashionNova.Mobile.Services;
+using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,14 +27,11 @@ namespace FashionNova.Mobile.Views
             await DisplayAlert("Pozdrav", "Ugodan ostatak dana!", "OK");
             PrijavljeniKlijentService.PrijavljeniKlijent = null;
 
-            // Application.Current.MainPage = new LoginPage();
-
-
-            
-
-            Application.Current.Properties["Token"] = "";
-            Navigation.InsertPageBefore(new LoginPage(), this);
-            await Navigation.PopAsync();
+            //Application.Current.MainPage = new LoginPage();
+            (Application.Current).MainPage = new NavigationPage(new LoginPage());
+            //Application.Current.Properties["Token"] = "";
+            //Navigation.InsertPageBefore(new LoginPage(), this);
+            //await Navigation.PopModalAsync();
         }
     }
 }

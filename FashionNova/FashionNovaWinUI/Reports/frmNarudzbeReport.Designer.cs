@@ -1,7 +1,7 @@
 ﻿
 namespace FashionNova.WinUI.Reports
 {
-    partial class frmKreirajReport
+    partial class frmNarudzbeReport
     {
         /// <summary>
         /// Required designer variable.
@@ -29,8 +29,14 @@ namespace FashionNova.WinUI.Reports
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmKreirajReport));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmNarudzbeReport));
             this.dgv = new System.Windows.Forms.DataGridView();
+            this.NarudzbaId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.BrojNarudzbe = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DatumNarudzbe = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.IznosBezPDV = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.IznosSaPDV = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.KlijentId = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.txtDatumOd = new System.Windows.Forms.DateTimePicker();
             this.txtBrojNarudzbe = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -39,21 +45,66 @@ namespace FashionNova.WinUI.Reports
             this.txtDatumDo = new System.Windows.Forms.DateTimePicker();
             this.btnPrintaj = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
-            this.txtIzvjestaj = new System.Windows.Forms.Label();
-            this.printDocument1 = new System.Drawing.Printing.PrintDocument();
             this.printPreviewDialog1 = new System.Windows.Forms.PrintPreviewDialog();
+            this.printDocument1 = new System.Drawing.Printing.PrintDocument();
             ((System.ComponentModel.ISupportInitialize)(this.dgv)).BeginInit();
             this.SuspendLayout();
             // 
             // dgv
             // 
             this.dgv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgv.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.NarudzbaId,
+            this.BrojNarudzbe,
+            this.DatumNarudzbe,
+            this.IznosBezPDV,
+            this.IznosSaPDV,
+            this.KlijentId});
             this.dgv.Location = new System.Drawing.Point(35, 79);
             this.dgv.Name = "dgv";
             this.dgv.RowTemplate.Height = 25;
             this.dgv.Size = new System.Drawing.Size(677, 186);
             this.dgv.TabIndex = 0;
             this.dgv.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
+            // 
+            // NarudzbaId
+            // 
+            this.NarudzbaId.DataPropertyName = "NarudzbaId";
+            this.NarudzbaId.HeaderText = "Id";
+            this.NarudzbaId.Name = "NarudzbaId";
+            this.NarudzbaId.Width = 50;
+            // 
+            // BrojNarudzbe
+            // 
+            this.BrojNarudzbe.DataPropertyName = "BrojNarudzbe";
+            this.BrojNarudzbe.HeaderText = "Br.Narudzbe";
+            this.BrojNarudzbe.Name = "BrojNarudzbe";
+            this.BrojNarudzbe.Width = 134;
+            // 
+            // DatumNarudzbe
+            // 
+            this.DatumNarudzbe.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.DatumNarudzbe.DataPropertyName = "DatumNarudzbe";
+            this.DatumNarudzbe.HeaderText = "Datum i vrijeme narudzbe";
+            this.DatumNarudzbe.Name = "DatumNarudzbe";
+            // 
+            // IznosBezPDV
+            // 
+            this.IznosBezPDV.DataPropertyName = "IznosBezPDV";
+            this.IznosBezPDV.HeaderText = "Iznos bez PDV";
+            this.IznosBezPDV.Name = "IznosBezPDV";
+            // 
+            // IznosSaPDV
+            // 
+            this.IznosSaPDV.DataPropertyName = "IznosSaPDV";
+            this.IznosSaPDV.HeaderText = "Iznos sa PDV";
+            this.IznosSaPDV.Name = "IznosSaPDV";
+            // 
+            // KlijentId
+            // 
+            this.KlijentId.DataPropertyName = "KlijentId";
+            this.KlijentId.HeaderText = "KlijentId";
+            this.KlijentId.Name = "KlijentId";
             // 
             // txtDatumOd
             // 
@@ -120,21 +171,11 @@ namespace FashionNova.WinUI.Reports
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label4.Location = new System.Drawing.Point(186, 9);
+            this.label4.Location = new System.Drawing.Point(223, 9);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(214, 20);
+            this.label4.Size = new System.Drawing.Size(262, 20);
             this.label4.TabIndex = 9;
-            this.label4.Text = "Report/Izvjestaj na osnovu->";
-            // 
-            // txtIzvjestaj
-            // 
-            this.txtIzvjestaj.AutoSize = true;
-            this.txtIzvjestaj.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.txtIzvjestaj.Location = new System.Drawing.Point(406, 9);
-            this.txtIzvjestaj.Name = "txtIzvjestaj";
-            this.txtIzvjestaj.Size = new System.Drawing.Size(50, 20);
-            this.txtIzvjestaj.TabIndex = 10;
-            this.txtIzvjestaj.Text = "string";
+            this.label4.Text = "Report/Izvjestaj na osnovu narudžbi";
             // 
             // printPreviewDialog1
             // 
@@ -146,13 +187,12 @@ namespace FashionNova.WinUI.Reports
             this.printPreviewDialog1.Name = "printPreviewDialog1";
             this.printPreviewDialog1.Visible = false;
             // 
-            // frmKreirajReport
+            // frmNarudzbeReport
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
             this.ClientSize = new System.Drawing.Size(751, 306);
-            this.Controls.Add(this.txtIzvjestaj);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.btnPrintaj);
             this.Controls.Add(this.txtDatumDo);
@@ -162,7 +202,7 @@ namespace FashionNova.WinUI.Reports
             this.Controls.Add(this.txtBrojNarudzbe);
             this.Controls.Add(this.txtDatumOd);
             this.Controls.Add(this.dgv);
-            this.Name = "frmKreirajReport";
+            this.Name = "frmNarudzbeReport";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Izvjestaji";
             this.Load += new System.EventHandler(this.frmKreirajReport_Load);
@@ -183,8 +223,13 @@ namespace FashionNova.WinUI.Reports
         private System.Windows.Forms.DateTimePicker txtDatumDo;
         private System.Windows.Forms.Button btnPrintaj;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label txtIzvjestaj;
-        private System.Drawing.Printing.PrintDocument printDocument1;
         private System.Windows.Forms.PrintPreviewDialog printPreviewDialog1;
+        private System.Drawing.Printing.PrintDocument printDocument1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn NarudzbaId;
+        private System.Windows.Forms.DataGridViewTextBoxColumn BrojNarudzbe;
+        private System.Windows.Forms.DataGridViewTextBoxColumn DatumNarudzbe;
+        private System.Windows.Forms.DataGridViewTextBoxColumn IznosBezPDV;
+        private System.Windows.Forms.DataGridViewTextBoxColumn IznosSaPDV;
+        private System.Windows.Forms.DataGridViewTextBoxColumn KlijentId;
     }
 }
