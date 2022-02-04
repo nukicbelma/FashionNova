@@ -63,7 +63,7 @@ namespace FashionNova
             });
 
             services.AddDbContext<FashionNova_IB170007Context>(options =>
-             options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+             options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection" /*"cs1"*/)));
 
 
             services.AddScoped<IKorisniciService, KorisniciService>();
