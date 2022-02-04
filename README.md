@@ -1,12 +1,14 @@
 # FashionNova
 Seminarski rad iz RS2
 
+</br></br>
+user: admin</br>
+password: admin	</br>
 
-user: admin
-password: admin	
+</br>
+user: uposlenik</br>
+password: uposlenik</br>
 
-user: uposlenik
-password: uposlenik
-
-user: korisnik	
-password: korisnik
+</br></br>
+user: klijent</br>	
+password: klijent44</br>
