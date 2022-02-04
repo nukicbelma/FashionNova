@@ -7,6 +7,48 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="crnajakna1.jpg" />
+    <None Remove="haljinasmedja1.jpg" />
+    <None Remove="jeans12.jpg" />
+    <None Remove="jeans22.jpg" />
+    <None Remove="majicacrvena.jpg" />
+    <None Remove="majicacrvena22.jpg" />
+    <None Remove="profilna1.jpg" />
+    <None Remove="trenerka1.jpg" />
+    <None Remove="trenerka3.jpg" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="crnajakna1.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="haljinasmedja1.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="jeans12.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="jeans22.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="majicacrvena.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="majicacrvena22.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="profilna1.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="trenerka1.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="trenerka3.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Acr.UserDialogs" Version="5.0.0" />
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="8.1.1" />
     <PackageReference Include="Extended.Wpf.Toolkit" Version="4.2.0" />
