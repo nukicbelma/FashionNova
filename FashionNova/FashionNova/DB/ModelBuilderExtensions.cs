@@ -237,18 +237,7 @@ namespace FashionNova.WebAPI.DB
                     VelicinaId = 4,
                     VrstaArtiklaId = 7
                 },
-                 new Artikli()
-                 {
-                     ArtikalId = 3000,
-                     Naziv = "Trenerka 'BeFit'",
-                     Sifra = "AA00",
-                     Cijena = (decimal?)39.00,
-                     Slika = File.ReadAllBytes("trenerka3.jpg"),
-                     BojaId = 2,
-                     MaterijalId = 1,
-                     VelicinaId = 5,
-                     VrstaArtiklaId = 7
-                 },
+
                new Artikli()
                {
                    ArtikalId = 15,
@@ -261,18 +250,7 @@ namespace FashionNova.WebAPI.DB
                    VelicinaId = 5,
                    VrstaArtiklaId = 7
                },
-                new Artikli()
-                {
-                    ArtikalId = 3001,
-                    Naziv = "Trenerka 'BeFit'",
-                    Sifra = "AA00",
-                    Cijena = (decimal?)39.00,
-                    Slika = File.ReadAllBytes("trenerka1.jpg"),
-                    BojaId = 7,
-                    MaterijalId = 1,
-                    VelicinaId = 6,
-                    VrstaArtiklaId = 7
-                },
+                
                   new Artikli()
                   {
                       ArtikalId = 16,
@@ -285,18 +263,6 @@ namespace FashionNova.WebAPI.DB
                       VelicinaId = 3,
                       VrstaArtiklaId = 6
                   },
-                   new Artikli()
-                   {
-                       ArtikalId = 3002,
-                       Naziv = "Haljina 'La Perla'",
-                       Sifra = "AA11",
-                       Cijena = (decimal?)89.90,
-                       Slika = File.ReadAllBytes("haljinasmedja1.jpg"),
-                       BojaId = 7,
-                       MaterijalId = 7,
-                       VelicinaId = 2,
-                       VrstaArtiklaId = 6
-                   },
                     new Artikli()
                     {
                         ArtikalId = 18,
