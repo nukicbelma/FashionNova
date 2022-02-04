@@ -34,5 +34,27 @@ namespace FashionNova.WebAPI.Services
             }
             return result;
         }
+
+        public Uloge ProvjeriAdmin(int UlogaId)
+        {
+            var lista = _context.Uloge.ToList();
+            Uloge result = new Uloge();
+
+            foreach (var item in lista)
+            {
+                if (item.UlogaId == UlogaId)
+                {
+                    if (item.Naziv.Contains("Admin"))
+                    {
+                        result.Naziv = item.Naziv;
+                        result.OpisUloge = item.OpisUloge;
+                        result.UlogaId = item.UlogaId;
+
+                        return result;
+                    }
+                }
+            }
+            return null;
+        }
     }
 }

@@ -1,4 +1,5 @@
-﻿using FashionNova.Model.Requests;
+﻿using FashionNova.Model.Models;
+using FashionNova.Model.Requests;
 using FashionNovaWinUI;
 using System;
 using System.Collections.Generic;
@@ -14,6 +15,9 @@ namespace FashionNova.WinUI.Pocetna
     public partial class frmLogin : Form
     {
         private readonly APIService _korisniciService = new APIService("Korisnici");
+        private readonly APIService _serviceuloge = new APIService("Uloge");
+        Uloge admin = null;
+
         private readonly FashionNova.WebAPI.Database.FashionNova_IB170007Context _context;
         public frmLogin()
         {
@@ -25,44 +29,57 @@ namespace FashionNova.WinUI.Pocetna
         private async void btnPrijava_Click(object sender, EventArgs e)
         {
            FashionNova.Model.Models.Korisnici korisnik = await _korisniciService.Authenticiraj<FashionNova.Model.Models.Korisnici>(txtUsername.Text, txtPassword.Text);
-            //int ulogaId1 = 0;
+            int ulogaId1 = 0;
 
             if (korisnik != null)
             {
-                //Global.PrijavljeniKorisnik = korisnik;
+                PrijavljeniKorisnikService.PrijavljeniKorisnik = korisnik;
                 APIService.Username = txtUsername.Text;
                 APIService.Password = txtPassword.Text;
 
-                //foreach (var item in Global.PrijavljeniKorisnik.KorisniciUloge)
-                //{
-                //    ulogaId1 = item.UlogaId;
-
-                //}
-                //admin = await _serviceuloge.ProvjeriAdmin<Uloge>(ulogaId1);
-
-                //if (admin != null)
-                //{
-                //    Global.Admin = true;
-                //}
-
-                var uloga = "uloga";
-                if (korisnik.KorisniciUloge.FirstOrDefault().UlogaId == 1)
+                foreach (var item in PrijavljeniKorisnikService.PrijavljeniKorisnik.KorisniciUloge)
                 {
-                    uloga = "(admin)";
-                    MessageBox.Show("Dobrodosli:: " + uloga + "->" + korisnik.Ime + " " + korisnik.Prezime);
+                    ulogaId1 = item.UlogaId;
+
+                }
+                admin = await _serviceuloge.ProvjeriAdmin<Uloge>(ulogaId1);
+
+                if (admin != null)
+                {
+                    PrijavljeniKorisnikService.Admin = true;
+                }
+                MessageBox.Show("Dobrodosli " + korisnik.Ime + " " + korisnik.Prezime);
+                DialogResult = DialogResult.OK;
+               
+                if(korisnik.KorisniciUloge.FirstOrDefault().UlogaId==1)
+                {
                     var admin = new HomepageAdmin();
                     admin.ShowDialog();
-                    Close();
-
                 }
-                else if (korisnik.KorisniciUloge.FirstOrDefault().UlogaId == 2)
+                else if(korisnik.KorisniciUloge.FirstOrDefault().UlogaId==2)
                 {
-                    uloga = "(uposlenik)";
-                    MessageBox.Show("Dobrodosli:: " + uloga + "->" + korisnik.Ime + " " + korisnik.Prezime);
                     var uposlenik = new HomepageUposlenik();
                     uposlenik.ShowDialog();
-                    Close();
                 }
+                Close();
+                //var uloga = "uloga";
+                //if (korisnik.KorisniciUloge.FirstOrDefault().UlogaId == 1)
+                //{
+                //    uloga = "(admin)";
+                //    MessageBox.Show("Dobrodosli:: " + uloga + "->" + korisnik.Ime + " " + korisnik.Prezime);
+                //    var admin = new HomepageAdmin();
+                //    admin.ShowDialog();
+                //    Close();
+
+                //}
+                //else if (korisnik.KorisniciUloge.FirstOrDefault().UlogaId == 2)
+                //{
+                //    uloga = "(uposlenik)";
+                //    MessageBox.Show("Dobrodosli:: " + uloga + "->" + korisnik.Ime + " " + korisnik.Prezime);
+                //    var uposlenik = new HomepageUposlenik();
+                //    uposlenik.ShowDialog();
+                //    Close();
+                //}
             }
             else
             {

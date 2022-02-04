@@ -24,6 +24,12 @@ namespace FashionNovaWinUI
         {
             _resource = resource;
         }
+        public async Task<T> ProvjeriAdmin<T>(int UlogaId)
+        {
+            var url = $"{endpoint}{_resource}/ProvjeriAdmin/{UlogaId}";
+
+            return await url.WithBasicAuth(Username, Password).GetJsonAsync<T>();
+        }
         public async Task<T> Get<T>(object searchRequest = null)
         {
             try

@@ -51,6 +51,7 @@ namespace FashionNova.WinUI.Pocetna
             if (frm.ShowDialog() == DialogResult.Yes)
             {
                 Close();
+                PrijavljeniKorisnikService.PrijavljeniKorisnik = null;
                 var loginPonovo = new frmLogin();
                 loginPonovo.ShowDialog();
             }

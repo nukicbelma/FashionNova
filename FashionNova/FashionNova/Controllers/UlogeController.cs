@@ -25,5 +25,12 @@ namespace FashionNova.WebAPI.Controllers
         {
             return _service.Get();
         }
+
+        [HttpGet]
+        [Route("ProvjeriAdmin/{UlogaId}")]
+        public Uloge ProvjeriAdmin(int UlogaId)
+        {
+            return _service.ProvjeriAdmin(UlogaId);
+        }
     }
 }

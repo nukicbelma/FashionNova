@@ -32,8 +32,6 @@ namespace FashionNova.WebAPI.Autentifikacija
 
             _userService = userService;
             _clientService = clientService;
-
-
         }
 
         protected override async Task<AuthenticateResult> HandleAuthenticateAsync()
@@ -51,8 +49,8 @@ namespace FashionNova.WebAPI.Autentifikacija
                 var username = credentials[0];
                 var password = credentials[1];
                 user = _userService.Authenticiraj(username, password);
-                //if (user == null)
-                    //client = _clientService.Authenticiraj(username, password);
+                if (user == null)
+                    client = _clientService.Authenticiraj(username, password);
             }
             catch
             {

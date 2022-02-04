@@ -10,5 +10,6 @@ namespace FashionNova.WebAPI.Services
     public interface IUlogeService
     {
         List<Uloge> Get();
+        Uloge ProvjeriAdmin(int UlogaId);
     }
 }
