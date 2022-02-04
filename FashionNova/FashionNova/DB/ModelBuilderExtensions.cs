@@ -267,7 +267,7 @@ namespace FashionNova.WebAPI.DB
                     Naziv = "Trenerka 'BeFit'",
                     Sifra = "AA00",
                     Cijena = (decimal?)39.00,
-                    Slika = File.ReadAllBytes("trenerka1.jpg.jpg"),
+                    Slika = File.ReadAllBytes("trenerka1.jpg"),
                     BojaId = 7,
                     MaterijalId = 1,
                     VelicinaId = 6,
