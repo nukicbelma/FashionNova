@@ -36,10 +36,10 @@ namespace FashionNova.WinUI.Klijenti
             txtEmail.Text = klijent.Email;
             txtTelefon.Text = klijent.Telefon;
             txtKorisnickoIme.Text = klijent.KorisnickoIme;
-            if (klijent.Slika != null)
-            {
-                pbxSlika.Image = FashionNova.WinUI.Helpers.ImageHelper.FromByteToImage(klijent.Slika);
-            }
+            //if (klijent.Slika != null)
+            //{
+            //    pbxSlika.Image = FashionNova.WinUI.Helpers.ImageHelper.FromByteToImage(File.ReadAllBytes("Resources/profilna1.jpg"));
+            //}
         }
         private async Task LoadData()
         {

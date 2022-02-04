@@ -6,12 +6,13 @@ using System.Linq;
 using System.Threading.Tasks;
 using FashionNova.Services;
 using FashionNova.WebAPI.Database;
+using System.IO;
 
-namespace FashionNova.WebAPI
+namespace FashionNova.WebAPI.DB
 {
     public static class ModelBuilderExtensions
     {
-        public static void Seed(ModelBuilder modelBuilder)
+        public static void Seed(this ModelBuilder modelBuilder)
         {
             List<string> Salt = new List<string>();
             for (int i = 0; i < 5; i++)
@@ -330,7 +331,7 @@ namespace FashionNova.WebAPI
                     Email = "belma@hotmail.com",
                     Telefon = "123456789",
                     KorisnickoIme = "klijent",
-                    Slika = null,
+                    Slika = File.ReadAllBytes("profilna1.jpg"),
                     LozinkaSalt = Salt[0],
                     LozinkaHash = KlijentiService.GenerateHash(Salt[0], "klijent44")
                 });
