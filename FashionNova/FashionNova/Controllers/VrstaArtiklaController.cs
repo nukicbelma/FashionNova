@@ -11,6 +11,7 @@ namespace FashionNova.Controllers
 {
     [ApiController]
     [Route("[controller]")]
+    [Authorize]
     public class VrstaArtiklaController : ControllerBase
     {
         private readonly IVrstaArtiklaService _service;
@@ -31,12 +32,14 @@ namespace FashionNova.Controllers
             return _service.GetById(id);
         }
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         public async Task<FashionNova.Model.Models.VrstaArtikla> Insert([FromBody]VrstaArtiklaInsertRequest request)
         {
             return await _service.Insert(request);
         }
 
         [HttpPut("{id}")]
+        [Authorize(Roles = "Admin")]
         public FashionNova.Model.Models.VrstaArtikla Update(int id, [FromBody] VrstaArtiklaUpdateRequest request)
         {
             return _service.Update(id, request);

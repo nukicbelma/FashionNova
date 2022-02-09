@@ -137,7 +137,7 @@ namespace FashionNova.Mobile.ViewModels
         public async Task Init()
         {
             await GetArtikle();
-            await Preporuka();
+            //await Preporuka();
         }
 
         int _kolicina = 0;

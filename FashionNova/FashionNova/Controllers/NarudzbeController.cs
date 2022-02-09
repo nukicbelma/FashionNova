@@ -11,6 +11,7 @@ namespace FashionNova.Controllers
 {
     [ApiController]
     [Route("[controller]")]
+    [Authorize]
     public class NarudzbeController : ControllerBase
     {
         private readonly INarudzbeService _service;
@@ -25,11 +26,6 @@ namespace FashionNova.Controllers
             return _service.Get(search);
         }
 
-        //[HttpGet("{id}")]
-        //public FashionNova.Model.Models.Velicina GetById(int id)
-        //{
-        //    return _service.GetById(id);
-        //}
         [HttpPost]
         public void Insert(NarudzbeInsertRequest request)
         {

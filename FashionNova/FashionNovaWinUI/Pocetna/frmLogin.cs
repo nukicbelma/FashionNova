@@ -18,7 +18,7 @@ namespace FashionNova.WinUI.Pocetna
         private readonly APIService _serviceuloge = new APIService("Uloge");
         Uloge admin = null;
 
-        private readonly FashionNova.WebAPI.Database.FashionNova_IB170007Context _context;
+        private readonly FashionNova.WebAPI.Database.IB170007Context _context;
         public frmLogin()
         {
             InitializeComponent();

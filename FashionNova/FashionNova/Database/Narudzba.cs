@@ -15,11 +15,11 @@ namespace FashionNova.WebAPI.Database
         public DateTime DatumNarudzbe { get; set; }
         public decimal IznosBezPdv { get; set; }
         public decimal IznosSaPdv { get; set; }
-        public int KorisnikId { get; set; }
-        public int KlijentId { get; set; }
+        public int KorisniciId { get; set; }
+        public int KlijentiId { get; set; }
 
-        public virtual Klijenti Klijent { get; set; }
-        public virtual Korisnici Korisnik { get; set; }
+        public virtual Klijenti Klijenti { get; set; }
+        public virtual Korisnici Korisnici { get; set; }
         public virtual ICollection<NarudzbaStavke> NarudzbaStavke { get; set; }
     }
 }

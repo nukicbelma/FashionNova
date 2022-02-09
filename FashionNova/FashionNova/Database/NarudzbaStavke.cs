@@ -10,9 +10,9 @@ namespace FashionNova.WebAPI.Database
         public decimal Cijena { get; set; }
         public decimal Popust { get; set; }
         public int NarudzbaId { get; set; }
-        public int ArtikalId { get; set; }
+        public int ArtikliId { get; set; }
 
-        public virtual Artikli Artikal { get; set; }
+        public virtual Artikli Artikli { get; set; }
         public virtual Narudzba Narudzba { get; set; }
     }
 }

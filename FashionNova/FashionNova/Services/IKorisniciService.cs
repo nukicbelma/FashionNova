@@ -9,7 +9,7 @@ namespace FashionNova.Services
     public interface IKorisniciService
     {
         Task<FashionNova.Model.Models.Korisnici> Login(string username, string password);
-        IList<FashionNova.Model.Models.Korisnici> Get(KorisniciSearchRequest search);
+        List<FashionNova.Model.Models.Korisnici> Get(KorisniciSearchRequest search);
         Korisnici GetById(int id);
         void Insert(KorisniciInsertRequest request);
         void Update(int id, KorisniciUpdateRequest request);

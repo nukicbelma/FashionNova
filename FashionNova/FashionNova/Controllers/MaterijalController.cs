@@ -11,6 +11,7 @@ namespace FashionNova.Controllers
 {
     [ApiController]
     [Route("[controller]")]
+    [Authorize]
     public class MaterijalController : ControllerBase
     {
         private readonly IMaterijalService _service;
@@ -30,12 +31,14 @@ namespace FashionNova.Controllers
             return _service.GetById(id);
         }
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         public async Task<FashionNova.Model.Models.Materijal> Insert([FromBody] MaterijalInsertRequest request)
         {
             return await _service.Insert(request);
         }
 
         [HttpPut("{id}")]
+        [Authorize(Roles = "Admin")]
         public FashionNova.Model.Models.Materijal Update(int id, [FromBody] MaterijalUpdateRequest request)
         {
             return _service.Update(id, request);

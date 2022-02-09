@@ -29,13 +29,13 @@ namespace FashionNova.WebAPI.DB
             modelBuilder.Entity<Uloge>().HasData(
                 new Uloge()
                 {
-                    UlogaId = 1,
+                    UlogeId = 1,
                     Naziv = "Admin",
                     OpisUloge = "Upravljanje sistemom"
                 },
                 new Uloge()
                 {
-                    UlogaId = 2,
+                    UlogeId = 2,
                     Naziv = "Uposlenik",
                     OpisUloge = "Rad na sistemu"
                 });
@@ -227,7 +227,7 @@ namespace FashionNova.WebAPI.DB
             modelBuilder.Entity<Artikli>().HasData(
                 new Artikli()
                 {
-                    ArtikalId = 12,
+                    ArtikliId = 12,
                     Naziv = "Trenerka 'BeFit'",
                     Sifra = "AA00",
                     Cijena = (decimal?)39.00,
@@ -240,7 +240,7 @@ namespace FashionNova.WebAPI.DB
 
                new Artikli()
                {
-                   ArtikalId = 15,
+                   ArtikliId = 15,
                    Naziv = "Trenerka 'BeFit'",
                    Sifra = "AA00",
                    Cijena = (decimal?)39.00,
@@ -253,7 +253,7 @@ namespace FashionNova.WebAPI.DB
                 
                   new Artikli()
                   {
-                      ArtikalId = 16,
+                      ArtikliId = 16,
                       Naziv = "Haljina 'La Perla'",
                       Sifra = "AA11",
                       Cijena = (decimal?)89.90,
@@ -265,7 +265,7 @@ namespace FashionNova.WebAPI.DB
                   },
                     new Artikli()
                     {
-                        ArtikalId = 18,
+                        ArtikliId = 18,
                         Naziv = "Farmerke 'BeTrendy'",
                         Sifra = "AA22",
                         Cijena = (decimal?)49.00,
@@ -276,7 +276,8 @@ namespace FashionNova.WebAPI.DB
                         VrstaArtiklaId = 2
                     }, new Artikli()
                     {
-                        ArtikalId = 2012,
+                        ArtikliId
+                        = 2012,
                         Naziv = "Majica 'trendy'",
                         Sifra = "CC11",
                         Cijena = (decimal?)19.90,
@@ -288,7 +289,7 @@ namespace FashionNova.WebAPI.DB
                     },
                       new Artikli()
                       {
-                          ArtikalId = 2013,
+                          ArtikliId = 2013,
                           Naziv = "Jakna 'Merci'",
                           Sifra = "DD43",
                           Cijena = (decimal?)89.90,
@@ -299,7 +300,7 @@ namespace FashionNova.WebAPI.DB
                           VrstaArtiklaId = 3
                       }, new Artikli()
                       {
-                          ArtikalId = 3012,
+                          ArtikliId = 3012,
                           Naziv = "Hlace mom",
                           Sifra = "DD55",
                           Cijena = (decimal?)48.80,
@@ -310,7 +311,8 @@ namespace FashionNova.WebAPI.DB
                           VrstaArtiklaId = 2
                       }, new Artikli()
                       {
-                          ArtikalId = 4012,
+                          ArtikliId
+                          = 4012,
                           Naziv = "Majica red4fun",
                           Sifra = "DT15",
                           Cijena = (decimal?)9.90,
@@ -326,7 +328,7 @@ namespace FashionNova.WebAPI.DB
             modelBuilder.Entity<Klijenti>().HasData(
                 new Klijenti()
                 {
-                    KlijentId = 6002,
+                    KlijentiId = 6002,
                     Ime = "Belma",
                     Prezime = "Nukic",
                     DatumRegistracijeRacuna = DateTime.Now,
@@ -343,7 +345,7 @@ namespace FashionNova.WebAPI.DB
             modelBuilder.Entity<Korisnici>().HasData(
                 new Korisnici()
                 {
-                    KorisnikId = 2002,
+                    KorisniciId = 2002,
                     Ime = "hanna",
                     Prezime = "hanna",
                     Email = "hanna@example.com",
@@ -355,7 +357,7 @@ namespace FashionNova.WebAPI.DB
                 },
                 new Korisnici()
                 {
-                    KorisnikId = 3002,
+                    KorisniciId = 3002,
                     Ime = "Admin",
                     Prezime = "Admin",
                     Email = "admin@gmail.com",
@@ -367,7 +369,7 @@ namespace FashionNova.WebAPI.DB
                 },
                 new Korisnici()
                 {
-                    KorisnikId = 3003,
+                    KorisniciId = 3003,
                     Ime = "Uposlenik",
                     Prezime = "Uposlenik",
                     Email = "uposlenik@gmail.com",
@@ -383,23 +385,23 @@ namespace FashionNova.WebAPI.DB
             modelBuilder.Entity<KorisniciUloge>().HasData(
                 new KorisniciUloge()
                 {
-                    KorisnikUlogaId = 1,
-                    KorisnikId = 2002,
-                    UlogaId = 1,
+                    KorisniciUlogeId = 1,
+                    KorisniciId = 2002,
+                    UlogeId = 1,
                     DatumIzmjene = DateTime.Now
                 },
                 new KorisniciUloge()
                 {
-                    KorisnikUlogaId = 2,
-                    KorisnikId = 3002,
-                    UlogaId = 1,
+                    KorisniciUlogeId = 2,
+                    KorisniciId = 3002,
+                    UlogeId = 1,
                     DatumIzmjene = DateTime.Now
                 },
                 new KorisniciUloge()
                 {
-                    KorisnikUlogaId = 3,
-                    KorisnikId = 3003,
-                    UlogaId = 2,
+                    KorisniciUlogeId = 3,
+                    KorisniciId = 3003,
+                    UlogeId = 2,
                     DatumIzmjene = DateTime.Now
                 });
             #endregion
@@ -408,17 +410,17 @@ namespace FashionNova.WebAPI.DB
             modelBuilder.Entity<Ocjene>().HasData(
                 new Ocjene()
                 {
-                    OcjenaId = 5005,
-                    ArtikalId = 4012,
-                    KlijentId = 6002,
+                    OcjeneId = 5005,
+                    ArtikliId = 4012,
+                    KlijentiId = 6002,
                     Ocjena = 3,
                     Komentar = ""
                 },
                   new Ocjene()
                   {
-                      OcjenaId = 5004,
-                      ArtikalId = 2012,
-                      KlijentId = 6002,
+                      OcjeneId = 5004,
+                      ArtikliId = 2012,
+                      KlijentiId = 6002,
                       Ocjena = 5,
                       Komentar = ""
                   });
@@ -430,21 +432,21 @@ namespace FashionNova.WebAPI.DB
                 {
                     NarudzbaId = 10009,
                     BrojNarudzbe = "N10009",
-                    KlijentId = 6002,
+                    KlijentiId = 6002,
                     DatumNarudzbe = DateTime.Now,
                     IznosBezPdv = Convert.ToDecimal(39.98),
                     IznosSaPdv = Convert.ToDecimal(46.78),
-                    KorisnikId = 3003
+                    KorisniciId = 3003
                 },
                  new Narudzba()
                  {
                      NarudzbaId = 10008,
                      BrojNarudzbe = "N10008",
-                     KlijentId = 6002,
+                     KlijentiId = 6002,
                      DatumNarudzbe = DateTime.Now,
                      IznosBezPdv = Convert.ToDecimal(179.80),
                      IznosSaPdv = Convert.ToDecimal(210.37),
-                     KorisnikId = 3003
+                     KorisniciId = 3003
                  }
                 );
             #endregion
@@ -454,7 +456,7 @@ namespace FashionNova.WebAPI.DB
                 {
                     NarudzbaStavkeId = 8009,
                     NarudzbaId = 10008,
-                    ArtikalId = 2003,
+                    ArtikliId = 2013,
                     Kolicina = 1,
                     Cijena = Convert.ToDecimal(89.90), 
                     Popust=0
@@ -463,7 +465,7 @@ namespace FashionNova.WebAPI.DB
                 {
                     NarudzbaStavkeId = 8008,
                     NarudzbaId = 10008,
-                    ArtikalId = 16,
+                    ArtikliId = 16,
                     Kolicina = 1,
                     Cijena = Convert.ToDecimal(89.90),
                     Popust = 0
@@ -472,7 +474,7 @@ namespace FashionNova.WebAPI.DB
                 {
                     NarudzbaStavkeId = 8010,
                     NarudzbaId = 10009,
-                    ArtikalId = 2012,
+                    ArtikliId = 2012,
                     Kolicina = 2,
                     Cijena = Convert.ToDecimal(19.99), 
                     Popust=0

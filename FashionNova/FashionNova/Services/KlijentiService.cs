@@ -2,6 +2,7 @@
 using FashionNova.Model;
 using FashionNova.Model.Models;
 using FashionNova.Model.Requests;
+using FashionNova.WebAPI.Exceptions;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -16,9 +17,9 @@ namespace FashionNova.Services
 
     {
         private readonly IMapper _mapper;
-        private readonly FashionNova.WebAPI.Database.FashionNova_IB170007Context _context;
+        private readonly FashionNova.WebAPI.Database.IB170007Context _context;
 
-        public KlijentiService(FashionNova.WebAPI.Database.FashionNova_IB170007Context context, IMapper mapper)
+        public KlijentiService(FashionNova.WebAPI.Database.IB170007Context context, IMapper mapper)
         {
             _context = context;
             _mapper = mapper;
@@ -68,9 +69,26 @@ namespace FashionNova.Services
             _context.Klijenti.Add(entity);
             _context.SaveChanges();
         }
+        public async Task<FashionNova.Model.Models.Klijenti> Login(string username, string password)
+        {
+            var entity = await _context.Korisnici.Include("KlijentiUloge.Uloge").FirstOrDefaultAsync(x => x.KorisnickoIme == username);
+
+            if (entity == null)
+            {
+                throw new UserException("Pogresan username ili password");
+            }
+
+            var hash = GenerateHash(entity.LozinkaSalt, password);
+
+            if (hash != entity.LozinkaHash)
+            {
+                throw new UserException("Pogresan username ili password");
+            }
+            return _mapper.Map<FashionNova.Model.Models.Klijenti>(entity);
+        }
         public void Update(int id, KlijentiUpdateRequest request)
         {
-            var entity = _context.Klijenti.Where(x => x.KlijentId == id).FirstOrDefault();
+            var entity = _context.Klijenti.Where(x => x.KlijentiId == id).FirstOrDefault();
             if (!string.IsNullOrWhiteSpace(request.Password))
             {
                 if (request.Password != request.PasswordPotvrda)

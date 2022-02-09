@@ -13,6 +13,7 @@ namespace FashionNova.WebAPI.Controllers
 {
     [ApiController]
     [Route("[controller]")]
+    [Authorize]
     public class KlijentiController : ControllerBase
     {
         private readonly IKlijentiService _service;

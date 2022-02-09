@@ -13,10 +13,10 @@ namespace FashionNova.WebAPI.Services
 {
     public class BojaService : IBojaService
     {
-        private readonly FashionNova.WebAPI.Database.FashionNova_IB170007Context _context;
+        private readonly FashionNova.WebAPI.Database.IB170007Context _context;
         private readonly IMapper _mapper;
 
-        public BojaService(FashionNova.WebAPI.Database.FashionNova_IB170007Context context, IMapper mapper)
+        public BojaService(FashionNova.WebAPI.Database.IB170007Context context, IMapper mapper)
         {
             _context = context;
             _mapper = mapper;

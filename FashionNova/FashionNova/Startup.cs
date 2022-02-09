@@ -1,6 +1,6 @@
 using FashionNova.WebAPI.Database;
 using FashionNova.Services;
-using FashionNova.WebAPI.Autentifikacija;
+using FashionNova.WebAPI.Security;
 using FashionNova.WebAPI.Filter;
 using FashionNova.WebAPI.Services;
 using Microsoft.AspNetCore.Authentication;
@@ -19,6 +19,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using FashionNova.WebAPI.Service;
+using FashionNova.Security;
+//using FashionNova.Security;
 
 namespace FashionNova
 {
@@ -62,7 +64,11 @@ namespace FashionNova
                 });
             });
 
-            services.AddDbContext<FashionNova_IB170007Context>(options =>
+            services.AddAuthentication("BasicAuthentication")
+            .AddScheme<AuthenticationSchemeOptions, BasicAuthenticationHandler>("BasicAuthentication", null);
+
+
+            services.AddDbContext<IB170007Context>(options =>
             options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection" /*"cs1"*/)));
 
 
@@ -77,11 +83,7 @@ namespace FashionNova
             services.AddScoped<INarudzbeService, NarudzbeService>();
             services.AddScoped<INarudzbaStavkeService, NarudzbaStavkeService>();
             services.AddScoped<IOcjeneService, OcjeneService>();
-
             services.AddScoped<IRecommender, RecommenderService>();
-
-            services.AddAuthentication("BasicAuthentication")
-                .AddScheme<AuthenticationSchemeOptions, BasicAuthenticationHandler>("BasicAuthentication", null);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -102,9 +104,11 @@ namespace FashionNova
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
             });
 
+            app.UseCors(x => x.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
 
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>

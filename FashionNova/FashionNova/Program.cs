@@ -18,7 +18,7 @@ namespace FashionNova
             var host = CreateHostBuilder(args).Build();
             using (var scope = host.Services.CreateScope())
             {
-                var database = scope.ServiceProvider.GetService<FashionNova.WebAPI.Database.FashionNova_IB170007Context>();
+                var database = scope.ServiceProvider.GetService<FashionNova.WebAPI.Database.IB170007Context>();
                 database.Database.Migrate();
             }
             host.Run();

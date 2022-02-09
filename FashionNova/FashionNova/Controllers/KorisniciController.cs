@@ -13,7 +13,7 @@ namespace FashionNova.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    //[Authorize]
+    [Authorize]
     public class KorisniciController : ControllerBase
     {
         private readonly IKorisniciService _service;
@@ -32,19 +32,19 @@ namespace FashionNova.Controllers
         }
 
         [HttpGet]
-        public IList<FashionNova.Model.Models.Korisnici> Get([FromQuery] KorisniciSearchRequest request)
+        public List<Korisnici> Get([FromQuery] KorisniciSearchRequest request)
         {
             return _service.Get(request);
         }
 
-        //[Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         public void Insert(KorisniciInsertRequest request)
         {
             _service.Insert(request);
         }
 
-        //[Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Admin")]
         [HttpPut("{id}")]
         public void Update(int id, [FromBody] KorisniciUpdateRequest request)
         {

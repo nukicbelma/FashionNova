@@ -47,7 +47,7 @@ namespace FashionNovaWinUI
             }
             catch (FlurlHttpException ex)
             {
-                //if (ex.Call.HttpStatus == System.Net.HttpStatusCode.Unauthorized)
+                if (ex.Call.HttpResponseMessage.StatusCode == System.Net.HttpStatusCode.Unauthorized)
                 {
                     MessageBox.Show("Niste authentificirani");
                 }

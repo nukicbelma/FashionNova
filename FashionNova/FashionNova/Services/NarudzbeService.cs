@@ -11,10 +11,10 @@ namespace FashionNova.WebAPI.Services
 {
     public class NarudzbeService : INarudzbeService
     {
-        private readonly FashionNova.WebAPI.Database.FashionNova_IB170007Context _context;
+        private readonly FashionNova.WebAPI.Database.IB170007Context _context;
         private readonly IMapper _mapper;
 
-        public NarudzbeService(FashionNova.WebAPI.Database.FashionNova_IB170007Context context, IMapper mapper)
+        public NarudzbeService(FashionNova.WebAPI.Database.IB170007Context context, IMapper mapper)
         {
             _context = context;
             _mapper = mapper;
@@ -28,7 +28,7 @@ namespace FashionNova.WebAPI.Services
             }
             if ((!string.IsNullOrWhiteSpace((search?.KlijentId).ToString())) && search?.KlijentId != 0)
             {
-                query = query.Where(x => x.KlijentId == search.KlijentId);
+                query = query.Where(x => x.KlijentiId == search.KlijentId);
             }
             if (!string.IsNullOrWhiteSpace(search?.DatumOD) && !string.IsNullOrWhiteSpace(search?.DatumDO) && search.DatumOD!=null && search.DatumDO!=null)
             {
@@ -41,7 +41,7 @@ namespace FashionNova.WebAPI.Services
             //return _mapper.Map<List<Narudzba>>(list);
 
 
-            var result = _context.Narudzba.Include(y => y.Korisnik).Include(y=>y.Klijent).ToList();
+            var result = _context.Narudzba.Include(y => y.Korisnici).Include(y=>y.Klijenti).ToList();
             var korisnici = _context.Korisnici.AsQueryable().ToList();
             var klijenti = _context.Klijenti.AsQueryable().ToList();
             List<Narudzba> lista = new List<Narudzba>();
@@ -53,16 +53,16 @@ namespace FashionNova.WebAPI.Services
                 nova.BrojNarudzbe = item.BrojNarudzbe;
                 nova.IznosBezPdv = item.IznosBezPdv;
                 nova.IznosSaPdv = item.IznosSaPdv;
-                nova.KorisnikId = item.KorisnikId;
+                nova.KorisnikId = item.KorisniciId;
                 foreach (var k in korisnici)
                 {
-                    if(k.KorisnikId==item.KorisnikId)
+                    if(k.KorisniciId ==item.KorisniciId)
                         nova.Korisnik = k.Ime + " " + k.Prezime;
                 }
-                nova.KlijentId = item.KlijentId;
+                nova.KlijentId = item.KlijentiId;
                 foreach (var k in klijenti)
                 {
-                    if (k.KlijentId == item.KlijentId)
+                    if (k.KlijentiId == item.KlijentiId)
                         nova.Klijent = k.Ime + " " + k.Prezime;
                 }
                 nova.DatumNarudzbe = item.DatumNarudzbe;
@@ -91,8 +91,8 @@ namespace FashionNova.WebAPI.Services
             {
                 nova.IznosSaPdv = request.IznosSaPdv;
             }
-            nova.KorisnikId = request.KorisnikId;
-            nova.KlijentId = request.KlijentId;
+            nova.KorisniciId = request.KorisnikId;
+            nova.KlijentiId = request.KlijentId;
 
             _context.Narudzba.Add(nova);
             _context.SaveChanges();
@@ -105,7 +105,7 @@ namespace FashionNova.WebAPI.Services
                 stavka.Popust = Convert.ToDecimal(item.Popust);
                 stavka.Kolicina = item.Kolicina;
                 stavka.Cijena = item.Cijena;
-                stavka.ArtikalId = item.ArtikalId;
+                stavka.ArtikliId = item.ArtikalId;
 
                 _context.NarudzbaStavke.Add(stavka);
                 _context.SaveChanges();

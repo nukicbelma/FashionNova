@@ -1,6 +1,7 @@
 ﻿using FashionNova.Model.Models;
 using FashionNova.Model.Requests;
 using FashionNova.WebAPI.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -11,6 +12,7 @@ namespace FashionNova.WebAPI.Controllers
 {
     [ApiController]
     [Route("[controller]")]
+    [Authorize]
     public class UlogeController : ControllerBase
     {
         private readonly IUlogeService _service;

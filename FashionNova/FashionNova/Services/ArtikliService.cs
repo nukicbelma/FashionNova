@@ -13,8 +13,8 @@ namespace FashionNova.WebAPI.Services
     public class ArtikliService : IArtikliService
     {
         private readonly IMapper _mapper;
-        private readonly FashionNova.WebAPI.Database.FashionNova_IB170007Context _context;
-        public ArtikliService(FashionNova.WebAPI.Database.FashionNova_IB170007Context context, IMapper mapper)
+        private readonly FashionNova.WebAPI.Database.IB170007Context _context;
+        public ArtikliService(FashionNova.WebAPI.Database.IB170007Context context, IMapper mapper)
         {
             _context = context;
             _mapper = mapper;
@@ -58,7 +58,7 @@ namespace FashionNova.WebAPI.Services
 
                 Artikli nova = new Artikli();
 
-                nova.ArtikalId = item.ArtikalId;
+                nova.ArtikalId = item.ArtikliId;
                 nova.Cijena = item.Cijena;
                 nova.BojaId = item.BojaId;
                 nova.MaterijalId = item.MaterijalId;
@@ -96,13 +96,16 @@ namespace FashionNova.WebAPI.Services
                 decimal suma = 0; int brojac = 0;
                 foreach (var ocj in ocjene)
                 {
-                    if (item.ArtikalId == ocj.ArtikalId)
+                    if (item.ArtikliId == ocj.ArtikliId)
                     {
                         brojac++;
                         suma += ocj.Ocjena;
                     }
                 }
-                suma /= brojac;
+                if (brojac > 0)
+                {
+                    suma /= brojac;
+                }
                 nova.prosjecnaOcjena = Math.Round(suma, 2);
 
                 result.Add(nova);

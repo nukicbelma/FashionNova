@@ -11,6 +11,7 @@ namespace FashionNova.Controllers
 {
     [ApiController]
     [Route("[controller]")]
+    [Authorize]
     public class ArtikliController : ControllerBase
     {
         private readonly IArtikliService _service;
@@ -24,29 +25,36 @@ namespace FashionNova.Controllers
         {
             return _service.Get(search);
         }
+
         [HttpGet("{id}")]
         public FashionNova.Model.Models.Artikli GetById(int id)
         {
             return _service.GetById(id);
         }
+
         [HttpGet]
         [Route("GetBySifra/{sifra}")]
         public FashionNova.Model.Models.Artikli GetBySifra(string sifra)
         {
             return _service.GetBySifra(sifra);
         }
+
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         public void Insert(ArtikliInsertRequest request)
         {
             _service.Insert(request);
         }
+
         [HttpPut("{id}")]
+        [Authorize(Roles = "Admin, Uposlenik")]
         public void Update(int id, [FromBody] ArtikliUpdateRequest request)
         {
             _service.Update(id, request);
         }
 
         [HttpDelete("{id}")]
+        [Authorize(Roles = "Admin")]
         public async Task<bool> Delete(int id)
         {
             return await _service.Delete(id);

@@ -11,6 +11,7 @@ namespace FashionNova.Controllers
 {
     [ApiController]
     [Route("[controller]")]
+    [Authorize]
     public class OcjeneController : ControllerBase
     {
         private readonly IOcjeneService _service;
@@ -30,11 +31,5 @@ namespace FashionNova.Controllers
         {
             return await _service.Insert(request);
         }
-
-        //[HttpPut("{id}")]
-        //public FashionNova.Model.Models.Boja Update(int id, [FromBody] BojaUpdateRequest request)
-        //{
-        //    return _service.Update(id, request);
-        //}
     }
 }

@@ -11,6 +11,7 @@ namespace FashionNova.Controllers
 {
     [ApiController]
     [Route("[controller]")]
+    [Authorize]
     public class VelicinaController : ControllerBase
     {
         private readonly IVelicinaService _service;
@@ -31,15 +32,10 @@ namespace FashionNova.Controllers
             return _service.GetById(id);
         }
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         public async Task<FashionNova.Model.Models.Velicina> Insert([FromBody] VelicinaInsertRequest request)
         {
             return await _service.Insert(request);
         }
-
-        //[HttpPut("{id}")]
-        //public FashionNova.Model.Models.Boja Update(int id, [FromBody] BojaUpdateRequest request)
-        //{
-        //    return _service.Update(id, request);
-        //}
     }
 }

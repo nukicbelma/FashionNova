@@ -11,6 +11,7 @@ namespace FashionNova.Controllers
 {
     [ApiController]
     [Route("[controller]")]
+    [Authorize]
     public class NarudzbaStavkeController : ControllerBase
     {
         private readonly INarudzbaStavkeService _service;

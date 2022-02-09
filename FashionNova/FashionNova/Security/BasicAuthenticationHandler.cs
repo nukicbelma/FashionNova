@@ -1,5 +1,4 @@
-﻿using FashionNova.Services;
-using Microsoft.AspNetCore.Authentication;
+﻿using Microsoft.AspNetCore.Authentication;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using FashionNova.Model.Models;
@@ -12,8 +11,9 @@ using System.Security.Claims;
 using System.Text;
 using System.Text.Encodings.Web;
 using System.Threading.Tasks;
+using FashionNova.Services;
 
-namespace FashionNova.WebAPI.Autentifikacija
+namespace FashionNova.WebAPI.Security
 {
     public class BasicAuthenticationHandler : AuthenticationHandler<AuthenticationSchemeOptions>
     {
@@ -32,6 +32,8 @@ namespace FashionNova.WebAPI.Autentifikacija
 
             _userService = userService;
             _clientService = clientService;
+
+
         }
 
         protected override async Task<AuthenticateResult> HandleAuthenticateAsync()
@@ -39,8 +41,8 @@ namespace FashionNova.WebAPI.Autentifikacija
             if (!Request.Headers.ContainsKey("Authorization"))
                 return AuthenticateResult.Fail("Missing Authorization Header");
 
-            FashionNova.Model.Models.Korisnici user = null;
-            FashionNova.Model.Models.Klijenti client = null;
+            Model.Models.Korisnici user = null;
+            Model.Models.Klijenti client = null;
             try
             {
                 var authHeader = AuthenticationHeaderValue.Parse(Request.Headers["Authorization"]);
@@ -48,7 +50,7 @@ namespace FashionNova.WebAPI.Autentifikacija
                 var credentials = Encoding.UTF8.GetString(credentialBytes).Split(':');
                 var username = credentials[0];
                 var password = credentials[1];
-                user = _userService.Authenticiraj(username, password);
+                user =  _userService.Authenticiraj(username, password);
                 if (user == null)
                     client = _clientService.Authenticiraj(username, password);
             }
@@ -76,7 +78,7 @@ namespace FashionNova.WebAPI.Autentifikacija
             {
                 claims.Add(new Claim(ClaimTypes.NameIdentifier, client.KorisnickoIme));
                 claims.Add(new Claim(ClaimTypes.Name, client.Ime));
-                claims.Add(new Claim(ClaimTypes.Role, "Klijent"));
+                claims.Add(new Claim(ClaimTypes.Role, "Klijenti"));
             }
 
             var identity = new ClaimsIdentity(claims, Scheme.Name);

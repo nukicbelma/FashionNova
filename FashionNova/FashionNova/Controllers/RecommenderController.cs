@@ -11,6 +11,7 @@ namespace FashionNova.WebAPI.Controllers
 {
     [ApiController]
     [Route("[controller]")]
+    [Authorize]
     public class RecommenderController : ControllerBase
     {
         private readonly IRecommender _service;

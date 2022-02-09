@@ -17,32 +17,24 @@ namespace FashionNova.Services
 
     {
         private readonly IMapper _mapper;
-        private readonly FashionNova.WebAPI.Database.FashionNova_IB170007Context _context;
+        private readonly FashionNova.WebAPI.Database.IB170007Context _context;
 
-        public KorisniciService(FashionNova.WebAPI.Database.FashionNova_IB170007Context context, IMapper mapper)
+        public KorisniciService(FashionNova.WebAPI.Database.IB170007Context context, IMapper mapper)
         {
             _context = context;
             _mapper = mapper;
         }
-        public IList<Korisnici> Get(KorisniciSearchRequest search)
+        public List<Korisnici> Get(KorisniciSearchRequest search)
         {
             var query = _context.Korisnici.AsQueryable();
 
             if (!string.IsNullOrWhiteSpace(search?.Ime))
             {
-                query = query.Where(x => x.Ime == search.Ime);
+                query = query.Where(x => x.Ime.ToLower().StartsWith(search.Ime.ToLower()));
             }
+            var list = query.ToList();
 
-            //if (!string.IsNullOrWhiteSpace(search?.PrezimeFilter))
-            //{
-            //    query = query.Where(x => x.Prezime == search.PrezimeFilter);
-            //}
-
-            var entities = query.ToList();
-            var result = _mapper.Map<IList<FashionNova.Model.Models.Korisnici>>(entities);
-
-
-            return result;
+            return _mapper.Map<List<Korisnici>>(list);
         }
 
         public Korisnici GetById(int id)
@@ -70,8 +62,8 @@ namespace FashionNova.Services
             foreach (var uloga in request.Uloge)
             {
                 FashionNova.WebAPI.Database.KorisniciUloge korisniciUloge = new FashionNova.WebAPI.Database.KorisniciUloge();
-                korisniciUloge.KorisnikId = entity.KorisnikId;
-                korisniciUloge.UlogaId = uloga;
+                korisniciUloge.KorisniciId = entity.KorisniciId;
+                korisniciUloge.UlogeId = uloga;
                 korisniciUloge.DatumIzmjene = DateTime.Now;
                 _context.KorisniciUloge.Add(korisniciUloge);
             }
@@ -80,7 +72,7 @@ namespace FashionNova.Services
 
         public void Update(int id, KorisniciUpdateRequest request)
         {
-            var entity = _context.Korisnici.Where(x => x.KorisnikId == id).FirstOrDefault();
+            var entity = _context.Korisnici.Where(x => x.KorisniciId == id).FirstOrDefault();
             if (!string.IsNullOrWhiteSpace(request.Password))
             {
                 if (request.Password != request.PasswordPotvrda)
@@ -91,17 +83,17 @@ namespace FashionNova.Services
                 entity.LozinkaHash = GenerateHash(entity.LozinkaSalt, request.Password);
             }
 
-            var ulogeKorisnik = _context.KorisniciUloge.Where(x => x.KorisnikId == id).ToList();
+            var ulogeKorisnik = _context.KorisniciUloge.Where(x => x.KorisniciId == id).ToList();
 
             foreach (int item in request.Uloge)
             {
-                var uloga = _context.Uloge.Where(x => x.UlogaId == item).FirstOrDefault();
+                var uloga = _context.Uloge.Where(x => x.UlogeId == item).FirstOrDefault();
 
-                var imaUlogu = ulogeKorisnik.Where(x => x.KorisnikUlogaId == uloga.UlogaId).FirstOrDefault();
+                var imaUlogu = ulogeKorisnik.Where(x => x.KorisniciUlogeId == uloga.UlogeId).FirstOrDefault();
 
                 if (imaUlogu == null)
                 {
-                    var korisnikUloga = new FashionNova.WebAPI.Database.KorisniciUloge() { KorisnikId = entity.KorisnikId, UlogaId = uloga.UlogaId, DatumIzmjene = DateTime.Now };
+                    var korisnikUloga = new FashionNova.WebAPI.Database.KorisniciUloge() { KorisniciId = entity.KorisniciId, UlogeId = uloga.UlogeId, DatumIzmjene = DateTime.Now };
 
                     entity.KorisniciUloge.Add(korisnikUloga);
                 }
@@ -140,14 +132,14 @@ namespace FashionNova.Services
 
             if (entity == null)
             {
-                //throw new UserException("Pogresan username ili password");
+                throw new UserException("Pogresan username ili password");
             }
 
             var hash = GenerateHash(entity.LozinkaSalt, password);
 
             if (hash != entity.LozinkaHash)
             {
-                //throw new UserException("Pogresan username ili password");
+                throw new UserException("Pogresan username ili password");
             }
             return _mapper.Map<FashionNova.Model.Models.Korisnici>(entity);
         }
@@ -161,7 +153,7 @@ namespace FashionNova.Services
 
                 if (hashedPass == user.LozinkaHash)
                 {
-                    var uloge = _context.KorisniciUloge.Include(x => x.Uloga).Where(x => x.KorisnikId == user.KorisnikId);
+                    var uloge = _context.KorisniciUloge.Include(x => x.Uloge).Where(x => x.KorisniciId == user.KorisniciId);
                     Korisnici novikorisnik = new Korisnici();
 
                     foreach (var item in uloge)
@@ -171,14 +163,14 @@ namespace FashionNova.Services
                         novikorisnik.KorisniciUloge.Add(new KorisniciUloge
                         {
                             DatumIzmjene = item.DatumIzmjene,
-                            KorisnikId = item.KorisnikId,
-                            UlogaId = item.UlogaId,
-                            KorisnikUlogaId = item.KorisnikUlogaId,
+                            KorisnikId = item.KorisniciId,
+                            UlogaId = item.UlogeId,
+                            KorisnikUlogaId = item.KorisniciUlogeId,
                             Uloga = new Uloge
                             {
-                                Naziv = item.Uloga.Naziv,
-                                OpisUloge = item.Uloga.OpisUloge,
-                                UlogaId = item.Uloga.UlogaId
+                                Naziv = item.Uloge.Naziv,
+                                OpisUloge = item.Uloge.OpisUloge,
+                                UlogaId = item.Uloge.UlogeId
                             }
                         });
                     }
@@ -186,13 +178,12 @@ namespace FashionNova.Services
                     novikorisnik.Prezime = user.Prezime;
                     novikorisnik.KorisnickoIme = user.KorisnickoIme;
                     novikorisnik.Email = user.Email;
-                    novikorisnik.KorisnikId = user.KorisnikId;
+                    novikorisnik.KorisnikId = user.KorisniciId;
                     novikorisnik.Telefon = user.Telefon;
 
                     return novikorisnik;
                 }
             }
-
             return null;
         }
     }

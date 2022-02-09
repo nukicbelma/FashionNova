@@ -10,10 +10,10 @@ namespace FashionNova.WebAPI.Services
 {
     public class UlogeService : IUlogeService
     {
-        private readonly FashionNova.WebAPI.Database.FashionNova_IB170007Context _context;
+        private readonly FashionNova.WebAPI.Database.IB170007Context _context;
         private readonly IMapper _mapper;
 
-        public UlogeService(FashionNova.WebAPI.Database.FashionNova_IB170007Context context, IMapper mapper)
+        public UlogeService(FashionNova.WebAPI.Database.IB170007Context context, IMapper mapper)
         {
             _context = context;
             _mapper = mapper;
@@ -28,7 +28,7 @@ namespace FashionNova.WebAPI.Services
                 Uloge uloga = new Uloge();
                 uloga.Naziv = item.Naziv;
                 uloga.OpisUloge = item.OpisUloge;
-                uloga.UlogaId = item.UlogaId;
+                uloga.UlogaId = item.UlogeId;
 
                 result.Add(uloga);
             }
@@ -42,13 +42,13 @@ namespace FashionNova.WebAPI.Services
 
             foreach (var item in lista)
             {
-                if (item.UlogaId == UlogaId)
+                if (item.UlogeId == UlogaId)
                 {
                     if (item.Naziv.Contains("Admin"))
                     {
                         result.Naziv = item.Naziv;
                         result.OpisUloge = item.OpisUloge;
-                        result.UlogaId = item.UlogaId;
+                        result.UlogaId = item.UlogeId;
 
                         return result;
                     }

@@ -13,10 +13,10 @@ namespace FashionNova.WebAPI.Services
 {
     public class OcjeneService : IOcjeneService
     {
-        private readonly FashionNova.WebAPI.Database.FashionNova_IB170007Context _context;
+        private readonly FashionNova.WebAPI.Database.IB170007Context _context;
         private readonly IMapper _mapper;
 
-        public OcjeneService(FashionNova.WebAPI.Database.FashionNova_IB170007Context context, IMapper mapper)
+        public OcjeneService(FashionNova.WebAPI.Database.IB170007Context context, IMapper mapper)
         {
             _context = context;
             _mapper = mapper;
@@ -26,7 +26,7 @@ namespace FashionNova.WebAPI.Services
             var query = _context.Ocjene.AsQueryable();
             if ((!string.IsNullOrWhiteSpace((search?.ArtikalId).ToString())) && search?.ArtikalId != 0)
             {
-                query = query.Where(x => x.ArtikalId == search.ArtikalId);
+                query = query.Where(x => x.ArtikliId == search.ArtikalId);
             }
             var list = query.ToList();
             return _mapper.Map<List<Ocjene>>(list);
