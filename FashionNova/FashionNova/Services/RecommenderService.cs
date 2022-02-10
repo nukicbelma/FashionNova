@@ -136,7 +136,7 @@ namespace FashionNova.WebAPI.Service
                 decimal suma = 0; int brojac = 0;
                 foreach (var ocj in ocjene)
                 {
-                    if(item.ArtikalId==ocj.ArtikliId)
+                    if(item.ArtikliId==ocj.ArtikliId)
                     {
                         brojac++;
                         suma += ocj.Ocjena;

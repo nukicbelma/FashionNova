@@ -6,7 +6,7 @@ namespace FashionNova.Model.Models
 {
     public class Artikli
     {
-        public int ArtikalId { get; set; }
+        public int ArtikliId { get; set; }
         public string Sifra { get; set; }
         public string Naziv { get; set; }
         public decimal? Cijena { get; set; }

@@ -25,7 +25,7 @@ namespace FashionNova.Mobile.Views
             InitializeComponent();
             BindingContext = model = new MojProfilViewModel();
             inputIme.Text = PrijavljeniKlijentService.PrijavljeniKlijent.Ime;
-            inputKlijentId.Text = PrijavljeniKlijentService.PrijavljeniKlijent.KlijentId.ToString();
+            inputKlijentId.Text = PrijavljeniKlijentService.PrijavljeniKlijent.KlijentiId.ToString();
             inputPrezime.Text = PrijavljeniKlijentService.PrijavljeniKlijent.Prezime;
             inputEmail.Text = PrijavljeniKlijentService.PrijavljeniKlijent.Email;
             inputPassword.Text = "";
@@ -48,7 +48,7 @@ namespace FashionNova.Mobile.Views
 
             foreach (var item in lista)
             {
-                if (item.Email.Equals(inputEmail.Text) == true && item.KlijentId.ToString()!=inputKlijentId.Text)
+                if (item.Email.Equals(inputEmail.Text) == true && item.KlijentiId.ToString()!=inputKlijentId.Text)
                 {
                     dupliemail = true;
                 }

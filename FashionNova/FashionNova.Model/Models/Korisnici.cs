@@ -12,7 +12,7 @@ namespace FashionNova.Model.Models
             //Narudzbe = new HashSet<Narudzbe>();
         }
 
-        public int KorisnikId { get; set; }
+        public int KorisniciId { get; set; }
         public string Ime { get; set; }
         public string Prezime { get; set; }
         public string Email { get; set; }

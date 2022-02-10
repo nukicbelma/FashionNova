@@ -40,7 +40,7 @@ namespace FashionNova.Mobile.ViewModels
             {
                 foreach (var artikal in slike)
                 {
-                    if (item.ArtikalId == artikal.ArtikalId)
+                    if (item.ArtikalId == artikal.ArtikliId)
                         item.SlikaArtikla = artikal.Slika;
                 }
             }

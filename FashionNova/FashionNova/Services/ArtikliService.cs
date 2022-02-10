@@ -58,7 +58,7 @@ namespace FashionNova.WebAPI.Services
 
                 Artikli nova = new Artikli();
 
-                nova.ArtikalId = item.ArtikliId;
+                nova.ArtikliId = item.ArtikliId;
                 nova.Cijena = item.Cijena;
                 nova.BojaId = item.BojaId;
                 nova.MaterijalId = item.MaterijalId;

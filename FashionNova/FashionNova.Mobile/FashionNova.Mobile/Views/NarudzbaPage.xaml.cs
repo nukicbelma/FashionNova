@@ -58,14 +58,14 @@ namespace FashionNova.Mobile.Views
 
             request.BrojNarudzbe = neki;
             request.DatumNarudzbe = DateTime.Now;
-            request.KlijentId = PrijavljeniKlijentService.PrijavljeniKlijent.KlijentId;
+            request.KlijentId = PrijavljeniKlijentService.PrijavljeniKlijent.KlijentiId;
             request.KorisnikId = 3003;
 
             foreach (var item in model.NarudzbaList)
             {
                 NarudzbaStavkeInsertRequest stavka = new NarudzbaStavkeInsertRequest();
 
-                stavka.ArtikalId = item.Artikal.ArtikalId;
+                stavka.ArtikalId = item.Artikal.ArtikliId;
                 stavka.Cijena = Convert.ToDecimal(item.Artikal.Cijena);
                 stavka.Kolicina = item.Kolicina;
                 stavka.Popust = 0;

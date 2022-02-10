@@ -17,9 +17,7 @@ namespace FashionNova.Mobile.ViewModels
         public HistorijaNarudzbiViewModel()
         {
             InitCommand = new Command(async () => await Init());
-            KlijentId = PrijavljeniKlijentService.PrijavljeniKlijent.KlijentId.ToString();
-
-
+            KlijentId = PrijavljeniKlijentService.PrijavljeniKlijent.KlijentiId.ToString();
         }
         public ObservableCollection<Narudzba> ListaNarudzbi { get; set; } = new ObservableCollection<Narudzba>();
         public ICommand InitCommand { get; set; }
@@ -29,7 +27,7 @@ namespace FashionNova.Mobile.ViewModels
             ListaNarudzbi.Clear();
             foreach (var item in lista)
             {
-                if (item.KlijentId == PrijavljeniKlijentService.PrijavljeniKlijent.KlijentId)
+                if (item.KlijentId == PrijavljeniKlijentService.PrijavljeniKlijent.KlijentiId)
                 {
                     ListaNarudzbi.Add(item);
                     KlijentId = item.KlijentId.ToString();

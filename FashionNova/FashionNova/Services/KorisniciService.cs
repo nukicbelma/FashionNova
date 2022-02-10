@@ -178,7 +178,7 @@ namespace FashionNova.Services
                     novikorisnik.Prezime = user.Prezime;
                     novikorisnik.KorisnickoIme = user.KorisnickoIme;
                     novikorisnik.Email = user.Email;
-                    novikorisnik.KorisnikId = user.KorisniciId;
+                    novikorisnik.KorisniciId = user.KorisniciId;
                     novikorisnik.Telefon = user.Telefon;
 
                     return novikorisnik;

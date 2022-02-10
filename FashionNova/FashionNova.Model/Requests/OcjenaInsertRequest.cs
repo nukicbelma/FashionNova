@@ -8,9 +8,9 @@ namespace FashionNova.Model.Requests
     public class OcjenaInsertRequest
     {
         [Required]
-        public int ArtikalId { get; set; }
+        public int ArtikliId { get; set; }
         [Required]
-        public int KlijentId { get; set; }
+        public int KlijentiId { get; set; }
         [Required]
         public DateTime Datum { get; set; }
         [Required]

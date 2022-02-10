@@ -79,7 +79,7 @@ namespace FashionNova.Mobile.ViewModels
             //}
 
             SistemPreporukeList.Clear();
-            var lista = await _sistemPreporuke.GetSlicneArtikle<List<Artikli>>(Artikal.ArtikalId);
+            var lista = await _sistemPreporuke.GetSlicneArtikle<List<Artikli>>(Artikal.ArtikliId);
             var listaocjena2 = await _ocjeneService.Get<List<Ocjene>>(null);
             foreach (var item in lista)
             {
@@ -91,8 +91,8 @@ namespace FashionNova.Mobile.ViewModels
         {
             OcjenaInsertRequest x = new OcjenaInsertRequest
             {
-                ArtikalId = Artikal.ArtikalId,
-                KlijentId = PrijavljeniKlijentService.PrijavljeniKlijent.KlijentId,
+                ArtikliId = Artikal.ArtikliId,
+                KlijentiId = PrijavljeniKlijentService.PrijavljeniKlijent.KlijentiId,
                 Ocjena = ocjena,
                 Datum = DateTime.Now
             };
@@ -105,7 +105,7 @@ namespace FashionNova.Mobile.ViewModels
             listaocjena = await _ocjeneService.Get<List<Ocjene>>(null);
             foreach (var item in listaocjena)
             {
-                if (Artikal.ArtikalId == item.ArtikalId)
+                if (Artikal.ArtikliId == item.ArtikliId)
                 {
                     OcjeneArtiklaList.Add(item);
                 }
@@ -120,7 +120,7 @@ namespace FashionNova.Mobile.ViewModels
             }
             foreach (var item in listaocjena)
             {
-                if (Artikal.ArtikalId == item.ArtikalId)
+                if (Artikal.ArtikliId == item.ArtikliId)
                 {
                     Artikal.prosjecnaOcjena = Math.Round(Convert.ToDecimal(ProsjecnaOcjena),2);
                 }
@@ -166,11 +166,11 @@ namespace FashionNova.Mobile.ViewModels
         {
             if (Kolicina > 0)
             {
-                if (CartService.Cart.ContainsKey(Artikal.ArtikalId))
+                if (CartService.Cart.ContainsKey(Artikal.ArtikliId))
                 {
-                    CartService.Cart.Remove(Artikal.ArtikalId);
+                    CartService.Cart.Remove(Artikal.ArtikliId);
                 }
-                CartService.Cart.Add(Artikal.ArtikalId, this);
+                CartService.Cart.Add(Artikal.ArtikliId, this);
                 App.Current.MainPage.DisplayAlert("Hvala Vam!", "Uspješno ste artikal dodali u korpu.", "OK");
             }
             else

@@ -11,7 +11,7 @@ namespace FashionNova.Model.Models
         //    Ocjene = new HashSet<Ocjene>();
         //}
 
-        public int KlijentId { get; set; }
+        public int KlijentiId { get; set; }
         public string Ime { get; set; }
         public string Prezime { get; set; }
         public string Email { get; set; }

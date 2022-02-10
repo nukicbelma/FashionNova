@@ -47,7 +47,7 @@ namespace FashionNova.Mobile.Views
             var artikli = await _serviceArtikli.Get<List<Artikli>>(null);
             foreach (var artikal in artikli)
             {
-                if (item.ArtikalId == artikal.ArtikalId)
+                if (item.ArtikalId == artikal.ArtikliId)
                     selected = artikal;
             }
             await Navigation.PushAsync(new ArtikliDetaljiPage(selected));

@@ -31,16 +31,16 @@ namespace FashionNova.WinUI.Reports
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmArtikalOcjenaReport));
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.OcjenaId = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.KlijentId = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ArtikalId = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Ocjena = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnPrintaj = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.cmbVrstaArtikla = new System.Windows.Forms.ComboBox();
             this.printDocument1 = new System.Drawing.Printing.PrintDocument();
             this.printPreviewDialog1 = new System.Windows.Forms.PrintPreviewDialog();
+            this.OcjeneId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.KlijentiId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ArtikalId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Ocjena = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -48,8 +48,8 @@ namespace FashionNova.WinUI.Reports
             // 
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.OcjenaId,
-            this.KlijentId,
+            this.OcjeneId,
+            this.KlijentiId,
             this.ArtikalId,
             this.Ocjena});
             this.dataGridView1.Location = new System.Drawing.Point(12, 90);
@@ -57,31 +57,6 @@ namespace FashionNova.WinUI.Reports
             this.dataGridView1.RowTemplate.Height = 25;
             this.dataGridView1.Size = new System.Drawing.Size(565, 218);
             this.dataGridView1.TabIndex = 0;
-            // 
-            // OcjenaId
-            // 
-            this.OcjenaId.DataPropertyName = "OcjenaId";
-            this.OcjenaId.HeaderText = "OcjenaId";
-            this.OcjenaId.Name = "OcjenaId";
-            // 
-            // KlijentId
-            // 
-            this.KlijentId.DataPropertyName = "KlijentId";
-            this.KlijentId.HeaderText = "KlijentId";
-            this.KlijentId.Name = "KlijentId";
-            // 
-            // ArtikalId
-            // 
-            this.ArtikalId.DataPropertyName = "ArtikalId";
-            this.ArtikalId.HeaderText = "ArtikalId";
-            this.ArtikalId.Name = "ArtikalId";
-            // 
-            // Ocjena
-            // 
-            this.Ocjena.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Ocjena.DataPropertyName = "Ocjena";
-            this.Ocjena.HeaderText = "Ocjena";
-            this.Ocjena.Name = "Ocjena";
             // 
             // btnPrintaj
             // 
@@ -132,6 +107,31 @@ namespace FashionNova.WinUI.Reports
             this.printPreviewDialog1.Name = "printPreviewDialog1";
             this.printPreviewDialog1.Visible = false;
             // 
+            // OcjeneId
+            // 
+            this.OcjeneId.DataPropertyName = "OcjeneId";
+            this.OcjeneId.HeaderText = "OcjenaId";
+            this.OcjeneId.Name = "OcjeneId";
+            // 
+            // KlijentiId
+            // 
+            this.KlijentiId.DataPropertyName = "KlijentiId";
+            this.KlijentiId.HeaderText = "KlijentId";
+            this.KlijentiId.Name = "KlijentiId";
+            // 
+            // ArtikalId
+            // 
+            this.ArtikalId.DataPropertyName = "ArtikliId";
+            this.ArtikalId.HeaderText = "ArtikalId";
+            this.ArtikalId.Name = "ArtikalId";
+            // 
+            // Ocjena
+            // 
+            this.Ocjena.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Ocjena.DataPropertyName = "Ocjena";
+            this.Ocjena.HeaderText = "Ocjena";
+            this.Ocjena.Name = "Ocjena";
+            // 
             // frmArtikalOcjenaReport
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -165,8 +165,8 @@ namespace FashionNova.WinUI.Reports
         private System.Windows.Forms.ComboBox cmbVrstaArtikla;
         private System.Drawing.Printing.PrintDocument printDocument1;
         private System.Windows.Forms.PrintPreviewDialog printPreviewDialog1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn OcjenaId;
-        private System.Windows.Forms.DataGridViewTextBoxColumn KlijentId;
+        private System.Windows.Forms.DataGridViewTextBoxColumn OcjeneId;
+        private System.Windows.Forms.DataGridViewTextBoxColumn KlijentiId;
         private System.Windows.Forms.DataGridViewTextBoxColumn ArtikalId;
         private System.Windows.Forms.DataGridViewTextBoxColumn Ocjena;
     }
