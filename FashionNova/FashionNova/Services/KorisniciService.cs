@@ -163,10 +163,10 @@ namespace FashionNova.Services
                         novikorisnik.KorisniciUloge.Add(new KorisniciUloge
                         {
                             DatumIzmjene = item.DatumIzmjene,
-                            KorisnikId = item.KorisniciId,
-                            UlogaId = item.UlogeId,
-                            KorisnikUlogaId = item.KorisniciUlogeId,
-                            Uloga = new Uloge
+                            KorisniciId = item.KorisniciId,
+                            UlogeId = item.UlogeId,
+                            KorisniciUlogeId = item.KorisniciUlogeId,
+                            Uloge = new Uloge
                             {
                                 Naziv = item.Uloge.Naziv,
                                 OpisUloge = item.Uloge.OpisUloge,

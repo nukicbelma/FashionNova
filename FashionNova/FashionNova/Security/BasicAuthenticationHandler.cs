@@ -71,7 +71,7 @@ namespace FashionNova.WebAPI.Security
 
                 foreach (var role in user.KorisniciUloge)
                 {
-                    claims.Add(new Claim(ClaimTypes.Role, role.Uloga.Naziv));
+                    claims.Add(new Claim(ClaimTypes.Role, role.Uloge.Naziv));
                 }
             }
             else

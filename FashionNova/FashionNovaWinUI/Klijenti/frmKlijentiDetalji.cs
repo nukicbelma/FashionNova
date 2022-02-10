@@ -45,7 +45,7 @@ namespace FashionNova.WinUI.Klijenti
         {
             var request = new NarudzbeSearchRequest()
             {
-                KlijentId = klijent.KlijentId
+                KlijentId = klijent.KlijentiId
             };
             var result = await _narudzbeService.Get<List<FashionNova.Model.Models.Narudzba>>(request);
             dataGridView1.DataSource = result;
@@ -54,7 +54,7 @@ namespace FashionNova.WinUI.Klijenti
         {
             var request = new NarudzbeSearchRequest()
             {
-                KlijentId = klijent.KlijentId, 
+                KlijentId = klijent.KlijentiId, 
                 BrojNarudzbe=txtPretraga.Text
             };
             var result = await _narudzbeService.Get<List<FashionNova.Model.Models.Narudzba>>(request);

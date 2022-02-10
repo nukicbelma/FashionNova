@@ -39,7 +39,7 @@ namespace FashionNova.WinUI.Pocetna
 
                 foreach (var item in PrijavljeniKorisnikService.PrijavljeniKorisnik.KorisniciUloge)
                 {
-                    ulogaId1 = item.UlogaId;
+                    ulogaId1 = item.UlogeId;
 
                 }
                 admin = await _serviceuloge.ProvjeriAdmin<Uloge>(ulogaId1);
@@ -51,12 +51,12 @@ namespace FashionNova.WinUI.Pocetna
                 MessageBox.Show("Dobrodosli " + korisnik.Ime + " " + korisnik.Prezime);
                 DialogResult = DialogResult.OK;
                
-                if(korisnik.KorisniciUloge.FirstOrDefault().UlogaId==1)
+                if(korisnik.KorisniciUloge.FirstOrDefault().UlogeId==1)
                 {
                     var admin = new HomepageAdmin();
                     admin.ShowDialog();
                 }
-                else if(korisnik.KorisniciUloge.FirstOrDefault().UlogaId==2)
+                else if(korisnik.KorisniciUloge.FirstOrDefault().UlogeId==2)
                 {
                     var uposlenik = new HomepageUposlenik();
                     uposlenik.ShowDialog();

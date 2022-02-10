@@ -57,7 +57,7 @@ namespace FashionNova.Security
 
             foreach (var role in user.KorisniciUloge)
             {
-                claims.Add(new Claim(ClaimTypes.Role, role.Uloga.Naziv));
+                claims.Add(new Claim(ClaimTypes.Role, role.Uloge.Naziv));
             }
 
             var identity = new ClaimsIdentity(claims, Scheme.Name);

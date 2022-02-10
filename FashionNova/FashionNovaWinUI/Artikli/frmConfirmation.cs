@@ -27,9 +27,9 @@ namespace FashionNova.WinUI.Artikli
 
         private async void btnDa_Click(object sender, EventArgs e)
         {
-            if (await _artikli.Delete<bool>(selectedArtikal.ArtikalId))
+            if (await _artikli.Delete<bool>(selectedArtikal.ArtikliId))
             {
-                MessageBox.Show($"Uspjesno ste obrisali artikal s id-em:: {selectedArtikal.ArtikalId}!");
+                MessageBox.Show($"Uspjesno ste obrisali artikal s id-em:: {selectedArtikal.ArtikliId}!");
                 DialogResult = DialogResult.Yes;
             }
         }

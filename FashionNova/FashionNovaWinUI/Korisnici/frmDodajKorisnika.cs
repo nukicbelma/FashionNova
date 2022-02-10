@@ -66,7 +66,7 @@ namespace FashionNova.WinUI.Korisnici
                     //Status = chkStatus.Checked
                 };
 
-                var korisnik = await korisniciService.Update<FashionNova.Model.Models.Korisnici>(_korisnik.KorisnikId, request);
+                var korisnik = await korisniciService.Update<FashionNova.Model.Models.Korisnici>(_korisnik.KorisniciId, request);
 
             }
             MessageBox.Show("Uspjesno ste dodali novog korisnika.");

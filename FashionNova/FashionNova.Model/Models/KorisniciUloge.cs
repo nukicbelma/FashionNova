@@ -6,12 +6,12 @@ namespace FashionNova.Model.Models
 {
     public class KorisniciUloge
     {
-        public int KorisnikUlogaId { get; set; }
+        public int KorisniciUlogeId { get; set; }
         public DateTime? DatumIzmjene { get; set; }
-        public int KorisnikId { get; set; }
-        public int UlogaId { get; set; }
+        public int KorisniciId { get; set; }
+        public int UlogeId { get; set; }
 
-        public virtual Korisnici Korisnik { get; set; }
-        public virtual Uloge Uloga { get; set; }
+        public virtual Korisnici Korisnici { get; set; }
+        public virtual Uloge Uloge { get; set; }
     }
 }

@@ -138,7 +138,7 @@ namespace FashionNova.WinUI.Artikli
             }
             else
             {
-                await _artikli.Update<Model.Models.Artikli>(SelectedArtikal.ArtikalId, update);
+                await _artikli.Update<Model.Models.Artikli>(SelectedArtikal.ArtikliId, update);
                 MessageBox.Show($"Uspjesno ste editovali artikal {txtNaziv.Text} ");
                 Close();
             }

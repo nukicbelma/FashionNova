@@ -146,7 +146,7 @@ namespace FashionNovaWinUI.Artikli
             var item = dgvArtikli.SelectedRows[0].DataBoundItem as FashionNova.Model.Models.Artikli;
             selectedArtikal = item;
 
-            MessageBox.Show($"artikal id -> {selectedArtikal.ArtikalId}");
+            MessageBox.Show($"artikal id -> {selectedArtikal.ArtikliId}");
             var uredi = new frmDodajUrediArtikal(selectedArtikal);
             uredi.ShowDialog();
 
