@@ -28,7 +28,7 @@ namespace FashionNova.WebAPI.Services
                 Uloge uloga = new Uloge();
                 uloga.Naziv = item.Naziv;
                 uloga.OpisUloge = item.OpisUloge;
-                uloga.UlogaId = item.UlogeId;
+                uloga.UlogeId = item.UlogeId;
 
                 result.Add(uloga);
             }
@@ -48,7 +48,7 @@ namespace FashionNova.WebAPI.Services
                     {
                         result.Naziv = item.Naziv;
                         result.OpisUloge = item.OpisUloge;
-                        result.UlogaId = item.UlogeId;
+                        result.UlogeId = item.UlogeId;
 
                         return result;
                     }

@@ -68,5 +68,15 @@ namespace FashionNova.WinUI.Properties {
                 return ResourceManager.GetString("APIUrl", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap profilna1 {
+            get {
+                object obj = ResourceManager.GetObject("profilna1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
     }
 }

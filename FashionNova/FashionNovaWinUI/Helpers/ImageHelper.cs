@@ -18,8 +18,13 @@ namespace FashionNova.WinUI.Helpers
         }
         public static Image FromByteToImage(byte[] image)
         {
-            MemoryStream ms = new MemoryStream(image);
-            return Image.FromStream(ms);
+                MemoryStream ms = new MemoryStream(image);
+                return Image.FromStream(ms);
+        }
+
+        private static Exception Exception(string v)
+        {
+            throw new NotImplementedException();
         }
     }
 }

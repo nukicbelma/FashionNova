@@ -18,9 +18,11 @@ namespace FashionNova.Model.Models
         public string Email { get; set; }
         public string Telefon { get; set; }
         public string KorisnickoIme { get; set; }
+        public string LozinkaHash { get; set; }
+        public string LozinkaSalt { get; set; }
         public byte[] Slika { get; set; }
 
         public virtual ICollection<KorisniciUloge> KorisniciUloge { get; set; }
-        //public virtual ICollection<Narudzbe> Narudzbe { get; set; }
+        //public virtual ICollection<Narudzba> Narudzba { get; set; }
     }
 }

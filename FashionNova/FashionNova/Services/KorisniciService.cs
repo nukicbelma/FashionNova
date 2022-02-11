@@ -33,10 +33,8 @@ namespace FashionNova.Services
                 query = query.Where(x => x.Ime.ToLower().StartsWith(search.Ime.ToLower()));
             }
             var list = query.ToList();
-
             return _mapper.Map<List<Korisnici>>(list);
         }
-
         public Korisnici GetById(int id)
         {
             var entity = _context.Korisnici.Find(id);
@@ -170,7 +168,7 @@ namespace FashionNova.Services
                             {
                                 Naziv = item.Uloge.Naziv,
                                 OpisUloge = item.Uloge.OpisUloge,
-                                UlogaId = item.Uloge.UlogeId
+                                UlogeId = item.Uloge.UlogeId
                             }
                         });
                     }

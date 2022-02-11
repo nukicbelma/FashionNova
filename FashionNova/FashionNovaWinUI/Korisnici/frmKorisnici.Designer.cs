@@ -115,7 +115,7 @@ namespace FashionNova.WinUI.Korisnici
             // Uloga
             // 
             this.Uloga.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Uloga.DataPropertyName = "Uloga";
+            this.Uloga.DataPropertyName = "UlogeId";
             this.Uloga.HeaderText = "Uloga";
             this.Uloga.Name = "Uloga";
             this.Uloga.ReadOnly = true;

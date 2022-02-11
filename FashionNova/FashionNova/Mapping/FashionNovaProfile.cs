@@ -12,8 +12,11 @@ namespace FashionNova.WebAPI.Mappers
         public FashionNovaProfile()
         {
 
-            CreateMap<Database.Korisnici, Model.Models.Korisnici>();
-            CreateMap<Database.Uloge, Model.Models.Uloge>();
+            CreateMap<Database.Korisnici, Model.Models.Korisnici>().ReverseMap();
+
+            CreateMap<Database.KorisniciUloge, Model.Models.KorisniciUloge>().ReverseMap();
+
+            CreateMap<Database.Uloge, Model.Models.Uloge>().ReverseMap();
             CreateMap<Database.Artikli, Model.Models.Artikli>();
             CreateMap<Database.Boja, Model.Models.Boja>();
             CreateMap<Database.Velicina, Model.Models.Velicina>();

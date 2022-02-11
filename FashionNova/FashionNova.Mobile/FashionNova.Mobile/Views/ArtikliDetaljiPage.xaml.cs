@@ -24,6 +24,7 @@ namespace FashionNova.Mobile.Views
         {
             base.OnAppearing();
             await model.Init();
+            await model.Preporuka();
         }
         private void TapGestureRecognizer_Tapped(object sender, EventArgs e)
         {

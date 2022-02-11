@@ -11,7 +11,7 @@ namespace FashionNova.Model.Models
         public int KorisniciId { get; set; }
         public int UlogeId { get; set; }
 
-        public virtual Korisnici Korisnici { get; set; }
+        //public virtual Korisnici Korisnici { get; set; }
         public virtual Uloge Uloge { get; set; }
     }
 }

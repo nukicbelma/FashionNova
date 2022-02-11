@@ -1,5 +1,6 @@
 ﻿using FashionNova.Model.Models;
 using FashionNova.Model.Requests;
+using FashionNova.WinUI.Properties;
 using FashionNovaWinUI;
 using System;
 using System.Collections.Generic;
@@ -31,9 +32,8 @@ namespace FashionNova.WinUI.Korisnici
         {
             if (_korisnik == null)
             {
-                //var ulogeList = clbUloge.CheckedItems.Cast<Uloge>();
-                //var ulogeIdList = ulogeList.Select(x => x.UlogaId).ToList();
-                //insert
+                var ulogeList = await ulogeService.Get<List<Model.Models.KorisniciUloge>>(null);
+                var listUloge = new List<KorisniciUloge>();
                 KorisniciInsertRequest request = new KorisniciInsertRequest()
                 {
                     Ime = txtIme.Text,
@@ -41,13 +41,11 @@ namespace FashionNova.WinUI.Korisnici
                     Email = txtEmail.Text,
                     KorisnickoIme = txtKorisnickoIme.Text,
                     Password = txtLozinka.Text,
-                    PasswordPotvrda=txtPotvrdaLozinke.Text,
-                    Telefon=txtTelefon.Text,
-                    Slika= Helpers.ImageHelper.FromImageToByte(pbxSlika.Image)
-                    //Status = chkStatus.Checked,
-                    //Uloge = ulogeIdList
+                    PasswordPotvrda = txtPotvrdaLozinke.Text,
+                    Telefon = txtTelefon.Text,
+                    Slika = Helpers.ImageHelper.FromImageToByte(pbxSlika.Image),
+                   
                 };
-
                 var korisnik = await korisniciService.Insert<FashionNova.Model.Models.Korisnici>(request);
             }
             else
@@ -63,9 +61,11 @@ namespace FashionNova.WinUI.Korisnici
                     PasswordPotvrda = txtPotvrdaLozinke.Text,
                     Telefon = txtTelefon.Text,
                     Slika = Helpers.ImageHelper.FromImageToByte(pbxSlika.Image)
-                    //Status = chkStatus.Checked
                 };
-
+                if(pbxSlika.Image==null)
+                {
+                    request.Slika = Helpers.ImageHelper.FromImageToByte(Resources.profilna1);
+                }
                 var korisnik = await korisniciService.Update<FashionNova.Model.Models.Korisnici>(_korisnik.KorisniciId, request);
 
             }
@@ -84,7 +84,12 @@ namespace FashionNova.WinUI.Korisnici
                 txtEmail.Text = _korisnik.Email;
                 txtTelefon.Text = _korisnik.Telefon;
                 txtSlika.Text = _korisnik.Slika.ToString();
-                pbxSlika.Image = FashionNova.WinUI.Helpers.ImageHelper.FromByteToImage(_korisnik.Slika);
+                if (_korisnik.Slika != null)
+                {
+                    pbxSlika.Image = FashionNova.WinUI.Helpers.ImageHelper.FromByteToImage(_korisnik.Slika);
+                }
+                else
+                    pbxSlika.Image = null;
             }
         }
 

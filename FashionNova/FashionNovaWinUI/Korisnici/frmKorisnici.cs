@@ -17,6 +17,7 @@ namespace FashionNova.WinUI.Korisnici
         public frmKorisnici()
         {
             InitializeComponent();
+            dgvKorisnici.AutoGenerateColumns = false;
         }
 
         private async void frmKorisnici_Load(object sender, EventArgs e)
@@ -37,8 +38,6 @@ namespace FashionNova.WinUI.Korisnici
             };
 
             var list = await _korisniciService.Get<List<FashionNova.Model.Models.Korisnici>>(searchRequest);
-            var prvi = list[0];
-
             dgvKorisnici.DataSource = list;
         }
 

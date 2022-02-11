@@ -24,7 +24,7 @@ namespace FashionNova.WebAPI.Services
             var query = _context.Narudzba.AsQueryable();
             if (!string.IsNullOrWhiteSpace(search?.BrojNarudzbe) && search.BrojNarudzbe!=null)
             {
-                query = query.Where(x => x.BrojNarudzbe.StartsWith(search.BrojNarudzbe));
+                query = query.Where(x => x.BrojNarudzbe.ToLower().StartsWith(search.BrojNarudzbe.ToLower()));
             }
             if ((!string.IsNullOrWhiteSpace((search?.KlijentId).ToString())) && search?.KlijentId != 0)
             {
