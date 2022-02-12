@@ -18,6 +18,7 @@ namespace FashionNova.WinUI.Korisnici
     {
         APIService korisniciService = new APIService("Korisnici");
         APIService ulogeService = new APIService("Uloge");
+        APIService korisniciUlogeService = new APIService("KorisniciUloge");
 
         private Model.Models.Korisnici selectedKorisnik;
 
@@ -32,8 +33,8 @@ namespace FashionNova.WinUI.Korisnici
         {
             if (_korisnik == null)
             {
-                var ulogeList = await ulogeService.Get<List<Model.Models.KorisniciUloge>>(null);
-                var listUloge = new List<KorisniciUloge>();
+                var newList = new List<int>();
+                newList.Add(cmbUloge.SelectedIndex);
                 KorisniciInsertRequest request = new KorisniciInsertRequest()
                 {
                     Ime = txtIme.Text,
@@ -44,9 +45,18 @@ namespace FashionNova.WinUI.Korisnici
                     PasswordPotvrda = txtPotvrdaLozinke.Text,
                     Telefon = txtTelefon.Text,
                     Slika = Helpers.ImageHelper.FromImageToByte(pbxSlika.Image),
-                   
+                    Uloge=newList
                 };
-                var korisnik = await korisniciService.Insert<FashionNova.Model.Models.Korisnici>(request);
+                if (txtPrezime.Text == "" || txtTelefon.Text=="" || txtEmail.Text=="" || txtIme.Text=="" || txtPotvrdaLozinke.Text=="" || txtLozinka.Text=="" || txtSlika.Text=="")
+                {
+                    MessageBox.Show("Niste unijeli sva polja. Pokusajte ponovo.");
+                }
+                else
+                {
+                    var korisnik = await korisniciService.Insert<FashionNova.Model.Models.Korisnici>(request);
+                    MessageBox.Show("Uspjesno ste dodali novog korisnika.");
+                    Close();
+                }
             }
             else
             {
@@ -61,16 +71,20 @@ namespace FashionNova.WinUI.Korisnici
                     PasswordPotvrda = txtPotvrdaLozinke.Text,
                     Telefon = txtTelefon.Text,
                     Slika = Helpers.ImageHelper.FromImageToByte(pbxSlika.Image)
+                    
                 };
-                if(pbxSlika.Image==null)
+                if (txtPrezime.Text == "" || txtTelefon.Text == "" || txtEmail.Text == "" || txtIme.Text == "" || txtPotvrdaLozinke.Text == "" || txtLozinka.Text == "")
                 {
-                    request.Slika = Helpers.ImageHelper.FromImageToByte(Resources.profilna1);
+                    MessageBox.Show("Niste unijeli sva polja. Pokusajte ponovo.");
                 }
-                var korisnik = await korisniciService.Update<FashionNova.Model.Models.Korisnici>(_korisnik.KorisniciId, request);
-
+                else
+                {
+                    var korisnik = await korisniciService.Update<FashionNova.Model.Models.Korisnici>(_korisnik.KorisniciId, request);
+                    MessageBox.Show("Uspjesno ste editovali postojeceg korisnika.");
+                    Close();
+                }
             }
-            MessageBox.Show("Uspjesno ste dodali novog korisnika.");
-            Close();
+
         }
         private async void frmDodajKorisnika_Load(object sender, EventArgs e)
         {
@@ -84,20 +98,24 @@ namespace FashionNova.WinUI.Korisnici
                 txtEmail.Text = _korisnik.Email;
                 txtTelefon.Text = _korisnik.Telefon;
                 txtSlika.Text = _korisnik.Slika.ToString();
-                if (_korisnik.Slika != null)
+                pbxSlika.Image = FashionNova.WinUI.Helpers.ImageHelper.FromByteToImage(_korisnik.Slika);
+                
+                var lista = await korisniciUlogeService.Get<List<KorisniciUloge>>();
+                foreach (var item in lista)
                 {
-                    pbxSlika.Image = FashionNova.WinUI.Helpers.ImageHelper.FromByteToImage(_korisnik.Slika);
+                    if (_korisnik.KorisniciId == item.KorisniciId)
+                        cmbUloge.SelectedIndex = item.UlogeId;
                 }
-                else
-                    pbxSlika.Image = null;
             }
         }
 
         private async Task LoadUloge()
         {
-            var uloge = await ulogeService.Get<List<Uloge>>();
-            cmbUloge.DataSource = uloge;
+            var result = await ulogeService.Get<List<FashionNova.Model.Models.Uloge>>();
+            result.Insert(0, new Uloge());
             cmbUloge.DisplayMember = "Naziv";
+            cmbUloge.ValueMember = "BojaId";
+            cmbUloge.DataSource = result;
         }
 
         private void pbxSlika_Click(object sender, EventArgs e)

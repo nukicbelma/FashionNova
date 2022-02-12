@@ -33,6 +33,7 @@ namespace FashionNova.Services
                 query = query.Where(x => x.Ime.ToLower().StartsWith(search.Ime.ToLower()));
             }
             var list = query.ToList();
+
             return _mapper.Map<List<Korisnici>>(list);
         }
         public Korisnici GetById(int id)
@@ -45,6 +46,8 @@ namespace FashionNova.Services
         public void Insert(KorisniciInsertRequest request)
         {
             FashionNova.WebAPI.Database.Korisnici entity = _mapper.Map<FashionNova.WebAPI.Database.Korisnici>(request);
+
+            
 
             if (request.Password != request.PasswordPotvrda)
             {
@@ -64,6 +67,7 @@ namespace FashionNova.Services
                 korisniciUloge.UlogeId = uloga;
                 korisniciUloge.DatumIzmjene = DateTime.Now;
                 _context.KorisniciUloge.Add(korisniciUloge);
+                _context.SaveChanges();
             }
             _context.SaveChanges();
         }

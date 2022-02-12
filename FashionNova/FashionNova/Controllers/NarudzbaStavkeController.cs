@@ -26,11 +26,6 @@ namespace FashionNova.Controllers
             return _service.Get();
         }
 
-        //[HttpGet("{id}")]
-        //public FashionNova.Model.Models.Velicina GetById(int id)
-        //{
-        //    return _service.GetById(id);
-        //}
         //[HttpPost]
         //public void Insert(NarudzbeInsertRequest request)
         //{

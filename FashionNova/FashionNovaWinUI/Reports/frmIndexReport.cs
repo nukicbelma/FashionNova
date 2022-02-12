@@ -26,5 +26,11 @@ namespace FashionNova.WinUI.Reports
             var frm = new frmArtikalOcjenaReport();
             frm.ShowDialog();
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            var frm = new frmArtikli();
+            frm.ShowDialog();
+        }
     }
 }

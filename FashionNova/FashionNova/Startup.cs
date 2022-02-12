@@ -73,6 +73,7 @@ namespace FashionNova
 
 
             services.AddScoped<IKorisniciService, KorisniciService>();
+            services.AddScoped<IKorisniciUloge, KorisniciUlogeService>();
             services.AddScoped<IUlogeService, UlogeService>();
             services.AddScoped<IArtikliService, ArtikliService>();
             services.AddScoped<IBojaService, BojaService>();

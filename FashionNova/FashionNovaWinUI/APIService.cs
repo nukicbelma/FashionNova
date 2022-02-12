@@ -90,6 +90,32 @@ namespace FashionNovaWinUI
 
             return await url.WithBasicAuth(Username, Password).GetJsonAsync<T>();
         }
+
+        //public async Task<T> GetArtikliReport<T>(object searchRequest = null)
+        //{
+        //    try
+        //    {
+        //        var query = "";
+        //        if (searchRequest != null)
+        //        {
+        //            query = await searchRequest?.ToQueryString();
+        //        }
+
+        //        var list = await $"{endpoint}{_resource}?{query}"
+        //           .WithBasicAuth(Username, Password).GetJsonAsync<T>();
+
+        //        return list;
+        //    }
+        //    catch (FlurlHttpException ex)
+        //    {
+        //        if (ex.Call.HttpResponseMessage.StatusCode == System.Net.HttpStatusCode.Unauthorized)
+        //        {
+        //            MessageBox.Show("Niste authentificirani");
+        //        }
+        //        throw;
+        //    }
+        //}
+
         public async Task<T> Update<T>(int id, object request)
         {
             try

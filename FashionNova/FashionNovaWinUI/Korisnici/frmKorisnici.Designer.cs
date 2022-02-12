@@ -35,10 +35,10 @@ namespace FashionNova.WinUI.Korisnici
             this.txtPretraga = new System.Windows.Forms.TextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.dgvKorisnici = new System.Windows.Forms.DataGridView();
-            this.Uloga = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Ime = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Prezime = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.KorisnickoIme = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.telefon = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Email = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvKorisnici)).BeginInit();
@@ -97,10 +97,10 @@ namespace FashionNova.WinUI.Korisnici
             this.dgvKorisnici.AllowUserToDeleteRows = false;
             this.dgvKorisnici.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvKorisnici.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Uloga,
             this.Ime,
             this.Prezime,
             this.KorisnickoIme,
+            this.telefon,
             this.Email});
             this.dgvKorisnici.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvKorisnici.Location = new System.Drawing.Point(3, 19);
@@ -111,14 +111,6 @@ namespace FashionNova.WinUI.Korisnici
             this.dgvKorisnici.Size = new System.Drawing.Size(552, 236);
             this.dgvKorisnici.TabIndex = 0;
             this.dgvKorisnici.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvKorisnici_CellContentClick);
-            // 
-            // Uloga
-            // 
-            this.Uloga.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Uloga.DataPropertyName = "UlogeId";
-            this.Uloga.HeaderText = "Uloga";
-            this.Uloga.Name = "Uloga";
-            this.Uloga.ReadOnly = true;
             // 
             // Ime
             // 
@@ -136,10 +128,18 @@ namespace FashionNova.WinUI.Korisnici
             // 
             // KorisnickoIme
             // 
+            this.KorisnickoIme.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.KorisnickoIme.DataPropertyName = "KorisnickoIme";
             this.KorisnickoIme.HeaderText = "KorisnickoIme";
             this.KorisnickoIme.Name = "KorisnickoIme";
             this.KorisnickoIme.ReadOnly = true;
+            // 
+            // telefon
+            // 
+            this.telefon.DataPropertyName = "Telefon";
+            this.telefon.HeaderText = "Broj Telefona";
+            this.telefon.Name = "telefon";
+            this.telefon.ReadOnly = true;
             // 
             // Email
             // 
@@ -183,5 +183,6 @@ namespace FashionNova.WinUI.Korisnici
         private System.Windows.Forms.DataGridViewTextBoxColumn Prezime;
         private System.Windows.Forms.DataGridViewTextBoxColumn KorisnickoIme;
         private System.Windows.Forms.DataGridViewTextBoxColumn Email;
+        private System.Windows.Forms.DataGridViewTextBoxColumn telefon;
     }
 }

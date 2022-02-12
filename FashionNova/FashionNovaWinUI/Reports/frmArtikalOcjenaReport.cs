@@ -67,46 +67,12 @@ namespace FashionNova.WinUI.Reports
             printPreviewDialog1.ShowDialog();
 
         }
-        private void label4_Click(object sender, EventArgs e)
-        {
-
-        }
-        private async Task LoadArtikleOcjene(int artikalId)
-        {
-            var search = new OcjeneSearchRequest();
-            search.ArtikalId = artikalId;
-            var lista = await _artikliService.Get<List<Ocjene>>(search);
-            dataGridView1.DataSource = lista;
-        }
-        private void label3_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label2_Click(object sender, EventArgs e)
-        {
-
-        }
         private async void frmArtikalReport_Load(object sender, EventArgs e)
         {
           await LoadPodatke();
           await LoadKategoriju();
         }
-        private async Task LoadProizvodi(int artikalId)
-        {
-            OcjeneSearchRequest search = new OcjeneSearchRequest();
-            search.IncludeList = new string[]
-            {
-               "Artikal",
-            };
 
-            if (artikalId != 0)
-            {
-                search.ArtikalId = artikalId;
-            }
-            var result = await _service.Get<List<FashionNova.Model.Models.Ocjene>>(search);
-            dataGridView1.DataSource = result;
-        }
         private void btnPrintaj_Click_1(object sender, EventArgs e)
         {
             int height = dataGridView1.Height;
@@ -125,18 +91,28 @@ namespace FashionNova.WinUI.Reports
             var result = await _artikliService.Get<List<FashionNova.Model.Models.Artikli>>();
             result.Insert(0, new Model.Models.Artikli());
             cmbVrstaArtikla.DisplayMember = "Naziv";
-            cmbVrstaArtikla.ValueMember = "ArtikalId";
+            cmbVrstaArtikla.ValueMember = "ArtikliId";
             cmbVrstaArtikla.DataSource = result;
         }
         private readonly APIService _vrstaArtikla = new APIService("VrstaArtikla");
-        int ARTIKAL_ID = 0;
+        int artikalId = 0;
         private  async void cmbVrstaArtikla_SelectedIndexChanged(object sender, EventArgs e)
         {
             var idObj = cmbVrstaArtikla.SelectedValue;
             if (int.TryParse(idObj.ToString(), out int id))
             {
-                ARTIKAL_ID = id;
-                await LoadProizvodi(id);
+                artikalId = id;
+            }
+        }
+
+        private async void button1_Click(object sender, EventArgs e)
+        {
+            //if(artikalId!=0)
+            {
+                OcjeneSearchRequest search = new OcjeneSearchRequest();
+                search.ArtikliId = artikalId;
+                var result = await _service.Get<List<FashionNova.Model.Models.Ocjene>>(search);
+                dataGridView1.DataSource = result;
             }
         }
     }

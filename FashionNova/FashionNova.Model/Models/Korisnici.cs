@@ -21,7 +21,6 @@ namespace FashionNova.Model.Models
         public string LozinkaHash { get; set; }
         public string LozinkaSalt { get; set; }
         public byte[] Slika { get; set; }
-
         public virtual ICollection<KorisniciUloge> KorisniciUloge { get; set; }
         //public virtual ICollection<Narudzba> Narudzba { get; set; }
     }

@@ -352,8 +352,9 @@ namespace FashionNova.WebAPI.DB
                     Telefon = "123",
                     KorisnickoIme = "hanna",
                     LozinkaSalt = Salt[0],
-                    Slika = null,
-                    LozinkaHash = KlijentiService.GenerateHash(Salt[0], "hanna")
+                    Slika = File.ReadAllBytes("profilna1.jpg"),
+                    LozinkaHash = KlijentiService.GenerateHash(Salt[0], "hanna"), 
+                    
                 },
                 new Korisnici()
                 {
@@ -365,7 +366,7 @@ namespace FashionNova.WebAPI.DB
                     KorisnickoIme = "admin",
                     LozinkaSalt = Salt[1],
                     LozinkaHash = KlijentiService.GenerateHash(Salt[1], "admin"),
-                    Slika = null
+                    Slika = File.ReadAllBytes("profilna1.jpg")
                 },
                 new Korisnici()
                 {
@@ -377,7 +378,7 @@ namespace FashionNova.WebAPI.DB
                     KorisnickoIme = "uposlenik",
                     LozinkaSalt = Salt[2],
                     LozinkaHash = KlijentiService.GenerateHash(Salt[2], "uposlenik"),
-                    Slika = null
+                    Slika = File.ReadAllBytes("profilna1.jpg")
                 });
             #endregion
 

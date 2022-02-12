@@ -15,6 +15,7 @@ namespace FashionNova.WebAPI.Mappers
             CreateMap<Database.Korisnici, Model.Models.Korisnici>().ReverseMap();
 
             CreateMap<Database.KorisniciUloge, Model.Models.KorisniciUloge>().ReverseMap();
+            CreateMap<KorisniciUlogeInsertRequest, Database.KorisniciUloge>().ReverseMap();
 
             CreateMap<Database.Uloge, Model.Models.Uloge>().ReverseMap();
             CreateMap<Database.Artikli, Model.Models.Artikli>();
@@ -50,6 +51,7 @@ namespace FashionNova.WebAPI.Mappers
             CreateMap<NarudzbeSearchRequest, Database.Narudzba>();
             CreateMap<NarudzbeInsertRequest, Database.Narudzba>();
             CreateMap<NarudzbaUpdateRequest, Database.Narudzba>();
+            CreateMap<NarudzbaStavkaSearchRequest, Database.NarudzbaStavke>();
             CreateMap<OcjeneSearchRequest, Database.Ocjene>();
             CreateMap<OcjenaInsertRequest, Database.Ocjene>();
         }

@@ -52,7 +52,7 @@ namespace FashionNova.WebAPI.Services
                 return _mapper.Map<Model.Models.VrstaArtikla>(entity);
             }
             else
-                throw new UserException($"Korisničko ime {request.Naziv} je zauzeto!" , HttpStatusCode.BadRequest );           
+                throw new UserException($"Kategorija {request.Naziv} već postoji!" , HttpStatusCode.BadRequest );           
         }
         public FashionNova.Model.Models.VrstaArtikla Update(int id, VrstaArtiklaUpdateRequest request)
         {

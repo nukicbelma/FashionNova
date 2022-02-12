@@ -72,6 +72,16 @@ namespace FashionNova.WinUI.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap nemaslike {
+            get {
+                object obj = ResourceManager.GetObject("nemaslike", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap profilna1 {
             get {
                 object obj = ResourceManager.GetObject("profilna1", resourceCulture);

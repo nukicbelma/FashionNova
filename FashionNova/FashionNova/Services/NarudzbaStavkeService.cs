@@ -19,7 +19,8 @@ namespace FashionNova.WebAPI.Services
         public List<NarudzbaStavke> Get()
         {
 
-            var result = _context.NarudzbaStavke.Include(y => y.Artikli).ToList();
+            var result = _context.NarudzbaStavke.Include(y => y.Artikli).Include(w=>w.Narudzba).ToList();
+
             List<NarudzbaStavke> lista = new List<NarudzbaStavke>();
             var artikliList = _context.Artikli.AsQueryable().ToList();
 

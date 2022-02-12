@@ -175,6 +175,7 @@ namespace FashionNova.WinUI.Korisnici
             // 
             // pbxSlika
             // 
+            this.pbxSlika.Image = global::FashionNova.WinUI.Properties.Resources.nemaslike;
             this.pbxSlika.Location = new System.Drawing.Point(289, 29);
             this.pbxSlika.Name = "pbxSlika";
             this.pbxSlika.Size = new System.Drawing.Size(195, 257);
