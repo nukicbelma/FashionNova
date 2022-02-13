@@ -1,4 +1,5 @@
 ﻿using FashionNova.Model.Requests;
+using FashionNova.WinUI.Properties;
 using FashionNovaWinUI;
 using System;
 using System.Collections.Generic;
@@ -36,11 +37,16 @@ namespace FashionNova.WinUI.Klijenti
             txtEmail.Text = klijent.Email;
             txtTelefon.Text = klijent.Telefon;
             txtKorisnickoIme.Text = klijent.KorisnickoIme;
-            if (klijent.Slika != null)
+            try
             {
                 pbxSlika.Image = FashionNova.WinUI.Helpers.ImageHelper.FromByteToImage(klijent.Slika);
             }
+            catch(Exception ex)
+            {
+                pbxSlika.Image = Resources.profilna1;
+            }
         }
+
         private async Task LoadData()
         {
             var request = new NarudzbeSearchRequest()

@@ -137,6 +137,7 @@ namespace FashionNova.Mobile.Views
                 return true;
             }
         }
+ 
         private bool validateTelefon()
         {
             if (inputTelefon.Text == "")

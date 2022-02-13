@@ -24,12 +24,14 @@ namespace FashionNova.WebAPI.Controllers
         }
 
         [HttpGet]
+        [AllowAnonymous]
         public List<Klijenti> Get([FromQuery] KlijentiSearchRequest request)
         {
             return _service.Get(request);
         }
 
         [HttpPost]
+        [AllowAnonymous]
         public void Insert(KlijentiInsertRequest request)
         {
             _service.Insert(request);
