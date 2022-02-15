@@ -16,18 +16,29 @@
 
   <ItemGroup>
     <None Remove="crnajakna1.jpg" />
+    <None Remove="dux.jpg" />
+    <None Remove="haljina4.jpg" />
     <None Remove="haljinasmedja1.jpg" />
     <None Remove="jeans12.jpg" />
     <None Remove="jeans22.jpg" />
     <None Remove="majicacrvena.jpg" />
     <None Remove="majicacrvena22.jpg" />
+    <None Remove="pidzama.jpg" />
+    <None Remove="pidzama2.jpg" />
     <None Remove="profilna1.jpg" />
+    <None Remove="suknja.jpg" />
     <None Remove="trenerka1.jpg" />
     <None Remove="trenerka3.jpg" />
   </ItemGroup>
 
   <ItemGroup>
     <Content Include="crnajakna1.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="dux.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="haljina4.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="haljinasmedja1.jpg">
@@ -45,7 +56,16 @@
     <Content Include="majicacrvena22.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="pidzama.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="pidzama2.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="profilna1.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="suknja.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="trenerka1.jpg">
