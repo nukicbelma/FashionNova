@@ -29,6 +29,7 @@ namespace FashionNova.WinUI.MaterijalBojaVelicinaVrsta
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.dgvVrste = new System.Windows.Forms.DataGridView();
             this.VrstaArtiklaId = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -36,8 +37,10 @@ namespace FashionNova.WinUI.MaterijalBojaVelicinaVrsta
             this.label1 = new System.Windows.Forms.Label();
             this.txtNaziv = new System.Windows.Forms.TextBox();
             this.btnSacuvaj = new System.Windows.Forms.Button();
+            this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvVrste)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -111,6 +114,10 @@ namespace FashionNova.WinUI.MaterijalBojaVelicinaVrsta
             this.btnSacuvaj.UseVisualStyleBackColor = true;
             this.btnSacuvaj.Click += new System.EventHandler(this.btnSacuvaj_Click);
             // 
+            // errorProvider1
+            // 
+            this.errorProvider1.ContainerControl = this;
+            // 
             // frmDodajVrstuArtikla
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -128,6 +135,7 @@ namespace FashionNova.WinUI.MaterijalBojaVelicinaVrsta
             this.Load += new System.EventHandler(this.frmDodajVrstuArtikla_Load);
             this.groupBox1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvVrste)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -142,5 +150,6 @@ namespace FashionNova.WinUI.MaterijalBojaVelicinaVrsta
         private System.Windows.Forms.Button btnSacuvaj;
         private System.Windows.Forms.DataGridViewTextBoxColumn VrstaArtiklaId;
         private System.Windows.Forms.DataGridViewTextBoxColumn Naziv;
+        private System.Windows.Forms.ErrorProvider errorProvider1;
     }
 }

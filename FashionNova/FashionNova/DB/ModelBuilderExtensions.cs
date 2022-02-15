@@ -309,14 +309,67 @@ namespace FashionNova.WebAPI.DB
                           MaterijalId = 3,
                           VelicinaId = 1,
                           VrstaArtiklaId = 2
-                      }, new Artikli()
+                      },
+
+                      new Artikli()
+                      {
+                          ArtikliId = 50,
+                          Naziv = "Suknja 'LimitedToo' M",
+                          Sifra = "NN1789",
+                          Cijena = (decimal?)62.50,
+                          Slika = File.ReadAllBytes("suknja.jpg"),
+                          BojaId = 4,
+                          MaterijalId = 3,
+                          VelicinaId = 4,
+                          VrstaArtiklaId = 4
+                      },
+
+                      new Artikli()
+                      {
+                          ArtikliId = 5013,
+                          Naziv = "Pidzama 'VictoriaSecret' L",
+                          Sifra = "NN789",
+                          Cijena = (decimal?)99.90,
+                          Slika = File.ReadAllBytes("pidzama.jpg"),
+                          BojaId = 11,
+                          MaterijalId = 6,
+                          VelicinaId = 5,
+                          VrstaArtiklaId = 1006
+                      },
+
+                      new Artikli()
+                      {
+                          ArtikliId = 5014,
+                          Naziv = "Pidzama 'Christmas' M",
+                          Sifra = "NN741",
+                          Cijena = (decimal?)30.00,
+                          Slika = File.ReadAllBytes("pidzama2.jpg"),
+                          BojaId = 1,
+                          MaterijalId = 6,
+                          VelicinaId = 4,
+                          VrstaArtiklaId = 1006
+                      },
+                      new Artikli()
+                      {
+                          ArtikliId = 5015,
+                          Naziv = "Haljina 'PromDress' XL",
+                          Sifra = "NN123",
+                          Cijena = (decimal?)250.99,
+                          Slika = File.ReadAllBytes("haljina4.jpg"),
+                          BojaId = 1,
+                          MaterijalId = 6,
+                          VelicinaId = 6,
+                          VrstaArtiklaId = 6
+                      },
+
+                      new Artikli()
                       {
                           ArtikliId
                           = 4012,
                           Naziv = "Majica red4fun",
                           Sifra = "DT15",
                           Cijena = (decimal?)9.90,
-                          Slika = File.ReadAllBytes("majicacrvena22.jpg"),
+                          Slika = File.ReadAllBytes("majicacrvena.jpg"),
                           BojaId = 1,
                           MaterijalId = 1,
                           VelicinaId = 1,
@@ -417,6 +470,78 @@ namespace FashionNova.WebAPI.DB
                     Ocjena = 3,
                     Komentar = ""
                 },
+
+                new Ocjene()
+                {
+                    OcjeneId = 1,
+                    ArtikliId = 5015,
+                    KlijentiId = 6002,
+                    Ocjena = 5,
+                    Komentar = ""
+                },
+                new Ocjene()
+                {
+                    OcjeneId = 2,
+                    ArtikliId = 50,
+                    KlijentiId = 6002,
+                    Ocjena = 4,
+                    Komentar = ""
+                },
+                new Ocjene()
+                {
+                    OcjeneId = 3,
+                    ArtikliId = 5013,
+                    KlijentiId = 6002,
+                    Ocjena = 5,
+                    Komentar = ""
+                },
+                new Ocjene()
+                {
+                    OcjeneId = 4,
+                    ArtikliId = 2013,
+                    KlijentiId = 6002,
+                    Ocjena = 5,
+                    Komentar = ""
+                },
+                new Ocjene()
+                {
+                    OcjeneId = 5,
+                    ArtikliId = 16,
+                    KlijentiId = 6002,
+                    Ocjena = 4,
+                    Komentar = ""
+                }, new Ocjene()
+                {
+                    OcjeneId = 7,
+                    ArtikliId = 5014,
+                    KlijentiId = 6002,
+                    Ocjena = 3,
+                    Komentar = ""
+                },
+                 new Ocjene()
+                 {
+                     OcjeneId = 8,
+                     ArtikliId = 18,
+                     KlijentiId = 6002,
+                     Ocjena = 5,
+                     Komentar = ""
+                 },
+                   new Ocjene()
+                   {
+                       OcjeneId = 9,
+                       ArtikliId = 15,
+                       KlijentiId = 6002,
+                       Ocjena = 5,
+                       Komentar = ""
+                   },
+                     new Ocjene()
+                     {
+                         OcjeneId = 10,
+                         ArtikliId = 12,
+                         KlijentiId = 6002,
+                         Ocjena = 4,
+                         Komentar = ""
+                     },
                   new Ocjene()
                   {
                       OcjeneId = 5004,
@@ -447,6 +572,16 @@ namespace FashionNova.WebAPI.DB
                      DatumNarudzbe = DateTime.Now,
                      IznosBezPdv = Convert.ToDecimal(179.80),
                      IznosSaPdv = Convert.ToDecimal(210.37),
+                     KorisniciId = 3003
+                 },
+                 new Narudzba()
+                 {
+                     NarudzbaId = 10010,
+                     BrojNarudzbe = "N10010",
+                     KlijentiId = 6002,
+                     DatumNarudzbe = DateTime.Now,
+                     IznosBezPdv = Convert.ToDecimal(338.99),
+                     IznosSaPdv = Convert.ToDecimal(396.62),
                      KorisniciId = 3003
                  }
                 );
@@ -479,7 +614,34 @@ namespace FashionNova.WebAPI.DB
                     Kolicina = 2,
                     Cijena = Convert.ToDecimal(19.99), 
                     Popust=0
-                });
+                }, //migracija6
+                new NarudzbaStavke()
+                {
+                    NarudzbaStavkeId = 8011,
+                    NarudzbaId = 10010,
+                    ArtikliId = 18,
+                    Kolicina = 1,
+                    Cijena = Convert.ToDecimal(49.90),
+                    Popust = 0
+                },
+                new NarudzbaStavke()
+                {
+                    NarudzbaStavkeId = 8012,
+                    NarudzbaId = 10010,
+                    ArtikliId = 5015,
+                    Kolicina = 1,
+                    Cijena = Convert.ToDecimal(250.99),
+                    Popust = 0
+                }, new NarudzbaStavke()
+                {
+                    NarudzbaStavkeId = 8013,
+                    NarudzbaId = 10010,
+                    ArtikliId = 15,
+                    Kolicina = 1,
+                    Cijena = Convert.ToDecimal(39.00),
+                    Popust = 0
+                }
+                );
             #endregion
 
         }

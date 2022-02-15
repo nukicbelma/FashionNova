@@ -1,6 +1,7 @@
 ﻿using Acr.UserDialogs;
 using FashionNova.Mobile.Services;
 using FashionNova.Model.Models;
+using FashionNova.Model.Requests;
 using Prism.Commands;
 using Prism.Mvvm;
 using Stripe;
@@ -14,9 +15,11 @@ namespace FashionNova.Mobile.ViewModels
 {
     public class PaymentViewModel : BindableBase
     {
+        APIService _service = new APIService("Narudzbe");
         #region Variable
 
         private CreditCardModel _creditCardModel;
+        private NarudzbeInsertRequest _narudzbaInsert;
         private TokenService Tokenservice;
         private Token stripeToken;
         private bool _isCarcValid;
@@ -67,6 +70,12 @@ namespace FashionNova.Mobile.ViewModels
             set { SetProperty(ref _iznos, value); }
         }
 
+        public NarudzbeInsertRequest NarudzbaInsert
+        {
+            get { return _narudzbaInsert; }
+            set { SetProperty(ref _narudzbaInsert, value); }
+        }
+
         public CreditCardModel CreditCardModel
         {
             get { return _creditCardModel; }
@@ -89,8 +98,10 @@ namespace FashionNova.Mobile.ViewModels
 
         public DelegateCommand SubmitCommand => new DelegateCommand(async () =>
         {
-            CreditCardModel.ExpMonth = Convert.ToInt64(ExpMonth);
-            CreditCardModel.ExpYear = Convert.ToInt64(ExpYear);
+                CreditCardModel.ExpMonth = Convert.ToInt64(ExpMonth);
+                CreditCardModel.ExpYear = Convert.ToInt64(ExpYear);
+            
+           
             CancellationTokenSource tokenSource = new CancellationTokenSource();
             CancellationToken token = tokenSource.Token;
             try
@@ -121,14 +132,17 @@ namespace FashionNova.Mobile.ViewModels
 
             if (IsTransectionSuccess)
             {
+                await _service.Insert<Narudzba>(NarudzbaInsert);
                 Console.Write("Payment Gateway" + "Payment Successful ");
                 UserDialogs.Instance.Alert("Your payment was successfull", "Payment success", "OK");
+                UserDialogs.Instance.Alert("Uspjesno ste izvrsili narudzbu!", "Payment success", "OK");
                 UserDialogs.Instance.HideLoading();
 
             }
             else
             {
                 UserDialogs.Instance.HideLoading();
+                UserDialogs.Instance.Alert("Unijeli se nevazece podatke. Narudzba se ponistava!", "GREŠKA", "OK");
                 UserDialogs.Instance.Alert("Oops, something went wrong", "Payment failed", "OK");
                 Console.Write("Payment Gateway" + "Payment Failure ");
             }

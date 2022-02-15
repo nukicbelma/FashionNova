@@ -8,7 +8,10 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.IO;
+using System.Linq;
+using System.Net.Mail;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -27,6 +30,23 @@ namespace FashionNova.WinUI.Korisnici
         {
             InitializeComponent();
             _korisnik = korisnik;
+        }
+        public bool IsValidEmailAddress(string email)
+        {
+            try
+            {
+                MailAddress ma = new MailAddress(email);
+
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+        private bool ValidateContact(string broj)
+        {
+            return (System.Text.RegularExpressions.Regex.IsMatch("[^0-9]", broj));
         }
 
         private async void btnSpasi_Click(object sender, EventArgs e)
@@ -47,9 +67,35 @@ namespace FashionNova.WinUI.Korisnici
                     Slika = Helpers.ImageHelper.FromImageToByte(pbxSlika.Image),
                     Uloge=newList
                 };
-                if (txtPrezime.Text == "" || txtTelefon.Text=="" || txtEmail.Text=="" || txtIme.Text=="" || txtPotvrdaLozinke.Text=="" || txtLozinka.Text=="" || txtSlika.Text=="")
+                bool postojiUsername = false;
+                var listakorsnika = await korisniciService.Get<List<Model.Models.Korisnici>>(null);
+                foreach (var item in listakorsnika)
                 {
-                    MessageBox.Show("Niste unijeli sva polja. Pokusajte ponovo.");
+                    if (item.KorisnickoIme.ToLower() == request.KorisnickoIme)
+                        postojiUsername = true;
+                }
+               
+                if (txtPrezime.Text == "" || txtTelefon.Text == "" || txtEmail.Text == "" || txtIme.Text == "" ||
+                    txtPotvrdaLozinke.Text == "" || txtLozinka.Text == "" || txtPrezime.Text.Length < 2 || txtIme.Text.Length < 2 || cmbUloge.SelectedIndex==0)
+                {
+                    MessageBox.Show("Niste unijeli sva polja ispravno. Pokusajte ponovo. (Polje prazno/ne sadrzi dovoljan broj karaktera)");
+                }
+                else if (!IsValidEmailAddress(txtEmail.Text))
+                {
+                    MessageBox.Show("Format emaila nije validan. ->primjer@email.com");
+                }
+                else if(ValidateContact(txtTelefon.Text) || txtTelefon.Text.Length > 10 || txtTelefon.Text.Length < 9)
+                {
+                    errorProvider1.SetError(txtTelefon, "Broj nije validan. Unesite 9 ili 10tocifreni broj bez karaktera-> 062963147");
+                }
+                else if (txtLozinka.Text != txtPotvrdaLozinke.Text || txtLozinka.Text.Length < 4)
+                {
+                    errorProvider1.SetError(txtLozinka, "Passwordi se ne slazu ili moraju sadrzavati minimalno 4 karaktera.");
+                }
+                else if (postojiUsername)
+
+                {
+                    errorProvider1.SetError(txtKorisnickoIme, "Korisnik sa tim korisnickim imenom vec postoji.");
                 }
                 else
                 {
@@ -61,6 +107,7 @@ namespace FashionNova.WinUI.Korisnici
             else
             {
                 //update
+                
                 KorisniciUpdateRequest request = new KorisniciUpdateRequest()
                 {
                     Ime = txtIme.Text,
@@ -73,9 +120,33 @@ namespace FashionNova.WinUI.Korisnici
                     Slika = Helpers.ImageHelper.FromImageToByte(pbxSlika.Image)
                     
                 };
-                if (txtPrezime.Text == "" || txtTelefon.Text == "" || txtEmail.Text == "" || txtIme.Text == "" || txtPotvrdaLozinke.Text == "" || txtLozinka.Text == "")
+                bool postojiUsername = false;
+                var listakorsnika = await korisniciService.Get<List<Model.Models.Korisnici>>(null);
+                foreach (var item in listakorsnika)
                 {
-                    MessageBox.Show("Niste unijeli sva polja. Pokusajte ponovo.");
+                    if (item.KorisnickoIme.ToLower() == request.KorisnickoIme && _korisnik.KorisniciId != item.KorisniciId)
+                        postojiUsername = true;
+                }
+                if (txtPrezime.Text == "" || txtTelefon.Text == "" || txtEmail.Text == "" || txtIme.Text == "" || 
+                    txtPotvrdaLozinke.Text == "" || txtLozinka.Text == "" || txtPrezime.Text.Length<2 || txtIme.Text.Length<2 || cmbUloge.SelectedIndex==0)
+                {
+                    MessageBox.Show("Niste unijeli sva polja ispravno. Pokusajte ponovo. (Polje prazno/ne sadrzi dovoljan broj karaktera)");
+                }
+                else if (!IsValidEmailAddress(txtEmail.Text))
+                {
+                    MessageBox.Show("Format emaila nije validan. ->primjer@email.com");
+                }
+                else if (ValidateContact(txtTelefon.Text) || txtTelefon.Text.Length > 10 || txtTelefon.Text.Length < 9)
+                {
+                    errorProvider1.SetError(txtTelefon, "Broj nije validan. Unesite 9 ili 10tocifreni broj bez karaktera-> 062963147");
+                }
+                else if (txtLozinka.Text != txtPotvrdaLozinke.Text || txtLozinka.Text.Length<4)
+                {
+                    errorProvider1.SetError(txtLozinka, "Passwordi se ne slazu ili moraju sadrzavati minimalno 4 karaktera.");
+                }
+                else if (postojiUsername)
+                {
+                    errorProvider1.SetError(txtKorisnickoIme, "Korisnik sa tim korisnickim imenom vec postoji.");
                 }
                 else
                 {

@@ -143,6 +143,7 @@ namespace FashionNova.WinUI.Artikli
             // 
             // pbxSlika
             // 
+            this.pbxSlika.BackgroundImage = global::FashionNova.WinUI.Properties.Resources.nemaslike;
             this.pbxSlika.Location = new System.Drawing.Point(305, 39);
             this.pbxSlika.Name = "pbxSlika";
             this.pbxSlika.Size = new System.Drawing.Size(222, 184);
@@ -165,6 +166,7 @@ namespace FashionNova.WinUI.Artikli
             this.txtCijena.Name = "txtCijena";
             this.txtCijena.Size = new System.Drawing.Size(201, 23);
             this.txtCijena.TabIndex = 40;
+            this.txtCijena.TextChanged += new System.EventHandler(this.txtCijena_TextChanged);
             // 
             // txtNaziv
             // 

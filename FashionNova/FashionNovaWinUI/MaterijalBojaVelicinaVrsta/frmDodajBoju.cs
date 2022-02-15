@@ -33,11 +33,27 @@ namespace FashionNova.WinUI.MaterijalBojaVelicinaVrsta
 
         private async void btnSacuvaj_Click(object sender, EventArgs e)
         {
-            if (txtNaziv != null)
+            if (txtNaziv == null || txtNaziv.Text=="")
+                errorProvider1.SetError(txtNaziv, "Prazno polje!!");
+            else if (txtNaziv != null || txtNaziv.Text!="")
             {
-                insert.Naziv = txtNaziv.Text;
-                await _bojaService.Insert<Model.Models.Boja>(insert);
-                LoadVrste();
+                bool postoji = false;
+                var listaboja = await _bojaService.Get<List<Model.Models.Boja>>();
+                foreach (var item in listaboja)
+                {
+                    if (item.Naziv.ToLower() == txtNaziv.Text.ToLower())
+                    {
+                        postoji = true;
+                        errorProvider1.SetError(txtNaziv, "Naziv vec postoji u bazi.");
+                    }
+                }
+                if (!postoji)
+                {
+                    insert.Naziv = txtNaziv.Text;
+                    await _bojaService.Insert<Model.Models.Boja>(insert);
+                    MessageBox.Show("Stavka uspjesno dodana.");
+                    await LoadVrste();
+                }
             }
         }
     }

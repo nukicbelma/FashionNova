@@ -1,4 +1,5 @@
 ﻿using FashionNova.Mobile.ViewModels;
+using FashionNova.Model.Requests;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,13 +15,13 @@ namespace FashionNova.Mobile.Views
     public partial class PaymentPage : ContentPage
     {
         PaymentViewModel model = null;
-        public PaymentPage(decimal Iznos, int NarudzbaId)
+        public PaymentPage(decimal Iznos, NarudzbeInsertRequest narudzba)
         {
             InitializeComponent();
             BindingContext = model = new PaymentViewModel()
             {
                 Iznos = Iznos,
-                NarudzbaId = NarudzbaId
+                NarudzbaInsert = narudzba
             };
 
             NavigationPage.SetHasBackButton(this, false);
@@ -43,10 +44,11 @@ namespace FashionNova.Mobile.Views
                 CardNumber.Text = RemoveLastCharacter(CardNumber.Text);
                 ErrorLabel_CardNumber.Text = "Invalid Card number";
             }
-            else if (CardNumber.Text.Length < 1)
+            else if (CardNumber.Text.Length < 1 || !e.NewTextValue.ToCharArray()
+                        .All(char.IsDigit))
             {
                 ErrorLabel_CardNumber.IsVisible = true;
-                ErrorLabel_CardNumber.Text = "Card number can not be empty !!";
+                ErrorLabel_CardNumber.Text = "Card number can not be empty and must be  !!";
 
             }
             else
@@ -75,12 +77,14 @@ namespace FashionNova.Mobile.Views
 
         private void Month_TextChanged(object sender, TextChangedEventArgs e)
         {
-            if (Month.Text.Length < 1)
+            if (Month.Text.Length < 1 ||  !e.NewTextValue.ToCharArray()
+                        .All(char.IsDigit))
             {
                 ErrorLabel_Month.IsVisible = true;
                 ErrorLabel_Month.Text = "Month can not be empty !!";
             }
-            else if (Month.Text.Length > 2)
+            else if (Month.Text.Length > 2 ||  !e.NewTextValue.ToCharArray()
+                        .All(char.IsDigit))
             {
                 Month.Text = RemoveLastCharacter(Month.Text);
                 ErrorLabel_Month.IsVisible = true;
@@ -101,12 +105,14 @@ namespace FashionNova.Mobile.Views
 
         private void Year_TextChanged(object sender, TextChangedEventArgs e)
         {
-            if (Year.Text.Length < 1)
+            if (Year.Text.Length < 1 ||  !e.NewTextValue.ToCharArray()
+                        .All(char.IsDigit))
             {
                 ErrorLabel_Year.IsVisible = true;
                 ErrorLabel_Year.Text = "Year can not be empty !!";
             }
-            else if (Year.Text.Length > 2)
+            else if (Year.Text.Length > 2 ||  !e.NewTextValue.ToCharArray()
+                        .All(char.IsDigit))
             {
                 Year.Text = RemoveLastCharacter(Year.Text);
                 ErrorLabel_Year.IsVisible = true;
@@ -127,12 +133,14 @@ namespace FashionNova.Mobile.Views
 
         private void Cvv_TextChanged(object sender, TextChangedEventArgs e)
         {
-            if (Cvv.Text.Length < 1)
+            if (Cvv.Text.Length < 1 ||  !e.NewTextValue.ToCharArray()
+                        .All(char.IsDigit))
             {
                 ErrorLabel_Cvv.IsVisible = true;
                 ErrorLabel_Cvv.Text = "CVV can not be empty !!";
             }
-            else if (Cvv.Text.Length > 3)
+            else if (Cvv.Text.Length > 3 ||  !e.NewTextValue.ToCharArray()
+                        .All(char.IsDigit))
             {
                 Cvv.Text = RemoveLastCharacter(Cvv.Text);
                 ErrorLabel_Cvv.IsVisible = true;

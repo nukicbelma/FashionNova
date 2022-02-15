@@ -8,6 +8,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Migrations\20220214125101_m5.cs" />
+    <Compile Remove="Migrations\20220214125101_m5.Designer.cs" />
+    <Compile Remove="Migrations\20220214134707_m6.cs" />
+    <Compile Remove="Migrations\20220214134707_m6.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Remove="crnajakna1.jpg" />
     <None Remove="haljinasmedja1.jpg" />
     <None Remove="jeans12.jpg" />

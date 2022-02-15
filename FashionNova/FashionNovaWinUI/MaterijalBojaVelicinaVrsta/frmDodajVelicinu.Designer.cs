@@ -29,6 +29,7 @@ namespace FashionNova.WinUI.MaterijalBojaVelicinaVrsta
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.dgvVrste = new System.Windows.Forms.DataGridView();
             this.VelicinaId = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -36,8 +37,10 @@ namespace FashionNova.WinUI.MaterijalBojaVelicinaVrsta
             this.btnSacuvaj = new System.Windows.Forms.Button();
             this.txtNaziv = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvVrste)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -107,6 +110,10 @@ namespace FashionNova.WinUI.MaterijalBojaVelicinaVrsta
             this.label1.TabIndex = 9;
             this.label1.Text = "Dodaj novu velicnu:";
             // 
+            // errorProvider1
+            // 
+            this.errorProvider1.ContainerControl = this;
+            // 
             // frmDodajVelicinu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -122,6 +129,7 @@ namespace FashionNova.WinUI.MaterijalBojaVelicinaVrsta
             this.Load += new System.EventHandler(this.frmDodajVelicinu_Load);
             this.groupBox1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvVrste)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -136,5 +144,6 @@ namespace FashionNova.WinUI.MaterijalBojaVelicinaVrsta
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.DataGridViewTextBoxColumn VelicinaId;
         private System.Windows.Forms.DataGridViewTextBoxColumn Oznaka;
+        private System.Windows.Forms.ErrorProvider errorProvider1;
     }
 }

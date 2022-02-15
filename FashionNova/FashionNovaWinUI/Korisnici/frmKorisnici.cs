@@ -41,25 +41,28 @@ namespace FashionNova.WinUI.Korisnici
             dgvKorisnici.DataSource = list;
         }
 
-        private void btnDodajKorisnika_Click(object sender, EventArgs e)
+        private async void btnDodajKorisnika_Click(object sender, EventArgs e)
         {
             var forma = new frmDodajKorisnika();
             forma.ShowDialog();
-            LoadKorisnike();
+            await LoadKorisnike();
         }
         private Model.Models.Korisnici selectedKorisnik = null;
-        private void dgvKorisnici_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        private async void dgvKorisnici_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             var item = dgvKorisnici.SelectedRows[0].DataBoundItem;
             frmDodajKorisnika frm = new frmDodajKorisnika(item as FashionNova.Model.Models.Korisnici);
             frm.ShowDialog();
+
+           await LoadKorisnike();
         }
 
-        private void dgvKorisnici_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private async void dgvKorisnici_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             var item = dgvKorisnici.SelectedRows[0].DataBoundItem;
             frmDodajKorisnika frm = new frmDodajKorisnika(item as FashionNova.Model.Models.Korisnici);
             frm.ShowDialog();
+            await LoadKorisnike();
         }
     }
 }

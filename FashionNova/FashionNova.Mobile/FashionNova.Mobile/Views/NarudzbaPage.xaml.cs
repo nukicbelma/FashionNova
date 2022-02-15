@@ -70,25 +70,21 @@ namespace FashionNova.Mobile.Views
                 stavka.Kolicina = item.Kolicina;
                 stavka.Popust = 0;
                 stavka.NarudzbaId = request.NarudzbaId;
-                
+
                 request.IznosBezPdv += stavka.Cijena * stavka.Kolicina;
                 request.IznosSaPdv = request.IznosBezPdv + request.IznosBezPdv * PDV;
                 request.stavke.Add(stavka);
             }
-
-            var narudzba = await _service.Insert<Narudzba>(request);
-
-            await DisplayAlert("Uspjeh", "Uspjesno ste napravili novu narudzbu", "OK");
-            model.NarudzbaList.Clear();
-            CartService.Cart.Clear();
-            lblBrojArtikala.Text = "Broj artikala: 0";
-            lblIznos.Text = "Iznos: 0 KM";
-
+            await Navigation.PushAsync(new PaymentPage(model.Iznos, request));
+          
             var listanarudzbi = await _service.Get<List<Narudzba>>(null);
-            var id = listanarudzbi.Last().NarudzbaId;
-            
+            var broj = listanarudzbi.Last().BrojNarudzbe;
+            bool postoji = false;
 
-            await Navigation.PushAsync(new PaymentPage(model.Iznos, id));
+           model.NarudzbaList.Clear();
+           CartService.Cart.Clear();
+           lblBrojArtikala.Text = "Broj artikala: 0";
+           lblIznos.Text = "Iznos: 0 KM";
         }
 
         private async void Otkazi_Clicked(object sender, EventArgs e)

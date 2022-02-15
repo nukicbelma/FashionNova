@@ -31,7 +31,7 @@ namespace FashionNova.WebAPI.Services
 
             if (!string.IsNullOrWhiteSpace(search?.Naziv))
             {
-                query = query.Where(x => x.Naziv.StartsWith(search.Naziv));
+                query = query.Where(x => x.Naziv.ToLower().StartsWith(search.Naziv.ToLower()));
             }
             if ((!string.IsNullOrWhiteSpace((search?.VrstaArtiklaId).ToString())) && search?.VrstaArtiklaId != 0)
             {

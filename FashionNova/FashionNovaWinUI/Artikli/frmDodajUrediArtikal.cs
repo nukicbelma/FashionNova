@@ -1,5 +1,6 @@
 ﻿using FashionNova.Model.Models;
 using FashionNova.Model.Requests;
+using FashionNova.WinUI.Properties;
 using FashionNovaWinUI;
 using System;
 using System.Collections.Generic;
@@ -49,6 +50,10 @@ namespace FashionNova.WinUI.Artikli
                     pbxSlika.Image = FashionNova.WinUI.Helpers.ImageHelper.FromByteToImage(SelectedArtikal.Slika);
                 }
             }
+            else
+            {
+                pbxSlika.Image = Resources.nemaslike;
+            }
         }
         private async Task LoadData()
         {
@@ -93,7 +98,7 @@ namespace FashionNova.WinUI.Artikli
             cmbMaterijal.ValueMember = "MaterijalId";
             cmbMaterijal.DataSource = result;
         }
-
+        bool validirano = false;
         private async void btnSacuvaj_Click(object sender, EventArgs e)
         {
             var vrstaArtiklaId = cmbVrstaArtikla.SelectedValue;
@@ -130,17 +135,40 @@ namespace FashionNova.WinUI.Artikli
                 insert.Cijena = update.Cijena = cijena;
             }
 
-            if (SelectedArtikal == null)
+            if (txtCijena.Text == "" || txtNaziv.Text == "" || txtSifra.Text == "" || txtSlika.Text == "" || cmbVelicina.SelectedIndex == 0
+                || cmbBoja.SelectedIndex == 0 || cmbVrstaArtikla.SelectedIndex == 0 || cmbMaterijal.SelectedIndex == 0
+                )
             {
-                    await _artikli.Insert<Model.Models.Artikli>(insert);
-                    MessageBox.Show($"Uspjesno ste dodali artikal {txtNaziv.Text} ");
-                    Close(); 
+                MessageBox.Show("Niste unijeli sva polja. Pokusajte ponovo.");
+
             }
+            else if (!validateCijena)
+            {
+                errorProvider1.SetError(txtCijena, "Neispravan format. Primjer: 40 ili 49.48 (vece od 0, bez karaktera.)");
+            }
+
             else
             {
-                await _artikli.Update<Model.Models.Artikli>(SelectedArtikal.ArtikliId, update);
-                MessageBox.Show($"Uspjesno ste editovali artikal {txtNaziv.Text} ");
-                Close();
+                try
+                {
+                    if (SelectedArtikal == null)
+                    {
+
+                        await _artikli.Insert<Model.Models.Artikli>(insert);
+                        MessageBox.Show($"Uspjesno ste dodali artikal {txtNaziv.Text} ");
+                        Close();
+                    }
+                    else
+                    {
+                        await _artikli.Update<Model.Models.Artikli>(SelectedArtikal.ArtikliId, update);
+                        MessageBox.Show($"Uspjesno ste editovali artikal {txtNaziv.Text} ");
+                        Close();
+                    }
+                }
+                catch
+                {
+                    MessageBox.Show("Niste unijeli sva polja. Pokusajte ponovo.");
+                }
             }
         }
 
@@ -182,6 +210,39 @@ namespace FashionNova.WinUI.Artikli
                 if(izbrisi.ShowDialog() == DialogResult.Yes)
                     Close();
             }
+        }
+        private bool validateCijena = false;
+        private void txtCijena_TextChanged(object sender, EventArgs e)
+        {
+            decimal value;
+
+            if (Decimal.TryParse(txtCijena.Text, out value))
+            {
+                bool check = TwoDecimalPlaces(value);
+                if (check)
+                {
+                    //do something 
+                    validateCijena = true;
+                }
+                else
+                {
+                    //do something else
+                    validateCijena = false;
+                }
+            }
+            else
+            {
+                validateCijena = false;
+            }
+        }
+        private bool TwoDecimalPlaces(decimal dec)
+        {
+            if (dec > 0)
+            {
+                decimal value = dec * 100;
+                return value == Math.Floor(value);
+            }
+            else return false;
         }
     }
 }
