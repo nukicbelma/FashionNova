@@ -72,8 +72,15 @@ namespace FashionNova.WebAPI.Service
                         suma += ocj.Ocjena;
                     }
                 }
-                suma /= brojac;
-                item.prosjecnaOcjena = Math.Round(suma, 2);
+                if (brojac > 0)
+                {
+                    suma /= brojac;
+                    item.prosjecnaOcjena = Math.Round(suma, 2);
+                }
+                else
+                {
+                    item.prosjecnaOcjena = 0;
+                }
             }
             if(konacna.Count()==0 || konacna==null)
             {
@@ -115,8 +122,15 @@ namespace FashionNova.WebAPI.Service
                             suma += ocj.Ocjena;
                         }
                     }
-                    suma /= brojac;
-                    item.prosjecnaOcjena = Math.Round(suma, 2);
+                    if (brojac > 0)
+                    {
+                        suma /= brojac;
+                        item.prosjecnaOcjena = Math.Round(suma, 2);
+                    }
+                    else
+                    {
+                        item.prosjecnaOcjena = 0;
+                    }
                 }
             }
             return konacna;
