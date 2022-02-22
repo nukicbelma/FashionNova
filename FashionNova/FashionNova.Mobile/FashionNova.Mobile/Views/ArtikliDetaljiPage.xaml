@@ -134,7 +134,7 @@
                                                     <Label  HorizontalOptions="Center" FontSize="12" Text="{Binding Cijena, StringFormat='Cijena: {0} KM'}"></Label>
                                                 </Grid>
                                                 <Grid>
-                                                    <Label  HorizontalOptions="Center" FontSize="12" Text="{Binding prosjecnaOcjena, StringFormat='Rating {0} '}" ></Label>
+                                                    <Label  HorizontalOptions="Center" FontSize="12" Text="{Binding prosjecnaOcjena, StringFormat='Rating: {0} '}" ></Label>
                                                 </Grid>
                                             </StackLayout>
                                         </Grid>
