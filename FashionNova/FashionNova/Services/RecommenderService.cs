@@ -79,6 +79,45 @@ namespace FashionNova.WebAPI.Service
             {
                 var lista = _context.Artikli.OrderBy(x => Guid.NewGuid()).Take(3);
                 konacna = _mapper.Map<List<FashionNova.Model.Models.Artikli>>(lista);
+                //dodavanje naziva za id(bojaId, materijalId,velicinaId, vrstaartiklaId); jer se to ne moze direktnim mapiranjem tj.prosljedjuju se samo kljucevi.
+                foreach (var item in konacna)
+                {
+                    foreach (var b in bojeList)
+                    {
+                        if (item.BojaId == b.BojaId)
+                            item.Boja = b.Naziv;
+                    }
+                    foreach (var va in vrstaArtiklaList)
+                    {
+                        if (item.VrstaArtiklaId == va.VrstaArtiklaId)
+                            item.VrstaArtikla = va.Naziv;
+                    }
+                    foreach (var m in materijaliList)
+                    {
+                        if (item.MaterijalId == m.MaterijalId)
+                            item.Materijal = m.Naziv;
+                    }
+                    foreach (var v in velicineList)
+                    {
+                        if (item.VelicinaId == v.VelicinaId)
+                            item.Velicina = v.Oznaka;
+                    }
+                }
+                //dodavanje prosjecne ocjene
+                foreach (var item in konacna)
+                {
+                    decimal suma = 0; int brojac = 0;
+                    foreach (var ocj in ocjene)
+                    {
+                        if (item.ArtikliId == ocj.ArtikliId)
+                        {
+                            brojac++;
+                            suma += ocj.Ocjena;
+                        }
+                    }
+                    suma /= brojac;
+                    item.prosjecnaOcjena = Math.Round(suma, 2);
+                }
             }
             return konacna;
         }
